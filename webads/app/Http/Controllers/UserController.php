@@ -95,7 +95,17 @@ class UserController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->route('home')->with('success', 'Đăng ký thành công!');
+            $user = Auth::user();
+        
+            // Lưu ID người dùng vào phiên
+            $request->session()->put('user_id', $user->id);
+        
+            // Điều hướng dựa trên vai trò của người dùng
+            if ($user->role == 'admin') {
+                return redirect()->route('admin')->with('logined', 'Đăng nhập thành công');
+            }
+            
+            return redirect()->route('home')->with('logined', 'Đăng nhập thành công');
         }
 
         return back()->withErrors([
