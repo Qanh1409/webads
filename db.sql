@@ -123,7 +123,7 @@ ENGINE=InnoDB;
 CREATE TABLE `interiors` (
     `interiors_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     `car_id` BIGINT(20) UNSIGNED DEFAULT NULL,
-    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,mysql
     `updated_at` TIMESTAMP NULL DEFAULT NULL,
     `seat_material` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Chất liệu ghế
     `driverSeat_Electric` BOOLEAN NOT NULL, -- Ghế lái chỉnh điện
@@ -191,3 +191,4 @@ CREATE TABLE `fuel_consumptions` (
 ) 
 COLLATE='utf8mb4_unicode_ci'
 ENGINE=InnoDB;
+car_detailscar_detailscars
