@@ -17,4 +17,16 @@ Route::get('users/logout',[UserController::class,'logout'])->name('user.logout')
 Route::get('category',[CategoryController::class,'category'])->name('category.list');
 
 Route::get('admin',[AdminController::class,'index'])->name('admin');
+<<<<<<< HEAD
 Route::get('admin/category',[AdminController::class,'category'])->name('admin.category');
+=======
+Route::get('admin/category',[AdminController::class,'category'])->name('admin.category');
+Route::get('admin/category/add',[AdminController::class,'addCategory'])->name('admin.category.add');
+Route::post('admin/category/create',[AdminController::class,'createCategory'])->name('admin.category.create');
+
+Route::get('admin/category/edit{id}',[AdminController::class,'editCategory'])->name('admin.category.edit');
+Route::put('admin/category/update{id}',[AdminController::class,'updateCategory'])->name('admin.category.update');
+
+
+Route::get();
+>>>>>>> 128abc0554b24cca2c89c20765fc2168404393ba
