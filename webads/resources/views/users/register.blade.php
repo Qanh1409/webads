@@ -13,7 +13,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Đăng Ký Tài Khoản</div>
+                    <div class="card-header text-center">
+                        <h4>Đăng Ký Tài Khoản</h4>
+                    </div>
                     <div class="card-body">
                         <form action="{{ route('user.store') }}" method="POST">
                             @csrf

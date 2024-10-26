@@ -18,3 +18,4 @@ Route::get('category',[CategoryController::class,'category'])->name('category.li
 
 Route::get('admin',[AdminController::class,'index'])->name('admin');
 Route::get('admin/category',[AdminController::class,'category'])->name('admin.category');
+Route::get('users/category', [AdminController::class, 'users_Category'])->name('users.category');

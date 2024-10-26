@@ -16,4 +16,9 @@ class AdminController extends Controller
         $categoryController = new CategoryController();
         return $categoryController->category();
     }
+    public function users_Category()
+    {
+        return view('users.category');
+    } 
+    
 }
