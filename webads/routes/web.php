@@ -23,3 +23,6 @@ Route::post('admin/category/create',[AdminController::class,'createCategory'])->
 
 Route::get('admin/category/edit{id}',[AdminController::class,'editCategory'])->name('admin.category.edit');
 Route::put('admin/category/update{id}',[AdminController::class,'updateCategory'])->name('admin.category.update');
+
+
+Route::get();
