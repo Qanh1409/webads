@@ -18,3 +18,8 @@ Route::get('category',[CategoryController::class,'category'])->name('category.li
 
 Route::get('admin',[AdminController::class,'index'])->name('admin');
 Route::get('admin/category',[AdminController::class,'category'])->name('admin.category');
+Route::get('admin/category/add',[AdminController::class,'addCategory'])->name('admin.category.add');
+Route::post('admin/category/create',[AdminController::class,'createCategory'])->name('admin.category.create');
+
+Route::get('admin/category/edit{id}',[AdminController::class,'editCategory'])->name('admin.category.edit');
+Route::put('admin/category/update{id}',[AdminController::class,'updateCategory'])->name('admin.category.update');
