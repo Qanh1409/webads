@@ -107,5 +107,10 @@ class AdminController extends Controller
         return redirect()->route('admin.category')->with('success', 'Post created successfully.');
     }
 
+    public function deleteCategory($id){
+        $category = Category::find($id);
+        $category->delete();
+        return redirect()->route('admin.category')->with('success', 'Post created successfully.');
+    }
     
 }

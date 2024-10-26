@@ -11,6 +11,9 @@ class HomeController extends Controller
         return view('welcome');
     }
 
+    public function category(){
+        return view('category');
+    }
     
 
 }

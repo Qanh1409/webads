@@ -14,7 +14,7 @@
 
         <!-- Insert Button -->
         <div class="mb-6">
-            <a href="x" class="text-blue-500 hover:text-blue-700">Add New Category</a>
+            <a href="{{route('admin.category.add')}}" class="text-blue-500 hover:text-blue-700">Add New Category</a>
         </div>
 
         <!-- Category Table -->
@@ -32,7 +32,7 @@
                         <td class="py-2 px-4 truncate">{{ $category->name }}</td>
                         <td class="py-2 px-4 flex space-x-2">
                             <a href="{{ route('admin.category.edit', $category->id) }}" class="text-blue-500 hover:text-blue-700">Edit</a>
-                            <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this category?');">
+                            <form action="{{ route('admin.category.delete', $category->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this category?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
