@@ -37,6 +37,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
                             </form>
+                            <a href="{{ route('admin.car.index', $category->id) }}" class="text-blue-500 hover:text-blue-700">Detail</a>
                         </td>
                     </tr>
                     @endforeach

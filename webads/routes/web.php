@@ -27,3 +27,7 @@ Route::get('admin/category/edit{id}',[AdminController::class,'editCategory'])->n
 Route::put('admin/category/update{id}',[AdminController::class,'updateCategory'])->name('admin.category.update');
 Route::delete('admin/category/delete{id}', [AdminController::class, 'deleteCategory'])->name('admin.category.delete');
 
+Route::get('admin/car/index{id}',[AdminController::class,'Car'])->name('admin.car.index');
+Route::get('admin/car/add{id}',[AdminController::class,'addCar'])->name('admin.car.add');
+Route::post('admin/car/create',[AdminController::class,'createCar'])->name('admin.car.create');
+

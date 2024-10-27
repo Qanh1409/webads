@@ -80,7 +80,7 @@ ENGINE=InnoDB;
 
 CREATE TABLE `chassis` (
     `chassis_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `car_id` BIGINT(20) UNSIGNED DEFAULT NULL,
+    `detail_id` BIGINT(20) UNSIGNED DEFAULT NULL,
     `created_at` TIMESTAMP NULL DEFAULT NULL,
     `updated_at` TIMESTAMP NULL DEFAULT NULL,
     `front_suspension` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Hệ thống treo trước
@@ -91,7 +91,7 @@ CREATE TABLE `chassis` (
     `size_tire` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Kích thước lốp
     `weel_diameter` INT NOT NULL, -- Đường kính mâm (inch)
     PRIMARY KEY (`chassis_id`),
-    FOREIGN KEY (`car_id`) REFERENCES `cars`(`car_id`) ON DELETE SET NULL
+    FOREIGN KEY (`detail_id`) REFERENCES `car_details`(`detail_id`) ON DELETE SET NULL
 ) 
 COLLATE='utf8mb4_unicode_ci'
 ENGINE=InnoDB;
@@ -99,7 +99,7 @@ ENGINE=InnoDB;
 //bảng nội thất (exteriors)
 CREATE TABLE `exteriors` (
     `exteriors_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
-    `car_id` BIGINT(20) UNSIGNED DEFAULT NULL,
+      `detail_id` BIGINT(20) UNSIGNED DEFAULT NULL,
     `created_at` TIMESTAMP NULL DEFAULT NULL,
     `updated_at` TIMESTAMP NULL DEFAULT NULL,
     `low_beam` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Đèn chiếu gần
@@ -114,7 +114,7 @@ CREATE TABLE `exteriors` (
     `sunroof` BOOLEAN NOT NULL, -- Cửa sổ trời
     `double_exhaust` BOOLEAN NOT NULL, -- Ống xả đôi
     PRIMARY KEY (`exteriors_id`),
-    FOREIGN KEY (`car_id`) REFERENCES `cars`(`car_id`) ON DELETE SET NULL
+      FOREIGN KEY (`detail_id`) REFERENCES `car_details`(`detail_id`) ON DELETE SET NULL
 ) 
 COLLATE='utf8mb4_unicode_ci'
 ENGINE=InnoDB;
@@ -123,7 +123,7 @@ ENGINE=InnoDB;
 CREATE TABLE `interiors` (
     `interiors_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     `car_id` BIGINT(20) UNSIGNED DEFAULT NULL,
-    `created_at` TIMESTAMP NULL DEFAULT NULL,mysql
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
     `updated_at` TIMESTAMP NULL DEFAULT NULL,
     `seat_material` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Chất liệu ghế
     `driverSeat_Electric` BOOLEAN NOT NULL, -- Ghế lái chỉnh điện
@@ -147,14 +147,14 @@ CREATE TABLE `interiors` (
     `armrest_USB` BOOLEAN NOT NULL, -- Tựa tay hàng ghế sau tích hợp USB
     `rearSeatsFold60_40` BOOLEAN NOT NULL, -- Hàng ghế thứ hai gập 60:40
     PRIMARY KEY (`interiors_id`),
-    FOREIGN KEY (`car_id`) REFERENCES `cars`(`car_id`) ON DELETE SET NULL
+     FOREIGN KEY (`detail_id`) REFERENCES `car_details`(`detail_id`) ON DELETE SET NULL
 ) 
 COLLATE='utf8mb4_unicode_ci'
 ENGINE=INNODB;
 
 CREATE TABLE `safeties` (
     `safeties_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT, -- ID liên kết
-    `car_id` BIGINT(20) UNSIGNED DEFAULT NULL,
+   `detail_id` BIGINT(20) UNSIGNED DEFAULT NULL,
     `created_at` TIMESTAMP NULL DEFAULT NULL,
     `updated_at` TIMESTAMP NULL DEFAULT NULL,
     `air_bag` BOOLEAN NOT NULL, -- Túi khí
@@ -173,21 +173,21 @@ CREATE TABLE `safeties` (
     `camera360` BOOLEAN NOT NULL, -- Cam 360
     `seatbelt_warning` BOOLEAN NOT NULL, -- Cảnh báo thắt dây an toàn
     PRIMARY KEY (`safeties_id`),
-    FOREIGN KEY (`car_id`) REFERENCES `cars`(`car_id`) ON DELETE SET NULL
+     FOREIGN KEY (`detail_id`) REFERENCES `car_details`(`detail_id`) ON DELETE SET NULL
 ) 
 COLLATE='utf8mb4_unicode_ci'
 ENGINE=InnoDB;
 
 CREATE TABLE `fuel_consumptions` (
     `fuel_consumptions_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT, -- Liên kết khóa chính
-    `car_id` BIGINT(20) UNSIGNED DEFAULT NULL,
+     `detail_id` BIGINT(20) UNSIGNED DEFAULT NULL,
     `created_at` TIMESTAMP NULL DEFAULT NULL,
     `updated_at` TIMESTAMP NULL DEFAULT NULL,
     `city_consumption` DECIMAL(10, 2) NOT NULL, -- Trong thành phố
     `hightway_consumption` DECIMAL(10, 2) NOT NULL, -- Đường trường
     `total_consumption` DECIMAL(10, 2) NOT NULL, -- Hỗn hợp
     PRIMARY KEY (`fuel_consumptions_id`),
-    FOREIGN KEY (`car_id`) REFERENCES `cars`(`car_id`) ON DELETE SET NULL
+      FOREIGN KEY (`detail_id`) REFERENCES `car_details`(`detail_id`) ON DELETE SET NULL
 ) 
 COLLATE='utf8mb4_unicode_ci'
 ENGINE=InnoDB;
