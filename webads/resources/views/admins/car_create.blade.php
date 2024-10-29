@@ -10,8 +10,8 @@
         <!-- Form Container -->
         <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
             <h2 class="text-2xl font-bold mb-6 text-center">Add New Car</h2>
-
-            <form action="{{route('admin.car.create')}}" method="POST" enctype="multipart/form-data">
+          
+            <form action="{{route('admin.car.create',$category->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <!-- Car Name Field -->

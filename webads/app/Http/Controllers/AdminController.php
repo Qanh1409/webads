@@ -67,7 +67,7 @@ class AdminController extends Controller
             $filename = $this->uploadImage($request->file('img_url'));
             $category->img = $filename;
         }
-
+    
         $category->save();
         return redirect()->route('admin.category')->with('success', 'Category created successfully.');
     }
@@ -96,6 +96,7 @@ class AdminController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
+       
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
@@ -126,9 +127,9 @@ class AdminController extends Controller
         return redirect()->route('admin.category')->with('success', 'Category deleted successfully.');
     }
 
-    public function createCar(Request $request)
+    public function createCar(Request $request, $id)
     {
-      
+        
         $rules = [
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0',
@@ -157,26 +158,25 @@ class AdminController extends Controller
 
         $validator = Validator::make($request->all(), $rules, $messages);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
+          
+     
+       
         $car = new Car;
-      
-        if ($request->hasFile('image')) {
-            $car->image = $this->uploadImage($request->file('image'));
-        }
+        $category = Category::find($id);
+    
 
         $car->name = $request->name;
         $car->price = $request->price;
         $car->description = $request->description;
-        $car->category_id = 1;
-        echo "Hello ";
-        var_dump($car);
-        die();
+        $car->category_id = $category->id;
 
       
         $car->save();
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        
 
         return redirect()->route('admin.car.index')->with('success', 'Car created successfully.');
     }
@@ -190,7 +190,7 @@ class AdminController extends Controller
 
     private function removeImage($filename)
     {
-        $imagePath = public_path('img/' . $filename);
+        $imagePath = public_path('images/cars' . $filename);
         if (file_exists($imagePath)) {
             unlink($imagePath);
         }

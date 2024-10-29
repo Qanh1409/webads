@@ -7,7 +7,6 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 
 Route::get('/',[HomeController::class,'index'])->name('home');
-Route::get('category',[HomeController::class,'category'])->name('category');
 
 Route::get('users/register',[UserController::class,'register'])->name('user.register');
 Route::post('users/store', [UserController::class, 'store'])->name('user.store');
@@ -19,15 +18,15 @@ Route::get('category',[CategoryController::class,'category'])->name('category.li
 
 Route::get('admin',[AdminController::class,'index'])->name('admin');
 Route::get('admin/category',[AdminController::class,'category'])->name('admin.category');
-Route::get('admin/category',[AdminController::class,'category'])->name('admin.category');
 Route::get('admin/category/add',[AdminController::class,'addCategory'])->name('admin.category.add');
 Route::post('admin/category/create',[AdminController::class,'createCategory'])->name('admin.category.create');
 
 Route::get('admin/category/edit{id}',[AdminController::class,'editCategory'])->name('admin.category.edit');
 Route::put('admin/category/update{id}',[AdminController::class,'updateCategory'])->name('admin.category.update');
-Route::delete('admin/category/delete{id}', [AdminController::class, 'deleteCategory'])->name('admin.category.delete');
+Route::delete('admin/category/delete',[AdminController::class,'deleteCategory'])->name('admin.category.delete');
 
-Route::get('admin/car/index{id}',[AdminController::class,'Car'])->name('admin.car.index');
-Route::get('admin/car/add{id}',[AdminController::class,'addCar'])->name('admin.car.add');
-Route::post('admin/car/create',[AdminController::class,'createCar'])->name('admin.car.create');
+Route::get('admin/car/index{id}',[AdminController::class,'car'])->name('admin.car.index');
+Route::get('admin/car/addCar',[AdminController::class,'addCar'])->name('admin.car.add');
+
+Route::post('admin/car/create{id}',[AdminController::class,'createCar'])->name('admin.car.create');
 
