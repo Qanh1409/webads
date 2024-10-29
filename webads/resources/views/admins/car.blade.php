@@ -23,8 +23,8 @@
             <td class="py-2 px-4">{{ $car->category->name ?? 'N/A' }}</td>
             <td class="py-2 px-4">{{ number_format($car->price, 2) }} VNĐ</td>
             <td class="py-2 px-4 flex space-x-2">
-                <a href="" class="text-blue-500 hover:text-blue-700">Edit</a>
-                <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this car?');">
+                <a href="{{route('admin.car.edit',$car->id)}}" class="text-blue-500 hover:text-blue-700">Edit</a>
+                <form action="{{route('admin.car.delete',$car->id)}}" method="POST" onsubmit="return confirm('Are you sure you want to delete this car?');">
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>

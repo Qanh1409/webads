@@ -21,9 +21,30 @@ class Car extends Model
         'description',
     ];
 
+    protected static function booted()
+    {
+        static::created(function ($car) {
+            $car->carDetail()->create(
+                [
+                    'car_id' => $car->id,
+                ]
+            );
+        });
+        
+        static::deleting(function ($car) {
+            $car->carDetail()->delete();
+        });
+    }
+
+
     // Nếu bạn có mối quan hệ với Category
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function  carDetail()
+    {
+        return $this->hasOne(CarDetail::class);
     }
 }
