@@ -212,7 +212,7 @@
         <div style="position: relative; display: inline-block;">
 
             <!-- Video -->
-            <video autoplay loop muted style="width: 1600" height="600">
+            <video autoplay loop muted style="width: 2000" height="600">
                 <source src="img\IntroduceM3Sport.mp4" type="video/mp4">
             </video>
 
