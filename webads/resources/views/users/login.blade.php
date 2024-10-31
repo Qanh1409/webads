@@ -53,7 +53,7 @@
                 </form>
             </div>
             <div class="card-footer text-center">
-                <a href="/password/reset">Quên mật khẩu?</a> | <a href="/register">Đăng ký</a>
+                <a href="/password/reset">Quên mật khẩu?</a> | <a href="{{route('user.register')}}">Đăng ký</a>
             </div>
         </div>
     </div>
