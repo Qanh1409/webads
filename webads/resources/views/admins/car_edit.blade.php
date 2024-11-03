@@ -11,7 +11,7 @@
         <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
             <h2 class="text-2xl font-bold mb-6 text-center">Update Car</h2>
           
-            <form action="{{ route('admin.car.update', ['categoryId' => $car->category_id, 'id' => $car->id]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.car.update', ['id' => $car->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <!-- Car Name Field -->

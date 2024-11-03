@@ -1,266 +1,194 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               8.0.30 - MySQL Community Server - GPL
--- Server OS:                    Win64
--- HeidiSQL Version:             12.1.0.6537
--- --------------------------------------------------------
+CREATE TABLE `categories` (
+    `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+    `img` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    PRIMARY KEY (`id`) USING BTREE
+) 
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE TABLE `cars` (
+    `car_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `image` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+    `name` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+    `price` DECIMAL(10, 2) NOT NULL,
+    `category_id` BIGINT(20) UNSIGNED DEFAULT NULL,
+    `description` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    PRIMARY KEY (`car_id`),
+    FOREIGN KEY (`category_id`) REFERENCES `categories`(`id`) ON DELETE SET NULL
+) 
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=INNODB;
 
+CREATE TABLE `car_details` (
+    `detail_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT, -- Định danh chi tiết
+    `car_id` BIGINT(20) UNSIGNED DEFAULT NULL,
+    `size` DECIMAL(10, 2) NOT NULL,
+    `wheelbase` DECIMAL(10, 2) NOT NULL, -- Chiều dài cơ sở
+    `turning_radius` DECIMAL(10, 2) NOT NULL, -- Bán kính vòng quay
+    `ground_clearance` DECIMAL(10, 2) NOT NULL, -- Khoảng sáng gầm
+    `curb_weight` DECIMAL(10, 2) NOT NULL, -- Khối lượng không tải
+    `gross_weight` DECIMAL(10, 2) NOT NULL, -- Khối lượng toàn tải
+    `cargo_volume` INT NOT NULL, -- Thể tích khoang hành lý
+    `fuel_tank_capacity` INT NOT NULL, -- Dung tích bình nhiên liệu
+    `deposit_required` DECIMAL(10, 2) NOT NULL, -- Đặt cọc (cân nhắc)
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    PRIMARY KEY (`detail_id`),
+    FOREIGN KEY (`car_id`) REFERENCES `cars`(`car_id`) ON DELETE SET NULL
+) 
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB;
 
--- Dumping database structure for webads
-CREATE DATABASE IF NOT EXISTS `webads` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `webads`;
+CREATE TABLE `blogs` (
+    `id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `user_id` BIGINT(20) UNSIGNED DEFAULT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    `title` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+    `img` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci',
+    `content` TEXT NOT NULL COLLATE 'utf8mb4_unicode_ci',
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE SET NULL
+) 
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB;
 
--- Dumping structure for table webads.blogs
-CREATE TABLE IF NOT EXISTS `blogs` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `user_id` bigint unsigned DEFAULT NULL,
-  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `blogs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `engine_transmissions` (
+    `engine_transmission` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `car_id` BIGINT(20) UNSIGNED DEFAULT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    `type_engine` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Kiểu động cơ
+    `fuel_system` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Kiểu nhiên liệu
+    `cylinder_capacity` DECIMAL(10, 2) NOT NULL, -- Dung tích xi lanh
+    `max_power` INT NOT NULL, -- Công suất cực đại
+    `max_torque` DECIMAL(10, 2) NOT NULL, -- Mô men xoắn
+    `tranmission` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Kiểu hộp số
+    `sport_mode` BOOLEAN NOT NULL, -- Chế độ thể thao
+    `GVC_sysem` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Hệ thống GVC
+    `iStop` BOOLEAN NOT NULL, -- Hệ thống dừng/khởi động động cơ thông minh
+    PRIMARY KEY (`engine_transmission`),
+    FOREIGN KEY (`car_id`) REFERENCES `cars`(`car_id`) ON DELETE SET NULL
+) 
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB;
 
--- Dumping data for table webads.blogs: ~0 rows (approximately)
+CREATE TABLE `chassis` (
+    `chassis_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `car_id` BIGINT(20) UNSIGNED DEFAULT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    `front_suspension` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Hệ thống treo trước
+    `rear_suspension` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Treo sau
+    `front_brake` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Phanh trước
+    `rear_brake` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Phanh sau
+    `steering_assistance` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Trợ lực lái
+    `size_tire` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Kích thước lốp
+    `weel_diameter` INT NOT NULL, -- Đường kính mâm (inch)
+    PRIMARY KEY (`chassis_id`),
+    FOREIGN KEY (`car_id`) REFERENCES `cars`(`car_id`) ON DELETE SET NULL
+) 
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB;
 
--- Dumping structure for table webads.cars
-CREATE TABLE IF NOT EXISTS `cars` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `price` decimal(10,2) NOT NULL,
-  `category_id` bigint unsigned DEFAULT NULL,
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `category_id` (`category_id`),
-  CONSTRAINT `cars_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+//bảng nội thất (exteriors)
+CREATE TABLE `exteriors` (
+    `exteriors_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `car_id` BIGINT(20) UNSIGNED DEFAULT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    `low_beam` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Đèn chiếu gần
+    `hight_beam` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Đèn chiếu xa
+    `LEDLight_Day` BOOLEAN NOT NULL, -- Đèn LED ban ngày
+    `auto_headlights` BOOLEAN NOT NULL, -- Tự động bật tắt đèn
+    `auto_leveling` BOOLEAN NOT NULL, -- Cân bằng góc chiếu
+    `power_mirror` BOOLEAN NOT NULL, -- Gương chỉnh điện
+    `auto_folding` BOOLEAN NOT NULL, -- Gương gập điện
+    `auto_wipers` BOOLEAN NOT NULL, -- Gạt mưa tự động 
+    `rear_LEDLight` BOOLEAN NOT NULL, -- Đèn LED phía sau
+    `sunroof` BOOLEAN NOT NULL, -- Cửa sổ trời
+    `double_exhaust` BOOLEAN NOT NULL, -- Ống xả đôi
+    PRIMARY KEY (`exteriors_id`),
+    FOREIGN KEY (`car_id`) REFERENCES `cars`(`car_id`) ON DELETE SET NULL
+) 
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB;
 
--- Dumping data for table webads.cars: ~0 rows (approximately)
+//Bảng ngoại thất
+CREATE TABLE `interiors` (
+    `interiors_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+    `car_id` BIGINT(20) UNSIGNED DEFAULT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,mysql
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    `seat_material` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Chất liệu ghế
+    `driverSeat_Electric` BOOLEAN NOT NULL, -- Ghế lái chỉnh điện
+    `driverSeat_Memory` BOOLEAN NOT NULL, -- Nhớ vị trí ghế lái
+    `passengerSeat_Electric` BOOLEAN NOT NULL, -- Ghế phụ chỉnh điện
+    `DCV_player` BOOLEAN NOT NULL, -- Đầu DVD
+    `touchscreen` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Màn cảm ứng
+    `speaker` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Loa
+    `brakeHand_electric` BOOLEAN NOT NULL, -- Phanh tay điện tử
+    `autoHold` BOOLEAN NOT NULL, -- Tự động giữ phanh
+    `Buton_engine` BOOLEAN NOT NULL, -- Khởi động bằng nút bấm
+    `cruise_control` BOOLEAN NOT NULL, -- Ga tự động
+    `auto_climate` VARCHAR(255) NOT NULL COLLATE 'utf8mb4_unicode_ci', -- Điều hòa tự động
+    `rear_airvents` BOOLEAN NOT NULL, -- Cửa gió hàng ghế sau
+    `window_electric` BOOLEAN NOT NULL, -- Cửa sổ chỉnh điện
+    `autoDimming_mirror` BOOLEAN NOT NULL, -- Gương trung tâm chống chói
+    `HUD` BOOLEAN NOT NULL, -- HUD
+    `window2nd_sunshadesCenter` BOOLEAN NOT NULL, -- Rèm che kính trung tâm
+    `window2nd_sunshades` BOOLEAN NOT NULL, -- Rèm che cửa sổ
+    `armrest` BOOLEAN NOT NULL, -- Tựa tay hàng ghế sau
+    `armrest_USB` BOOLEAN NOT NULL, -- Tựa tay hàng ghế sau tích hợp USB
+    `rearSeatsFold60_40` BOOLEAN NOT NULL, -- Hàng ghế thứ hai gập 60:40
+    PRIMARY KEY (`interiors_id`),
+    FOREIGN KEY (`car_id`) REFERENCES `cars`(`car_id`) ON DELETE SET NULL
+) 
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=INNODB;
 
--- Dumping structure for table webads.car_details
-CREATE TABLE IF NOT EXISTS `car_details` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `car_id` bigint unsigned DEFAULT NULL,
-  `size` decimal(10,2) NOT NULL,
-  `wheelbase` decimal(10,2) NOT NULL,
-  `turning_radius` decimal(10,2) NOT NULL,
-  `ground_clearance` decimal(10,2) NOT NULL,
-  `curb_weight` decimal(10,2) NOT NULL,
-  `gross_weight` decimal(10,2) NOT NULL,
-  `cargo_volume` int NOT NULL,
-  `fuel_tank_capacity` int NOT NULL,
-  `deposit_required` decimal(10,2) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `car_id` (`car_id`),
-  CONSTRAINT `car_details_ibfk_1` FOREIGN KEY (`car_id`) REFERENCES `cars` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+CREATE TABLE `safeties` (
+    `safeties_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT, -- ID liên kết
+    `car_id` BIGINT(20) UNSIGNED DEFAULT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    `air_bag` BOOLEAN NOT NULL, -- Túi khí
+    `abs` BOOLEAN NOT NULL, -- ABS
+    `ebd` BOOLEAN NOT NULL, -- Phân bổ phanh điện tử EBD
+    `eba` BOOLEAN NOT NULL, -- Hỗ trợ phanh khẩn cấp EBA
+    `ess` BOOLEAN NOT NULL, -- Cảnh báo phanh khẩn cấp ESS
+    `dsc` BOOLEAN NOT NULL, -- Cân bằng điện tử DSC
+    `tcs` BOOLEAN NOT NULL, -- Kiểm soát lực kéo chống trượt TCS
+    `hla` BOOLEAN NOT NULL, -- Khởi hành ngang dốc HLA
+    `immobilizer` BOOLEAN NOT NULL, -- Mã hóa chìa
+    `burgler_alarm` BOOLEAN NOT NULL, -- Cảnh báo chống trộm
+    `rear_camera` BOOLEAN NOT NULL, -- Cam lùi
+    `front_sensor` BOOLEAN NOT NULL, -- Cảm biến va chạm phía trước
+    `rear_sensor` BOOLEAN NOT NULL, -- Cảm biến va chạm phía sau
+    `camera360` BOOLEAN NOT NULL, -- Cam 360
+    `seatbelt_warning` BOOLEAN NOT NULL, -- Cảnh báo thắt dây an toàn
+    PRIMARY KEY (`safeties_id`),
+    FOREIGN KEY (`car_id`) REFERENCES `cars`(`car_id`) ON DELETE SET NULL
+) 
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB;
 
--- Dumping data for table webads.car_details: ~0 rows (approximately)
-
--- Dumping structure for table webads.categories
-CREATE TABLE IF NOT EXISTS `categories` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `img` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Dumping data for table webads.categories: ~0 rows (approximately)
-
--- Dumping structure for table webads.chassis
-CREATE TABLE IF NOT EXISTS `chassis` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `detail_id` bigint unsigned DEFAULT NULL,
-  `front_suspension` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rear_suspension` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `front_brake` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rear_brake` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `steering_assistance` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `size_tire` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `wheel_diameter` int NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `detail_id` (`detail_id`),
-  CONSTRAINT `chassis_ibfk_1` FOREIGN KEY (`detail_id`) REFERENCES `car_details` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Dumping data for table webads.chassis: ~0 rows (approximately)
-
--- Dumping structure for table webads.engine_transmissions
-CREATE TABLE IF NOT EXISTS `engine_transmissions` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `detail_id` bigint unsigned DEFAULT NULL,
-  `type_engine` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `fuel_system` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cylinder_capacity` decimal(10,2) NOT NULL,
-  `max_power` int NOT NULL,
-  `max_torque` decimal(10,2) NOT NULL,
-  `transmission` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sport_mode` tinyint(1) NOT NULL,
-  `GVC_system` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `iStop` tinyint(1) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `detail_id` (`detail_id`),
-  CONSTRAINT `engine_transmissions_ibfk_1` FOREIGN KEY (`detail_id`) REFERENCES `car_details` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Dumping data for table webads.engine_transmissions: ~0 rows (approximately)
-
--- Dumping structure for table webads.exteriors
-CREATE TABLE IF NOT EXISTS `exteriors` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `detail_id` bigint unsigned DEFAULT NULL,
-  `low_beam` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `high_beam` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `LED_light_day` tinyint(1) NOT NULL,
-  `auto_headlights` tinyint(1) NOT NULL,
-  `auto_leveling` tinyint(1) NOT NULL,
-  `power_mirror` tinyint(1) NOT NULL,
-  `auto_folding` tinyint(1) NOT NULL,
-  `auto_wipers` tinyint(1) NOT NULL,
-  `rear_LED_light` tinyint(1) NOT NULL,
-  `sunroof` tinyint(1) NOT NULL,
-  `double_exhaust` tinyint(1) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `detail_id` (`detail_id`),
-  CONSTRAINT `exteriors_ibfk_1` FOREIGN KEY (`detail_id`) REFERENCES `car_details` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Dumping data for table webads.exteriors: ~0 rows (approximately)
-
--- Dumping structure for table webads.fuel_consumptions
-CREATE TABLE IF NOT EXISTS `fuel_consumptions` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `detail_id` bigint unsigned DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `city_consumption` decimal(10,2) NOT NULL,
-  `hightway_consumption` decimal(10,2) NOT NULL,
-  `total_consumption` decimal(10,2) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `detail_id` (`detail_id`),
-  CONSTRAINT `fuel_consumptions_ibfk_1` FOREIGN KEY (`detail_id`) REFERENCES `car_details` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Dumping data for table webads.fuel_consumptions: ~0 rows (approximately)
-
--- Dumping structure for table webads.i_activsense
-CREATE TABLE IF NOT EXISTS `i_activsense` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `detail_id` bigint unsigned DEFAULT NULL,
-  `afs` tinyint(1) NOT NULL,
-  `hbc` tinyint(1) NOT NULL,
-  `alh` tinyint(1) NOT NULL,
-  `rcta` tinyint(1) NOT NULL,
-  `ldw` tinyint(1) NOT NULL,
-  `las` tinyint(1) NOT NULL,
-  `city_brake_support_front` tinyint(1) NOT NULL,
-  `city_brake_support_rear` tinyint(1) NOT NULL,
-  `sbs` tinyint(1) NOT NULL,
-  `mrcc` tinyint(1) NOT NULL,
-  `daa` tinyint(1) NOT NULL,
-  `bsm` tinyint(1) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `detail_id` (`detail_id`),
-  CONSTRAINT `i_activsense_ibfk_1` FOREIGN KEY (`detail_id`) REFERENCES `car_details` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Dumping data for table webads.i_activsense: ~0 rows (approximately)
-
--- Dumping structure for table webads.safeties
-CREATE TABLE IF NOT EXISTS `safeties` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `detail_id` bigint unsigned DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `air_bag` tinyint(1) NOT NULL,
-  `abs` tinyint(1) NOT NULL,
-  `ebd` tinyint(1) NOT NULL,
-  `eba` tinyint(1) NOT NULL,
-  `ess` tinyint(1) NOT NULL,
-  `dsc` tinyint(1) NOT NULL,
-  `tcs` tinyint(1) NOT NULL,
-  `hla` tinyint(1) NOT NULL,
-  `immobilizer` tinyint(1) NOT NULL,
-  `burgler_alarm` tinyint(1) NOT NULL,
-  `rear_camera` tinyint(1) NOT NULL,
-  `front_sensor` tinyint(1) NOT NULL,
-  `rear_sensor` tinyint(1) NOT NULL,
-  `camera360` tinyint(1) NOT NULL,
-  `seatbelt_warning` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `detail_id` (`detail_id`),
-  CONSTRAINT `safeties_ibfk_1` FOREIGN KEY (`detail_id`) REFERENCES `car_details` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- Dumping data for table webads.safeties: ~0 rows (approximately)
-
--- Dumping structure for table webads.users
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `test_driver_date` timestamp NULL DEFAULT NULL,
-  `feedback` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
-  `phone_number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `role` enum('admin','user') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
-  `address` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `deposit` decimal(8,2) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`),
-  UNIQUE KEY `users_phone_number_unique` (`phone_number`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
-
-
--- Dumping structure for table webads.sessions
-CREATE TABLE IF NOT EXISTS `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `user_id` bigint unsigned DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_activity` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `sessions_user_id_index` (`user_id`),
-  KEY `sessions_last_activity_index` (`last_activity`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
--- Dumping data for table webads.users: ~0 rows (approximately)
-
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+CREATE TABLE `fuel_consumptions` (
+    `fuel_consumptions_id` BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT, -- Liên kết khóa chính
+    `car_id` BIGINT(20) UNSIGNED DEFAULT NULL,
+    `created_at` TIMESTAMP NULL DEFAULT NULL,
+    `updated_at` TIMESTAMP NULL DEFAULT NULL,
+    `city_consumption` DECIMAL(10, 2) NOT NULL, -- Trong thành phố
+    `hightway_consumption` DECIMAL(10, 2) NOT NULL, -- Đường trường
+    `total_consumption` DECIMAL(10, 2) NOT NULL, -- Hỗn hợp
+    PRIMARY KEY (`fuel_consumptions_id`),
+    FOREIGN KEY (`car_id`) REFERENCES `cars`(`car_id`) ON DELETE SET NULL
+) 
+COLLATE='utf8mb4_unicode_ci'
+ENGINE=InnoDB;
+car_detailscar_detailscars

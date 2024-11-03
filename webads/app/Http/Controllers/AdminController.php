@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use App\Models\Car;
+use App\Models\CarDetail;
 
 class AdminController extends Controller
 {
@@ -194,7 +195,7 @@ class AdminController extends Controller
         return view('admins.car_edit', compact('car'));
     }
 
-    public function updateCar(Request $request, $id, $categoryId)
+    public function updateCar(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -203,7 +204,7 @@ class AdminController extends Controller
             'image' => 'nullable|image|max:2048'
         ]);
 
-        $category = Category::find($id);
+      
         $car = Car::findOrFail($id);
         $car->name = $request->name;
         $car->price = $request->price;
@@ -216,7 +217,7 @@ class AdminController extends Controller
 
         $car->save();
 
-        return redirect()->route('admin.car.index', ['id' => $category->id])->with('success', 'Car created successfully.');
+        return redirect()->route('admin.car.index', ['id' =>$car->category_id])->with('success', 'Car created successfully.');
     }
 
 
@@ -233,6 +234,54 @@ class AdminController extends Controller
 
         return redirect()->route('admin.car.index', ['id' => $car->category_id])->with('success', 'Car created successfully.');
 
+    }
+    
+    public function carDetail($id){
+        $car = Car::find($id);
+        $carDetail = CarDetail::with('car')->get();
+        return view('admins.carDetail',compact('carDetail','car'));
+    }
+
+    public function editCarDetail($id){
+        $carDetail = CarDetail::find($id);
+        return view('admins.carDetail_edit',compact('carDetail'));
+    }
+    public function updateCarDetail(Request $request, $id,$carId)
+    {
+       
+        // 1. Xác thực dữ liệu nhận được
+        $validatedData = $request->validate([
+            'size' => 'required|numeric',
+            'wheelbase' => 'required|numeric',
+            'turning_radius' => 'required|numeric',
+            'ground_clearance' => 'required|numeric',
+            'curb_weight' => 'required|numeric',
+            'gross_weight' => 'required|numeric',
+            'cargo_volume' => 'required|integer',
+            'fuel_tank_capacity' => 'required|integer',
+            'deposit_required' => 'required|numeric',
+        ]);
+
+        // 2. Tìm kiếm CarDetail theo ID
+        $carDetail = CarDetail::findOrFail($id);
+
+        // 3. Cập nhật các thuộc tính với dữ liệu mới từ request
+        $carDetail->size = $validatedData['size'];
+        $carDetail->wheelbase = $validatedData['wheelbase'];
+        $carDetail->turning_radius = $validatedData['turning_radius'];
+        $carDetail->ground_clearance = $validatedData['ground_clearance'];
+        $carDetail->curb_weight = $validatedData['curb_weight'];
+        $carDetail->gross_weight = $validatedData['gross_weight'];
+        $carDetail->cargo_volume = $validatedData['cargo_volume'];
+        $carDetail->fuel_tank_capacity = $validatedData['fuel_tank_capacity'];
+        $carDetail->deposit_required = $validatedData['deposit_required'];
+
+        // 4. Lưu các thay đổi
+        $carDetail->save();
+
+        // 5. Điều hướng về trang danh sách kèm thông báo thành công
+     
+        return redirect()->route('admin.car.index', ['id' =>$car->category_id])->with('success', 'Car created successfully.');
     }
 
     private function uploadImage($file)

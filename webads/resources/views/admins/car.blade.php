@@ -4,11 +4,27 @@
 
 @section('content')
 @auth
+
+<!-- Button AddCar và Back -->
+<!-- Button "Add New Car" -->
+<a href="{{ route('admin.car.add', $category->id)}}" style="text-decoration: none;">
+    <button style="background-color: blue; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+        Add New Car
+    </button>
+</a>
+
+<!-- Button "Back" -->
+<a href="javascript:window.history.back()" style="text-decoration: none;">
+    <button style="background-color: blue; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+        Back
+    </button>
+</a>
+
+<!-- 
 <div class="mb-6">
     <a href="{{ route('admin.car.add', $category->id) }}" class="btn-link">Add New Car</a>
     <a href="YOUR_BACK_URL" class="btn-primary">Back</a>
-
-</div>
+</div> -->
 
 
 <table class="table-auto w-full bg-white rounded-lg shadow">
@@ -33,6 +49,8 @@
                     @method('DELETE')
                     <button type="submit" class="btn-danger">Delete</button>
                 </form>
+                <a href="{{ route('admin.car.detail', $car->id) }}" class="btn-link">Detail</a>
+
             </td>
         </tr>
         @endforeach

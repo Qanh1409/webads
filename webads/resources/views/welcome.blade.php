@@ -41,8 +41,7 @@
 
                                         <!-- Hàng 1 -->
                                         <div>
-                                            <h3>Hatchback</h3>
-                                            <hr>
+                                            <h3>Hatchback</h3> <hr>
                                             <li style="display: flex; justify-content: space-between; margin-bottom: 10px;">
                                                 <div style="flex: 1; padding: 10px; text-align: center;">
                                                     <a href="url-to-M2sport" style="text-decoration: none;">
@@ -205,6 +204,7 @@
     </div>
 
     <!-- Mục nội dung chính -->
+
     <!-- video giới thiệu -->
     <!-- Container bao quanh để căn giữa -->
     <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #000000;">
@@ -212,7 +212,7 @@
         <div style="position: relative; display: inline-block;">
 
             <!-- Video -->
-            <video autoplay loop muted style="width: 2000" height="600">
+            <video autoplay loop muted style="width: 1600" height="900">
                 <source src="img\IntroduceM3Sport.mp4" type="video/mp4">
             </video>
 
@@ -314,7 +314,7 @@
     <!-- Các khối hiển thị tất cả các dòng xe -->
     <div style="display: flex; justify-content: space-between;">
         <!-- Cột 1 -->
-        <div style="flex: 1; padding: 10px;">
+        <div style="flex: 1; padding: 30px;">
             <a href="https://example.com/suv1" style="text-decoration: none; color: inherit;">
                 <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px; border: 1px solid #ccc;">
                     <div>
@@ -327,7 +327,7 @@
                 </div>
         </div>
         <!-- Cột 2 -->
-        <div style="flex: 1; padding: 10px;">
+        <div style="flex: 1; padding: 30px;">
             <a href="https://example.com/suv1" style="text-decoration: none; color: inherit;">
                 <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px; border: 1px solid #ccc;">
                     <div>
@@ -340,7 +340,7 @@
                 </div>
         </div>
         <!-- Cột 3 -->
-        <div style="flex: 1; padding: 10px">
+        <div style="flex: 1; padding: 30px">
             <a href="https://example.com/suv1" style="text-decoration: none; color: inherit;">
                 <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px; border: 1px solid #ccc;">
                     <div>
@@ -351,12 +351,76 @@
                         <img src="img\CX5\CX5-avatar.jpg" alt="Mazda CX-5" width="180">
                     </div>
                 </div>
+            </a>
         </div>
     </div>
 
     <br><br>
 
+    <!-- Khối dịch vụ của hãng xe -->
 
+    <div class="container my-5">
+        <h2 class="text-center mb-4" style="font-size: 36px; font-weight: bold;">Dịch vụ</h2>
+
+        <!-- Carousel -->
+        <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+
+                <!-- Mục 1: Hướng dẫn sử dụng cho chủ xe -->
+                <div class="carousel-item active">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <img src="https://heyoto.vn/wp-content/uploads/2024/07/mam-xe-mazda-cx-5-premium-exclusive.jpg" alt="Hướng dẫn sử dụng cho chủ xe" style="width: 100%; height: auto;">
+                        </div>
+                        <div class="col-md-6" style="padding: 20px;">
+                            <h3 style="font-size: 24px; font-weight: bold;">Hướng dẫn sử dụng cho chủ xe</h3>
+                            <p style="font-size: 16px; color: #666;">Bảng thông tin tính năng và hướng dẫn chi tiết dành cho xe của bạn.</p>
+                            <button class="btn btn-outline-dark" style="font-size: 16px; padding: 10px 20px;">Tìm hiểu thêm</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mục 2: Đặt hẹn dịch vụ trực tuyến -->
+                <div class="carousel-item">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <img src="https://mazdamotors.vn/media/fzace3nd/call-center.jpg?width=550&height=393" alt="Đặt hẹn dịch vụ trực tuyến" style="width: 80%; height: auto;">
+                        </div>
+                        <div class="col-md-6" style="padding: 20px;">
+                            <h3 style="font-size: 24px; font-weight: bold;">Đặt hẹn dịch vụ trực tuyến</h3>
+                            <p style="font-size: 16px; color: #666;">Đặt lịch hẹn dịch vụ trực tuyến một cách thuận tiện.</p>
+                            <button class="btn btn-outline-dark" style="font-size: 16px; padding: 10px 20px;">Đặt lịch hẹn</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mục 3: Hỗ trợ đăng ký lái thử -->
+                <div class="carousel-item">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <img src="https://mazdavinhlong.vn/media/l04pmg5g/hi-nh-7.jpg" alt="Hỗ trợ đăng ký lái thử" style="width: 100%; height: auto;">
+                        </div>
+                        <div class="col-md-6" style="padding: 20px;">
+                            <h3 style="font-size: 24px; font-weight: bold;">Hỗ trợ khách hàng</h3>
+                            <p style="font-size: 16px; color: #666;">Cung cấp thông tin và hỗ trợ khách hàng 24/7.</p>
+                            <button class="btn btn-outline-dark" style="font-size: 16px; padding: 10px 20px;">Liên hệ ngay</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Điều khiển Carousel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1);"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1);"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
 
 
     <!-- Khối chân footer -->
