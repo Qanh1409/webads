@@ -204,7 +204,7 @@ class AdminController extends Controller
             'image' => 'nullable|image|max:2048'
         ]);
 
-      
+
         $car = Car::findOrFail($id);
         $car->name = $request->name;
         $car->price = $request->price;
@@ -217,7 +217,7 @@ class AdminController extends Controller
 
         $car->save();
 
-        return redirect()->route('admin.car.index', ['id' =>$car->category_id])->with('success', 'Car created successfully.');
+        return redirect()->route('admin.car.index', ['id' => $car->category_id])->with('success', 'Car created successfully.');
     }
 
 
@@ -233,23 +233,23 @@ class AdminController extends Controller
         $car->delete();
 
         return redirect()->route('admin.car.index', ['id' => $car->category_id])->with('success', 'Car created successfully.');
-
     }
-    
-    public function carDetail($id){
+
+    public function carDetail($id)
+    {
         $car = Car::find($id);
         $carDetail = CarDetail::with('car')->get();
-        return view('admins.carDetail',compact('carDetail','car'));
+        return view('admins.carDetail', compact('carDetail', 'car'));
     }
 
-    public function editCarDetail($id){
-        $carDetail = CarDetail::find($id);
-        return view('admins.carDetail_edit',compact('carDetail'));
-    }
-    public function updateCarDetail(Request $request, $id,$carId)
+    public function editCarDetail($id)
     {
-       
-        // 1. Xác thực dữ liệu nhận được
+        $carDetail = CarDetail::find($id);
+        return view('admins.carDetail_edit', compact('carDetail'));
+    }
+    public function updateCarDetail(Request $request, $id)
+    {
+        // 1. Validate the received data
         $validatedData = $request->validate([
             'size' => 'required|numeric',
             'wheelbase' => 'required|numeric',
@@ -262,10 +262,10 @@ class AdminController extends Controller
             'deposit_required' => 'required|numeric',
         ]);
 
-        // 2. Tìm kiếm CarDetail theo ID
+        // 2. Find the CarDetail by ID
         $carDetail = CarDetail::findOrFail($id);
 
-        // 3. Cập nhật các thuộc tính với dữ liệu mới từ request
+        // 3. Update the attributes with new data from the request
         $carDetail->size = $validatedData['size'];
         $carDetail->wheelbase = $validatedData['wheelbase'];
         $carDetail->turning_radius = $validatedData['turning_radius'];
@@ -276,12 +276,11 @@ class AdminController extends Controller
         $carDetail->fuel_tank_capacity = $validatedData['fuel_tank_capacity'];
         $carDetail->deposit_required = $validatedData['deposit_required'];
 
-        // 4. Lưu các thay đổi
+        // 4. Save the changes
         $carDetail->save();
 
-        // 5. Điều hướng về trang danh sách kèm thông báo thành công
-     
-        return redirect()->route('admin.car.index', ['id' =>$car->category_id])->with('success', 'Car created successfully.');
+        // 5. Redirect back to the car index page using the related Car’s category_id
+        return redirect()->route('admin.car.detail', ['id' => $carDetail->car->category_id])->with('success', 'Car updated successfully.');
     }
 
     private function uploadImage($file)

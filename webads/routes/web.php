@@ -34,5 +34,5 @@ Route::delete('admin/car/delete{id}', [AdminController::class, 'deleteCar'])->na
 
 Route::get('admin/car/detail{id}',[AdminController::class,'carDetail'])->name('admin.car.detail');
 Route::get('admin/car/detail/edit{id}',[AdminController::class,'editCarDetail'])->name('admin.carDetail.edit');
-Route::put('/admin/car/{carId}/{id}/update', [AdminController::class, 'updateCarDetail'])->name('admin.carDetail.update');
+Route::put('/admin/car/update{id}', [AdminController::class, 'updateCarDetail'])->name('admin.carDetail.update');
 

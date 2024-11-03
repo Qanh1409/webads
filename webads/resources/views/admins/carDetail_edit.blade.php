@@ -8,7 +8,7 @@
 
     <!-- Form chỉnh sửa Car Detail -->
     <div class="bg-white shadow-md rounded-lg p-6">
-        <form action="{{ route('admin.carDetail.update', ['carId' => $carDetail->car_id, 'id' => $carDetail->id]) }}" method="POST">
+        <form action="{{ route('admin.carDetail.update', [ 'id' => $carDetail->id]) }}" method="POST">
             @csrf
             @method('PUT')
 
