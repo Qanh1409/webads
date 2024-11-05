@@ -17,6 +17,12 @@
 
 <body>
     <div class="container login-container mt-5">
+        @if (session('message'))
+        <div class="alert alert-warning">
+            {{ session('message') }}
+        </div>
+        @endif
+
         <div class="card">
             <div class="card-header text-center">
                 <h4>Đăng Nhập</h4>

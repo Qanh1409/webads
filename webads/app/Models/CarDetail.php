@@ -86,6 +86,25 @@ class CarDetail extends Model
                 'daa' => 0,                         // Driver Attention Alert
                 'bsm' => 1,                         // Blind Spot Monitoring
             ]);
+
+            $carDetail->safety()->create([
+                'air_bag' => 1,
+                'abs' => 1,
+                'ebd' => 1,
+                'eba' => 0,
+                'ess' => 1,
+                'dsc' => 0,
+                'tcs' => 1,
+                'hla' => 1,
+                'immobilizer' => 0,
+                'burgler_alarm' => 1,
+                'rear_camera' => 1,
+                'front_sensor' => 0,
+                'rear_sensor' => 1,
+                'camera360' => 0,
+                'seatbelt_warning' => 1
+            ]);
+        
         });
 
         // Xóa các bản ghi liên quan khi CarDetail bị xóa
@@ -94,6 +113,8 @@ class CarDetail extends Model
             $carDetail->engineTransmission()->delete();
             $carDetail->exterior()->delete();
             $carDetail->fuelConsumption()->delete();
+            $carDetail->safety()->delete();
+            
         });
     }
 
@@ -115,6 +136,9 @@ class CarDetail extends Model
         return $this->hasOne(EngineTransmission::class, 'detail_id', 'id');
     }
 
+    public function safety(){
+        return $this->hasOne(Safety::class,'detail_id','id');
+    }
     public function exterior()
     {
         return $this->hasOne(Exterior::class, 'detail_id', 'id');

@@ -18,7 +18,7 @@
                 <div class="container-fluid ms-3">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         <!-- logo Mazda -->
-                        <img src="{{ asset('img\logo_Mazda.png') }}" alt="Mazda Logo" height="40px" style="float: left">
+                        <img src="{{ asset('img\logo_Mazda.png') }}" alt="Mazda Logo" height="50px" style="float: left">
                     </a>
                     <button class=" navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -360,7 +360,7 @@
     <!-- Khối dịch vụ của hãng xe -->
 
     <div class="container my-5">
-        <h2 class="text-center mb-4" style="font-size: 36px; font-weight: bold;">Dịch vụ</h2>
+        <h2 class="text-center mb-4" style="font-size: 36px; font-weight: bold;">Dịch vụ</h2> <br> <br>
 
         <!-- Carousel -->
         <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel">
