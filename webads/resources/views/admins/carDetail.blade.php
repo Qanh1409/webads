@@ -10,21 +10,17 @@
         <table class="min-w-full bg-white">
             <thead>
                 <tr>
-                    <th class="py-3 px-6 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">Car ID</th>
                     <th class="py-3 px-6 text-left text-sm font-medium text-gray-600 uppercase tracking-wider">Car Name</th>
                     <th class="table-header">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($carDetail as $detail)
                 <tr class="border-t border-gray-200">
-                    <td class="py-4 px-6 text-sm text-gray-700">{{ $detail->car_id }}</td>
-                    <td class="py-4 px-6 text-sm text-gray-700">{{ $detail->car->name }}</td>
+                    <td class="py-4 px-6 text-sm text-gray-700">{{ $carDetail->car->name }}</td>
                     <td class="table-cell flex space-x-2">
-                        <a href="{{ route('admin.carDetail.edit', $detail->id) }}" class="btn-link">Edit</a>
+                        <a href="{{ route('admin.carDetail.edit', $carDetail->id) }}" class="btn-link">Edit</a>
                     </td>
                 </tr>
-                @endforeach
             </tbody>
         </table>
     </div>

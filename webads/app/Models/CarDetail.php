@@ -52,12 +52,48 @@ class CarDetail extends Model
                 'GVC_system' => 'Default GVC',
                 'iStop' => true,
             ]);
+
+            $carDetail->exterior()->create([
+                'low_beam' => 'Default Low Beam',
+                'high_beam' => 'Default High Beam',
+                'LED_light_day' => 1,
+                'auto_headlights' => 1,
+                'auto_leveling' => 0,
+                'power_mirror' => 1,
+                'auto_folding' => 0,
+                'auto_wipers' => 1,
+                'rear_LED_light' => 1,
+                'sunroof' => 0,
+                'double_exhaust' => 0,
+            ]);
+
+            $carDetail->fuelConsumption()->create([
+                'city_consumption' => 8.5,
+                'hightway_consumption' => 6.0,
+            ]);
+
+            $carDetail->iActivsense()->create([
+                'afs' => 1,                         // Adaptive Front-Lighting System
+                'hbc' => 1,                         // High Beam Control
+                'alh' => 0,                         // Adaptive LED Headlights
+                'rcta' => 1,                        // Rear Cross Traffic Alert
+                'ldw' => 1,                         // Lane Departure Warning
+                'las' => 0,                         // Lane-keep Assist System
+                'city_brake_support_front' => 1,    // Smart City Brake Support - Front
+                'city_brake_support_rear' => 0,     // Smart City Brake Support - Rear
+                'sbs' => 1,                         // Smart Brake Support
+                'mrcc' => 1,                        // Mazda Radar Cruise Control
+                'daa' => 0,                         // Driver Attention Alert
+                'bsm' => 1,                         // Blind Spot Monitoring
+            ]);
         });
 
         // Xóa các bản ghi liên quan khi CarDetail bị xóa
         static::deleting(function ($carDetail) {
             $carDetail->chassis()->delete();
             $carDetail->engineTransmission()->delete();
+            $carDetail->exterior()->delete();
+            $carDetail->fuelConsumption()->delete();
         });
     }
 
@@ -77,5 +113,20 @@ class CarDetail extends Model
     public function engineTransmission()
     {
         return $this->hasOne(EngineTransmission::class, 'detail_id', 'id');
+    }
+
+    public function exterior()
+    {
+        return $this->hasOne(Exterior::class, 'detail_id', 'id');
+    }
+
+    public function fuelConsumption()
+    {
+        return $this->hasOne(FuelConsumption::class, 'detail_id', 'id');
+    }
+
+    public function iActivsense()
+    {
+        return $this->hasOne(IActivsense::class, 'detail_id', 'id');
     }
 }

@@ -238,9 +238,15 @@ class AdminController extends Controller
     public function carDetail($id)
     {
         $car = Car::find($id);
-        $carDetail = CarDetail::with('car')->get();
+        $carDetail = CarDetail::with('car')->where('car_id', $id)->first();
+
+        if (!$carDetail) {
+            return redirect()->back()->withErrors('CarDetail not found.');
+        }
+
         return view('admins.carDetail', compact('carDetail', 'car'));
     }
+
 
     public function editCarDetail($id)
     {
@@ -249,39 +255,40 @@ class AdminController extends Controller
     }
     public function updateCarDetail(Request $request, $id)
     {
-        // 1. Validate the received data
-        $validatedData = $request->validate([
-            'size' => 'required|numeric',
-            'wheelbase' => 'required|numeric',
-            'turning_radius' => 'required|numeric',
-            'ground_clearance' => 'required|numeric',
-            'curb_weight' => 'required|numeric',
-            'gross_weight' => 'required|numeric',
-            'cargo_volume' => 'required|integer',
-            'fuel_tank_capacity' => 'required|integer',
-            'deposit_required' => 'required|numeric',
+        $request->validate([
+            'size' => 'required|string|max:255',
+            'wheelbase' => 'required|string|max:255',
+            'turning_radius' => 'required|string|max:255',
+            'ground_clearance' => 'required|string|max:255',
+            'curb_weight' => 'required|string|max:255',
+            'gross_weight' => 'required|string|max:255',
+            'cargo_volume' => 'required|numeric',
+            'fuel_tank_capacity' => 'required|numeric',
+            'deposit_required' => 'required|string|max:255',
         ]);
 
-        // 2. Find the CarDetail by ID
+        // Find the car detail by ID
         $carDetail = CarDetail::findOrFail($id);
 
-        // 3. Update the attributes with new data from the request
-        $carDetail->size = $validatedData['size'];
-        $carDetail->wheelbase = $validatedData['wheelbase'];
-        $carDetail->turning_radius = $validatedData['turning_radius'];
-        $carDetail->ground_clearance = $validatedData['ground_clearance'];
-        $carDetail->curb_weight = $validatedData['curb_weight'];
-        $carDetail->gross_weight = $validatedData['gross_weight'];
-        $carDetail->cargo_volume = $validatedData['cargo_volume'];
-        $carDetail->fuel_tank_capacity = $validatedData['fuel_tank_capacity'];
-        $carDetail->deposit_required = $validatedData['deposit_required'];
-
-        // 4. Save the changes
+        // Update the car detail attributes
+        $carDetail->size = $request->size;
+        $carDetail->wheelbase = $request->wheelbase;
+        $carDetail->turning_radius = $request->turning_radius;
+        $carDetail->ground_clearance = $request->ground_clearance;
+        $carDetail->curb_weight = $request->curb_weight;
+        $carDetail->gross_weight = $request->gross_weight;
+        $carDetail->cargo_volume = $request->cargo_volume;
+        $carDetail->fuel_tank_capacity = $request->fuel_tank_capacity;
+        $carDetail->deposit_required = $request->deposit_required;
+      
+        // Save the updated car detail
         $carDetail->save();
 
-        // 5. Redirect back to the car index page using the related Car’s category_id
-        return redirect()->route('admin.car.detail', ['id' => $carDetail->car->category_id])->with('success', 'Car updated successfully.');
+        // Redirect back to a relevant page with a success message
+
+        return redirect()->route('admin.car.index', ['id' => $carDetail->car->category_id])->with('success', 'Car created successfully.');
     }
+
 
     private function uploadImage($file)
     {
