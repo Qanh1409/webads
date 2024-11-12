@@ -14,7 +14,11 @@ Route::get('users/login', [UserController::class, 'login'])->name('user.login');
 Route::post('users/signin', [UserController::class, 'signin'])->name('user.signin');
 Route::get('users/logout', [UserController::class, 'logout'])->name('user.logout');
 
+//Danh sách list các xe (khối header)
 Route::get('category', [CategoryController::class, 'category'])->name('category.list');
+//Mục 'GIỚI THIỆU' (khối header)
+Route::get('/introduce', [CategoryController::class, 'introduce'])->name('introduce');
+
 
 
 Route::middleware(['admin'])->group(
@@ -26,7 +30,7 @@ Route::middleware(['admin'])->group(
 
         Route::get('admin/category/edit{id}', [AdminController::class, 'editCategory'])->name('admin.category.edit');
         Route::put('admin/category/update{id}', [AdminController::class, 'updateCategory'])->name('admin.category.update');
-        Route::delete('admin/category/delete', [AdminController::class, 'deleteCategory'])->name('admin.category.delete');
+        Route::delete('admin/category/delete{id}', [AdminController::class, 'deleteCategory'])->name('admin.category.delete');
 
         Route::get('admin/car/index{id}', [AdminController::class, 'car'])->name('admin.car.index');
         Route::get('admin/car/addCar{id}', [AdminController::class, 'addCar'])->name('admin.car.add');

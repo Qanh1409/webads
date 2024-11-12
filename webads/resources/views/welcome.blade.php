@@ -11,247 +11,82 @@
 </head>
 
 <body>
-    <!-- Khối header -->
-    <div>
-        <header class="bg-dark">
-            <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
-                <div class="container-fluid ms-3">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <!-- logo Mazda -->
-                        <img src="{{ asset('img\logo_Mazda.png') }}" alt="Mazda Logo" height="50px" style="float: left">
-                    </a>
-                    <button class=" navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                        <ul class="navbar-nav mb-2 mb-lg-0">
+    <!-- KHỐI HEADER -->
 
-                            <!-- cấu hình nút Dòng xe -->
-                            <div>
-                                <!-- Button "Dòng xe" -->
-                                <li class="nav-item dropdown" style="position: relative;">
-                                    <a class="nav-link fs-5" href="users/category" id="danhSachDongXe" role="button" aria-expanded="false"
-                                        style="cursor: pointer;">
-                                        Dòng xe
-                                    </a>
+    <!-- Gọi header -->
+    @include('layouts.header_users')
 
-                                    <!-- Dropdown Content 3 hàng -->
-                                    <ul class="dropdown-menu" aria-labelledby="danhSachDongXe"
-                                        style="width: 870px; position: absolute; display: none; opacity: 0; left: 0; top: 10%; transition: opacity 0.5s ease; padding: 80px;">
 
-                                        <!-- Hàng 1 -->
-                                        <div>
-                                            <h3>Hatchback</h3> <hr>
-                                            <li style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                                <div style="flex: 1; padding: 10px; text-align: center;">
-                                                    <a href="url-to-M2sport" style="text-decoration: none;">
-                                                        <img src="img\M2 SPORT\M2Sport-Avatar.jpg" alt="M2 Sport" width="150">
-                                                        <p>M2 Sport</p>
-                                                    </a>
-                                                </div>
-                                                <div style="flex: 1; padding: 10px; text-align: center;">
-                                                    <a href="url-to-M3sport" style="text-decoration: none;">
-                                                        <img src="img\M3 SPORT\M3Sport-Avatar.jpg" alt="M3 Sport" width="180">
-                                                        <p>M3 Sport</p>
-                                                    </a>
-                                                </div>
-                                            </li>
-                                        </div>
-                                        <!-- Hàng 2 -->
-                                        <div>
-                                            <h3>Sedan</h3>
-                                            <hr>
-                                            <li style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                                                <div style="flex: 1; padding: 10px; text-align: center;">
-                                                    <a href="url-to-M2sedan" style="text-decoration: none;">
-                                                        <img src="img\MAZDA 2 SEDAN\M2-Sedan-Avatar.jpg" alt="M2 Sedan" width="150">
-                                                        <p>M2 Sedan</p>
-                                                    </a>
-                                                </div>
-                                                <div style="flex: 1; padding: 10px; text-align: center;">
-                                                    <a href="url-to-M3sedan" style="text-decoration: none;">
-                                                        <img src="img\MAZDA 3 SEDAN\Mazda-3-Sedan-3.jpg" alt="M3 Sedan" width="150">
-                                                        <p>M3 Sedan</p>
-                                                    </a>
-                                                </div>
-                                                <div style="flex: 1; padding: 10px; text-align: center;">
-                                                    <a href="url-to-m6" style="text-decoration: none;">
-                                                        <img src="img\MAZDA 6\Mazda6-avatar.png" alt="Mazda6" width="220">
-                                                        <p>Mazda 6</p>
-                                                    </a>
-                                                </div>
-                                            </li>
-                                        </div>
-                                        <!-- Hàng 3 -->
-                                        <div>
-                                            <h3>Sport Utility Vehicle (SUV)</h3>
-                                            <hr>
-                                            <li style="display: flex; justify-content: space-between;">
-                                                <div style="flex: 1; padding: 10px; text-align: center;">
-                                                    <a href="url-to-CX3" style="text-decoration: none;">
-                                                        <img src="img\CX3\CX3-Avatar.jpg" alt="CX-3" width="150">
-                                                        <p>CX-3</p>
-                                                    </a>
-                                                </div>
-                                                <div style="flex: 1; padding: 10px; text-align: center;">
-                                                    <a href="url-to-CX30" style="text-decoration: none;">
-                                                        <img src="img\CX30\Cx30-Avatar.png" alt="CX-30" width="150">
-                                                        <p>CX-30</p>
-                                                    </a>
-                                                </div>
-                                                <div style="flex: 1; padding: 10px; text-align: center;">
-                                                    <a href="url-to-CX5" style="text-decoration: none;">
-                                                        <img src="img\CX5\CX5-avatar.jpg" alt="CX-5" width="150">
-                                                        <p>CX5</p>
-                                                    </a>
-                                                </div>
-                                                <div style="flex: 1; padding: 10px; text-align: center;">
-                                                    <a href="url-to-CX8" style="text-decoration: none;">
-                                                        <img src="img\CX8\CX8-avatar.jpg" alt="CX-8" width="150">
-                                                        <p>CX8</p>
-                                                    </a>
-                                                </div>
-                                            </li>
-                                        </div>
-                                    </ul>
-                                </li>
-                                <script>
-                                    const danhSachDongXe = document.getElementById('danhSachDongXe');
-                                    const dropdownMenu = document.querySelector('.dropdown-menu');
+    <!-- KHỐI NỘI DUNG CHÍNH -->
 
-                                    danhSachDongXe.addEventListener('mouseenter', function() {
-                                        setTimeout(() => {
-                                            dropdownMenu.style.display = 'block';
-                                            setTimeout(() => {
-                                                dropdownMenu.style.opacity = '1';
-                                            }, 0); // Hiệu ứng opacity khi hover
-                                        }, 500); // Độ trễ 0.5 giây
-                                    });
-
-                                    document.querySelector('.nav-item.dropdown').addEventListener('mouseleave', function() {
-                                        dropdownMenu.style.opacity = '0';
-                                        setTimeout(() => {
-                                            dropdownMenu.style.display = 'none';
-                                        }, 500); // Thời gian hiệu ứng 0.5 giây trước khi ẩn hoàn toàn
-                                    });
-                                </script>
-
-                            </div>
-                            <li class="nav-item">
-                                <a class="nav-link fs-5" href="{{ url('/tin-tuc') }}">Tin tức</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fs-5" href="{{ url('/gioi-thieu') }}">Giới thiệu</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fs-5" href="{{ url('/lai-thu') }}">Lái thử</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link fs-5" href="{{ url('/lien-he') }}">Liên hệ</a>
-                            </li>
-                        </ul>
-                        <div class="d-flex ms-3">
-                            <!-- form tìm kiếm -->
-                            <form class="d-flex flex-grow-1" action="{{ url('/tim-kiem') }}" method="GET">
-                                <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search" name="q">
-                                <button class="btn btn-outline-success" type="submit">Tìm</button>
-                            </form>
-                            <!-- Nút Đăng ký -->
-                            <a href="users/register" class="btn btn-outline-danger me-2">Đăng ký</a>
-                            <!-- Nút Đăng nhập -->
-                            <a href="users/login" class="btn btn-outline-danger">Đăng nhập</a>
-                            <!-- Tùy chọn ngôn ngữ -->
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Chọn Ngôn Ngữ
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <li>
-                                        <a class="dropdown-item" href="#" onclick="alert('Chọn ngôn ngữ tiếng Việt')">
-                                            <img src="img\pngtree-best-vietnam-flag-realistic-with-3d-shadow-effect-png-image_4553564.png" alt="" width="20"> Tiếng Việt
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#" onclick="alert('Chọn ngôn ngữ tiếng Anh')">
-                                            <img src="img\Flag_of_the_United_Kingdom_(3-5).svg.png" alt="UK Flag" width="20"> English
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- Tùy chỉnh cho sửa thành ngôn ngữ -->
-                            <script>
-                                function changeLanguage(lang) {
-                                    // Lấy URL hiện tại
-                                    var currentUrl = window.location.href;
-                                    var newUrl;
-
-                                    // Kiểm tra nếu URL có tham số lang thì thay thế, nếu không thì thêm vào
-                                    if (currentUrl.includes('?lang=')) {
-                                        newUrl = currentUrl.replace(/(\?lang=)[a-zA-Z]{2}/, '?lang=' + lang);
-                                    } else {
-                                        newUrl = currentUrl + '?lang=' + lang;
-                                    }
-
-                                    // Chuyển trang với URL mới
-                                    window.location.href = newUrl;
-                                }
-                            </script>
-
-                        </div>
-                    </div>
-            </nav>
-        </header>
-    </div>
-
-    <!-- Mục nội dung chính -->
-
-    <!-- video giới thiệu -->
+    <!-- KHỐI VIDEO -->
     <!-- Container bao quanh để căn giữa -->
     <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #000000;">
         <!-- Container video và lớp phủ -->
-        <div style="position: relative; display: inline-block;">
+        <div style="position: relative; width: 100%; height: 100%;">
 
             <!-- Video -->
-            <video autoplay loop muted style="width: 1600" height="900">
+            <video autoplay loop muted style="width: 100%; height: 100%; object-fit: cover;">
                 <source src="img\IntroduceM3Sport.mp4" type="video/mp4">
             </video>
 
             <!-- Lớp phủ với chữ và nút button -->
-            <div style="position: absolute; top: 60%; left: 20%; transform: translate(-50%, -50%); text-align: center; color: white;">
-                <p style="font-size: 30px; font-weight: bold;">All New Mazda3 - Art That Moves You</p>
+            <div style="position: absolute; top: 60%; left: 25%; transform: translate(-50%, -50%); text-align: center; color: white; width: 80%; padding: 0 20px;">
+                <!-- Chèn link tới Google Fonts để sử dụng font chữ Montserrat -->
+                <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+
+                <p style="font-size: 32px; font-family: 'Montserrat', sans-serif; font-weight: bold; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                    All New Mazda3 - Art That Moves You
+                </p>
+
                 <a href="https://www.mercedes-benz.com.vn/vi" style="text-decoration: none;">
-                    <button style="padding: 12px 40px; font-size: 20px; background-color: blue; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    <button style="padding: 10px 30px; font-size: 18px; background-color: black; color: white; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s;" onmouseover="this.style.backgroundColor='#333'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)';" onmouseout="this.style.backgroundColor='#000'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.2)';">
                         Tìm hiểu sự kiện
                     </button>
+                </a>
             </div>
         </div>
     </div>
 
 
+    <!-- Button "Tìm hiểu thêm ở ngay giữa" -->
+
     <div style="text-align: center; margin-top: 50px;">
-        <a href="#" style="text-decoration: none; color: #007BFF; font-family: 'Arial', sans-serif; font-size: 20px; font-weight: bold; padding: 10px 20px; border: 2px solid #007BFF; border-radius: 5px; transition: background-color 0.3s, color 0.3s;">
+        <a href="#" style="text-decoration: none; color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 18px; font-weight: 600; padding: 14px 35px; 
+        border: 2px solid #000; border-radius: 8px; background-color: #000; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+        display: inline-block;" onmouseover="this.style.backgroundColor='#333'; this.style.boxShadow='0 6px 12px rgba(0, 0, 0, 0.3)';" onmouseout="this.style.backgroundColor='#000'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.2)';">
             Tìm hiểu thêm
         </a>
     </div>
+
+    <!-- CÁC KHỐI NEWS  -->
 
     <div class="container mt-4">
         <!-- Hàng ngang 1 với 2 cột tỉ lệ 2/3 -->
         <div class="row mb-4">
             <div class="col-md-8">
-                <div class="card">
+                <div class="card" style="border-radius: 8px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);">
                     <div class="card-body">
-                        <h5 class="card-title">Tin Tức 1</h5>
-                        <p class="card-text">Nội dung tin tức 1. Đây là một ví dụ về thông tin chi tiết.</p>
-                        <a href="#" class="btn btn-primary">Xem thêm</a>
+                        <h5 class="card-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 24px; font-weight: 600;">Tin Tức 1</h5>
+                        <p class="card-text" style="font-family: 'Arial', sans-serif; font-size: 16px; color: #555;">Nội dung tin tức 1. Đây là một ví dụ về thông tin chi tiết.</p>
+                        <a href="#" class="btn" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; font-weight: 600; color: #fff; padding: 12px 35px; 
+                    border: 2px solid #000; border-radius: 8px; background-color: #000; transition: all 0.3s ease; display: inline-block; text-decoration: none; 
+                    transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#555'; this.style.transform='scale(1.1)';" onmouseout="this.style.backgroundColor='#000'; this.style.transform='scale(1)';">
+                            Xem thêm
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card">
+                <div class="card" style="border-radius: 8px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);">
                     <div class="card-body">
-                        <h5 class="card-title">Tin Tức 2</h5>
-                        <p class="card-text">Nội dung tin tức 2. Thông tin bổ sung cho tin tức này.</p>
-                        <a href="#" class="btn btn-primary">Xem thêm</a>
+                        <h5 class="card-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 24px; font-weight: 600;">Tin Tức 2</h5>
+                        <p class="card-text" style="font-family: 'Arial', sans-serif; font-size: 16px; color: #555;">Nội dung tin tức 2. Thông tin bổ sung cho tin tức này.</p>
+                        <a href="#" class="btn" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; font-weight: 600; color: #fff; padding: 12px 35px; 
+                    border: 2px solid #000; border-radius: 8px; background-color: #000; transition: all 0.3s ease; display: inline-block; text-decoration: none; 
+                    transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#555'; this.style.transform='scale(1.1)';" onmouseout="this.style.backgroundColor='#000'; this.style.transform='scale(1)';">
+                            Xem thêm
+                        </a>
                     </div>
                 </div>
             </div>
@@ -260,35 +95,202 @@
         <!-- Hàng ngang 2 với 3 cột bằng nhau -->
         <div class="row">
             <div class="col-md-4">
-                <div class="card">
+                <div class="card" style="border-radius: 8px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);">
                     <div class="card-body">
-                        <h5 class="card-title">Tin Tức 3</h5>
-                        <p class="card-text">Nội dung tin tức 3. Một số thông tin hữu ích về chủ đề này.</p>
-                        <a href="#" class="btn btn-primary">Xem thêm</a>
+                        <h5 class="card-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 24px; font-weight: 600;">Tin Tức 3</h5>
+                        <p class="card-text" style="font-family: 'Arial', sans-serif; font-size: 16px; color: #555;">Nội dung tin tức 3. Một số thông tin hữu ích về chủ đề này.</p>
+                        <a href="#" class="btn" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; font-weight: 600; color: #fff; padding: 12px 35px; 
+                    border: 2px solid #000; border-radius: 8px; background-color: #000; transition: all 0.3s ease; display: inline-block; text-decoration: none; 
+                    transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#555'; this.style.transform='scale(1.1)';" onmouseout="this.style.backgroundColor='#000'; this.style.transform='scale(1)';">
+                            Xem thêm
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card">
+                <div class="card" style="border-radius: 8px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);">
                     <div class="card-body">
-                        <h5 class="card-title">Tin Tức 4</h5>
-                        <p class="card-text">Nội dung tin tức 4. Thêm thông tin cho bạn đọc.</p>
-                        <a href="#" class="btn btn-primary">Xem thêm</a>
+                        <h5 class="card-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 24px; font-weight: 600;">Tin Tức 4</h5>
+                        <p class="card-text" style="font-family: 'Arial', sans-serif; font-size: 16px; color: #555;">Nội dung tin tức 4. Thêm thông tin cho bạn đọc.</p>
+                        <a href="#" class="btn" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; font-weight: 600; color: #fff; padding: 12px 35px; 
+                    border: 2px solid #000; border-radius: 8px; background-color: #000; transition: all 0.3s ease; display: inline-block; text-decoration: none; 
+                    transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#555'; this.style.transform='scale(1.1)';" onmouseout="this.style.backgroundColor='#000'; this.style.transform='scale(1)';">
+                            Xem thêm
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="card">
+                <div class="card" style="border-radius: 8px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);">
                     <div class="card-body">
-                        <h5 class="card-title">Tin Tức 5</h5>
-                        <p class="card-text">Nội dung tin tức 5. Khám phá thêm các chủ đề khác.</p>
-                        <a href="#" class="btn btn-primary">Xem thêm</a>
+                        <h5 class="card-title" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 24px; font-weight: 600;">Tin Tức 5</h5>
+                        <p class="card-text" style="font-family: 'Arial', sans-serif; font-size: 16px; color: #555;">Nội dung tin tức 5. Khám phá thêm các chủ đề khác.</p>
+                        <a href="#" class="btn" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 16px; font-weight: 600; color: #fff; padding: 12px 35px; 
+                    border: 2px solid #000; border-radius: 8px; background-color: #000; transition: all 0.3s ease; display: inline-block; text-decoration: none; 
+                    transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#555'; this.style.transform='scale(1.1)';" onmouseout="this.style.backgroundColor='#000'; this.style.transform='scale(1)';">
+                            Xem thêm
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
     <br>
+
+    <div style="margin-left: 40px; padding: 20px;">
+        <p style="margin-left: 20px; padding: 0px; font-size: 30px; font-weight: 700; font-family: 'Montserrat', sans-serif; line-height: 1.6; text-align: left; color: #333;">
+            Sự kết hợp hoàn hảo giữa sự sang trọng,<br>
+            tính thể thao và hiệu suất: <br>
+            Khám phá các màu xe mới nhất của chúng tôi
+        </p>
+    </div>
+
+
+    <!-- Thêm link đến Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; padding: 30px; background-image: url('https://your-image-url.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <!-- Cột 1 -->
+        <div style="flex: 1 1 30%; padding: 20px; background-color: rgba(255, 255, 255, 0.8); border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); height: 380px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 15px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)'">
+            <a href="https://example.com/hatchback" style="text-decoration: none; color: inherit;">
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; height: 100%; justify-content: space-between;">
+                    <h2 style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 600; color: #333; margin-bottom: 10px;">Hatchback</h2>
+                    <p style="font-size: 16px; color: #555; margin: 10px 0;">Khám phá tất cả các dòng xe</p>
+                    <img src="https://xedoisong.vn/uploads/user_4/2023/4-2023/6/mazda/xedoisong_mazda_3_2023_1.jpg" alt="Mazda CX-5" style="width: 100%; height: auto; object-fit: cover; border-radius: 8px; margin-top: 10px;">
+                </div>
+            </a>
+        </div>
+
+        <!-- Cột 2 -->
+        <div style="flex: 1 1 30%; padding: 20px; background-color: rgba(255, 255, 255, 0.8); border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); height: 380px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 15px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)'">
+            <a href="https://example.com/sedan" style="text-decoration: none; color: inherit;">
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; height: 100%; justify-content: space-between;">
+                    <h2 style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 600; color: #333; margin-bottom: 10px;">Sedan</h2>
+                    <p style="font-size: 16px; color: #555; margin: 10px 0;">Khám phá tất cả các dòng xe</p>
+                    <img src="https://mazdamotors.vn/media/llclsos0/mazda6_gsj9eae_25d_gt7_ext_360_36_png_0007.jpg" alt="Mazda CX-5" style="width: 100%; height: auto; object-fit: cover; border-radius: 8px; margin-top: 10px;">
+                </div>
+            </a>
+        </div>
+
+        <!-- Cột 3 -->
+        <div style="flex: 1 1 30%; padding: 20px; background-color: rgba(255, 255, 255, 0.8); border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); height: 380px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 15px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)'">
+            <a href="https://example.com/suv" style="text-decoration: none; color: inherit;">
+                <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; height: 100%; justify-content: space-between;">
+                    <h2 style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 600; color: #333; margin-bottom: 10px;">SUV</h2>
+                    <p style="font-size: 16px; color: #555; margin: 10px 0;">Khám phá tất cả các dòng xe</p>
+                    <img src="img\CX5\CX5-avatar.jpg" alt="Mazda CX-5" style="width: 80%; height: auto; object-fit: cover; border-radius: 8px; margin-top: 0; display: block; margin-left: auto; margin-right: auto;">
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <br><br>
+
+    <!-- Khối quảng cáo về lịch sử thương hiệu -->
+    <div style="display: flex; max-width: 1100px; margin-left: 130px; background-color: white; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); border-radius: 15px; overflow: hidden; transition: transform 0.3s ease;">
+
+        <!-- Phần hình ảnh bên trái -->
+        <div style="flex: 1;">
+            <img src="https://photo2.tinhte.vn/data/attachment-files/2022/07/6051886_5070034_cover-lich_su_phat_trien_xe_mazda.jpg" alt="Hình ảnh nội thất Mazda" style="width: 100%; height: auto; object-fit: cover;">
+        </div>
+
+        <!-- Phần văn bản bên phải -->
+        <div style="flex: 1; padding: 40px; display: flex; flex-direction: column; justify-content: center;">
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: bold; color: #333; margin: 0 0 10px;">
+                Vị thế vượt thời gian từ 1920.
+            </h1>
+            <p style="font-size: 1rem; color: #666; line-height: 1.6; margin: 0 0 20px;">
+                Định nghĩa về xe luôn thay đổi, nhưng đẳng cấp thì không. Khi đó là Mazda.
+            </p>
+            <div style="margin-top: 20px;">
+                <a href="#" style="display: inline-block; padding: 12px 24px; background-color: #000; color: white; font-size: 1rem; font-weight: bold; text-decoration: none; border-radius: 5px; transition: transform 0.3s ease, background-color 0.3s ease;"
+                    onmouseover="this.style.backgroundColor='#333'; this.style.transform='scale(1.1)';"
+                    onmouseout="this.style.backgroundColor='#000'; this.style.transform='scale(1)';">
+                    Tìm hiểu thêm
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Khối carosel dịch vụ -->
+    <div class="container my-5">
+        <h2 class="text-center mb-5" style="font-size: 36px; font-weight: 700; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333;">Dịch vụ của chúng tôi</h2>
+        <hr>
+
+        <!-- Carousel -->
+        <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-inner">
+
+                <!-- Mục 1: Hướng dẫn sử dụng cho chủ xe -->
+                <div class="carousel-item active">
+                    <div class="row align-items-center" style="display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <div class="col-md-6" style="flex: 1; padding: 0; margin-right: 20px;">
+                            <img src="https://heyoto.vn/wp-content/uploads/2024/07/mam-xe-mazda-cx-5-premium-exclusive.jpg" alt="Hướng dẫn sử dụng cho chủ xe" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; transition: transform 0.3s ease-in-out; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);">
+                        </div>
+                        <div class="col-md-6" style="flex: 1; padding: 20px; background-color: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)'; this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'; this.style.transform='scale(1)';">
+                            <h3 style="font-size: 28px; font-weight: 700; color: #333; margin-bottom: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Hướng dẫn sử dụng cho chủ xe</h3>
+                            <p style="font-size: 18px; color: #666; margin-bottom: 20px; line-height: 1.6;">Bảng thông tin tính năng và hướng dẫn chi tiết dành cho xe của bạn. Tìm hiểu cách sử dụng và bảo dưỡng xe hiệu quả.</p>
+                            <button class="btn btn-dark mt-3" style="font-size: 16px; padding: 12px 24px; background-color: #333; border-color: #333; transition: all 0.3s ease-in-out;">Tìm hiểu thêm</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mục 2: Đặt hẹn dịch vụ trực tuyến -->
+                <div class="carousel-item">
+                    <div class="row align-items-center" style="display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <div class="col-md-6" style="flex: 1; padding: 0; margin-right: 20px;">
+                            <img src="https://mazdamotors.vn/media/fzace3nd/call-center.jpg?width=550&height=393" alt="Đặt hẹn dịch vụ trực tuyến" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; transition: transform 0.3s ease-in-out; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);">
+                        </div>
+                        <div class="col-md-6" style="flex: 1; padding: 20px; background-color: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)'; this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'; this.style.transform='scale(1)';">
+                            <h3 style="font-size: 28px; font-weight: 700; color: #333; margin-bottom: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Đặt hẹn dịch vụ trực tuyến</h3>
+                            <p style="font-size: 18px; color: #666; margin-bottom: 20px; line-height: 1.6;">Đặt lịch hẹn dịch vụ trực tuyến một cách thuận tiện. Đảm bảo xe bạn luôn ở trong tình trạng tốt nhất.</p>
+                            <button class="btn btn-dark mt-3" style="font-size: 16px; padding: 12px 24px; background-color: #333; border-color: #333; transition: all 0.3s ease-in-out;">Đặt lịch hẹn</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mục 3: Hỗ trợ khách hàng -->
+                <div class="carousel-item">
+                    <div class="row align-items-center" style="display: flex; align-items: center; justify-content: center; padding: 20px;">
+                        <div class="col-md-6" style="flex: 1; padding: 0; margin-right: 20px;">
+                            <img src="img\serviceCar.jpg" alt="Hỗ trợ khách hàng" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; transition: transform 0.3s ease-in-out; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);">
+                        </div>
+                        <div class="col-md-6" style="flex: 1; padding: 20px; background-color: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)'; this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'; this.style.transform='scale(1)';">
+                            <h3 style="font-size: 28px; font-weight: 700; color: #333; margin-bottom: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Hỗ trợ khách hàng</h3>
+                            <p style="font-size: 18px; color: #666; margin-bottom: 20px; line-height: 1.6;">Chúng tôi luôn sẵn sàng hỗ trợ khách hàng 24/7. Liên hệ ngay để được tư vấn về dịch vụ xe của bạn.</p>
+                            <button class="btn btn-dark mt-3" style="font-size: 16px; padding: 12px 24px; background-color: #333; border-color: #333; transition: all 0.3s ease-in-out;">Liên hệ ngay</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Điều khiển Carousel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev"
+                style="background-color: transparent; border: none; position: absolute; top: 50%; left: 0; transform: translateY(-50%); z-index: 1;">
+                <span class="carousel-control-prev-icon" aria-hidden="true"
+                    style="width: 40px; height: 40px; background-color: #555; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: background-color 0.3s ease;">
+                    <i class="bi bi-chevron-left" style="color: #fff; font-size: 24px;"></i>
+                </span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next"
+                style="background-color: transparent; border: none; position: absolute; top: 50%; right: 0; transform: translateY(-50%); z-index: 1;">
+                <span class="carousel-control-next-icon" aria-hidden="true"
+                    style="width: 40px; height: 40px; background-color: #555; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: background-color 0.3s ease;">
+                    <i class="bi bi-chevron-right" style="color: #fff; font-size: 24px;"></i>
+                </span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+
+
 
     <!-- Nút button clink lên đầu trang -->
     <button onclick="scrollToTop()" style="position: fixed; bottom: 20px; right: 20px; padding: 15px 27px; background-color: #000; color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 24px;">
@@ -305,211 +307,9 @@
         }
     </script>
 
-    <div style="margin-left:10px ; padding: 20px;">
-        <p style="margin-right:90px; margin-left:10px ; padding: 0px; font-size: 40px; font-weight: bold; font-family: 'Times New Roman', serif; line-height: 1.5;">
-            Sự kết hợp hoàn hảo giữa sự sang trọng, <br> tính thể thao và hiệu suất: Khám phá các <br>màu xe mới nhất của chúng tôi
-        </p>
-    </div>
-
-    <!-- Các khối hiển thị tất cả các dòng xe -->
-    <div style="display: flex; justify-content: space-between;">
-        <!-- Cột 1 -->
-        <div style="flex: 1; padding: 30px;">
-            <a href="https://example.com/suv1" style="text-decoration: none; color: inherit;">
-                <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px; border: 1px solid #ccc;">
-                    <div>
-                        <h1 style="font-size: 28px; font-weight: bold;">Hatchback</h1>
-                        <p style="font-size: 18px;">Khám phá tất cả các dòng xe</p>
-                    </div>
-                    <div>
-                        <img src="https://xedoisong.vn/uploads/user_4/2023/4-2023/6/mazda/xedoisong_mazda_3_2023_1.jpg" alt="Mazda CX-5" width="250">
-                    </div>
-                </div>
-        </div>
-        <!-- Cột 2 -->
-        <div style="flex: 1; padding: 30px;">
-            <a href="https://example.com/suv1" style="text-decoration: none; color: inherit;">
-                <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px; border: 1px solid #ccc;">
-                    <div>
-                        <h1 style="font-size: 28px; font-weight: bold;">Sedan</h1>
-                        <p style="font-size: 18px;">Khám phá tất cả các dòng xe</p>
-                    </div>
-                    <div>
-                        <img src="https://mazdamotors.vn/media/llclsos0/mazda6_gsj9eae_25d_gt7_ext_360_36_png_0007.jpg" alt="Mazda CX-5" width="250">
-                    </div>
-                </div>
-        </div>
-        <!-- Cột 3 -->
-        <div style="flex: 1; padding: 30px">
-            <a href="https://example.com/suv1" style="text-decoration: none; color: inherit;">
-                <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px; border: 1px solid #ccc;">
-                    <div>
-                        <h1 style="font-size: 28px; font-weight: bold;">SUV</h1>
-                        <p style="font-size: 18px;">Khám phá tất cả các dòng xe</p>
-                    </div>
-                    <div>
-                        <img src="img\CX5\CX5-avatar.jpg" alt="Mazda CX-5" width="180">
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <br><br>
-
-    <!-- Khối dịch vụ của hãng xe -->
-
-    <div class="container my-5">
-        <h2 class="text-center mb-4" style="font-size: 36px; font-weight: bold;">Dịch vụ</h2> <br> <br>
-
-        <!-- Carousel -->
-        <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-
-                <!-- Mục 1: Hướng dẫn sử dụng cho chủ xe -->
-                <div class="carousel-item active">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <img src="https://heyoto.vn/wp-content/uploads/2024/07/mam-xe-mazda-cx-5-premium-exclusive.jpg" alt="Hướng dẫn sử dụng cho chủ xe" style="width: 100%; height: auto;">
-                        </div>
-                        <div class="col-md-6" style="padding: 20px;">
-                            <h3 style="font-size: 24px; font-weight: bold;">Hướng dẫn sử dụng cho chủ xe</h3>
-                            <p style="font-size: 16px; color: #666;">Bảng thông tin tính năng và hướng dẫn chi tiết dành cho xe của bạn.</p>
-                            <button class="btn btn-outline-dark" style="font-size: 16px; padding: 10px 20px;">Tìm hiểu thêm</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mục 2: Đặt hẹn dịch vụ trực tuyến -->
-                <div class="carousel-item">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <img src="https://mazdamotors.vn/media/fzace3nd/call-center.jpg?width=550&height=393" alt="Đặt hẹn dịch vụ trực tuyến" style="width: 80%; height: auto;">
-                        </div>
-                        <div class="col-md-6" style="padding: 20px;">
-                            <h3 style="font-size: 24px; font-weight: bold;">Đặt hẹn dịch vụ trực tuyến</h3>
-                            <p style="font-size: 16px; color: #666;">Đặt lịch hẹn dịch vụ trực tuyến một cách thuận tiện.</p>
-                            <button class="btn btn-outline-dark" style="font-size: 16px; padding: 10px 20px;">Đặt lịch hẹn</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mục 3: Hỗ trợ đăng ký lái thử -->
-                <div class="carousel-item">
-                    <div class="row align-items-center">
-                        <div class="col-md-6">
-                            <img src="https://mazdavinhlong.vn/media/l04pmg5g/hi-nh-7.jpg" alt="Hỗ trợ đăng ký lái thử" style="width: 100%; height: auto;">
-                        </div>
-                        <div class="col-md-6" style="padding: 20px;">
-                            <h3 style="font-size: 24px; font-weight: bold;">Hỗ trợ khách hàng</h3>
-                            <p style="font-size: 16px; color: #666;">Cung cấp thông tin và hỗ trợ khách hàng 24/7.</p>
-                            <button class="btn btn-outline-dark" style="font-size: 16px; padding: 10px 20px;">Liên hệ ngay</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Điều khiển Carousel -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: invert(1);"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true" style="filter: invert(1);"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-    </div>
-
-
-    <!-- Khối chân footer -->
-    <footer class="bg-dark text-light pt-4">
-        <div class="container">
-            <div class="row">
-                <!-- Các dòng xe -->
-                <div class="col-md-2">
-                    <h6>Các dòng xe</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-decoration-none text-light">Sedan</a></li>
-                        <li><a href="#" class="text-decoration-none text-light">SUV</a></li>
-                        <li><a href="#" class="text-decoration-none text-light">Hatchback</a></li>
-                    </ul>
-                </div>
-
-                <!-- Mua xe -->
-                <div class="col-md-2">
-                    <h6>Mua xe</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-decoration-none text-light">Ưu đãi mới nhất</a></li>
-                        <li><a href="#" class="text-decoration-none text-light">Tìm xe mới</a></li>
-                        <li><a href="#" class="text-decoration-none text-light">Tìm xe đã qua sử dụng</a></li>
-                        <li><a href="#" class="text-decoration-none text-light">Bảng giá xe</a></li>
-                    </ul>
-                </div>
-
-                <!-- Tư vấn mua xe -->
-                <div class="col-md-2">
-                    <h6>Tư vấn mua xe</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-decoration-none text-light">Yêu cầu tư vấn</a></li>
-                        <li><a href="#" class="text-decoration-none text-light">Đăng ký lái thử</a></li>
-                    </ul>
-                </div>
-
-                <!-- Dịch vụ -->
-                <div class="col-md-3">
-                    <h6>Dịch vụ</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-decoration-none text-light">Đặt lịch bảo dưỡng</a></li>
-                        <li><a href="#" class="text-decoration-none text-light">Phụ kiện chính hãng</a></li>
-                        <li><a href="#" class="text-decoration-none text-light">Hướng dẫn sử dụng dịch vụ</a></li>
-                    </ul>
-                </div>
-
-                <!-- Khám phá về Mazda -->
-                <div class="col-md-3">
-                    <h6>Khám phá về Mazda</h6>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-decoration-none text-light">Tìm đại lý gần nhất</a></li>
-                        <li><a href="#" class="text-decoration-none text-light">Liên hệ</a></li>
-                        <ul class="list-unstyled ms-3">
-                            <li><a href="tel:+1234567890" class="text-white text-decoration-none">
-                                    <img src="" alt="Phone" width="16"> Số điện thoại
-                                </a></li>
-                            <li><a href="mailto:example@example.com" class="text-white text-decoration-none">
-                                    <img src="path/to/email_icon.png" alt="Email" width="16"> Email
-                                </a></li>
-                            <li><a href="http://example.com" class="text-white text-decoration-none">
-                                    <img src="path/to/website_icon.png" alt="Website" width="16"> Website
-                                </a></li>
-                        </ul>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Đường gạch ngang -->
-            <hr class="my-3 bg-light">
-
-            <!-- Icon mạng xã hội -->
-            <div class="text-center pb-3">
-                <a href="#" class="me-3 text-decoration-none text-white">
-                    <img src="img\logo-fb.png" alt="Facebook" width="24">
-                </a>
-                <a href="#" class="me-3 text-decoration-none text-white">
-                    <img src="path/to/website_icon.png" alt="Website" width="24">
-                </a>
-                <a href="#" class="text-decoration-none text-white">
-                    <img src="https://banner2.cleanpng.com/20180729/uwy/1a179ff9617a9bf05426d9170b164557.webp" alt="Instagram" width="24">
-                </a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- JavaScript của Bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </body>
+
+<!-- Gọi footer -->
+@include('layouts.footer_users')
 
 </html>

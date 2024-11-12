@@ -27,7 +27,6 @@
             </a>
             <!-- Dropdown (if necessary) -->
             <div x-show="open" class="ml-6 space-y-2">
-                <a href="{{route('admin.category')}}" class="block px-2 py-2 text-sm hover:bg-gray-700">Category List</a>
                 <a href="#" class="block px-2 py-2 text-sm hover:bg-gray-700">Stats</a>
             </div>
         </div>
@@ -57,8 +56,7 @@
                 </svg>
             </a>
             <div x-show="open" class="ml-6 space-y-2">
-                <a href="#" class="block px-2 py-2 text-sm hover:bg-gray-700">Current Tasks</a>
-                <a href="#" class="block px-2 py-2 text-sm hover:bg-gray-700">Completed</a>
+                <a href="{{route('admin.category')}}" class="block px-2 py-2 text-sm hover:bg-gray-700">Category List</a>
             </div>
         </div>
 

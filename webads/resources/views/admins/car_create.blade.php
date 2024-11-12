@@ -56,14 +56,10 @@
                         Thêm
                     </button>
                     <!-- Back Button -->
-                    <button onclick="goBack()" style="background-color: blue; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
-                        Quay lại
-                    </button>
-                    <script>
-                        function goBack() {
-                            window.history.back();
-                        }
-                    </script>
+                    <a href="javascript:window.history.back()" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                        Back
+                    </a>
+
                 </div>
             </form>
         </div>

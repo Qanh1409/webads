@@ -12,8 +12,6 @@
             @csrf
             @method('PUT')
 
-
-
             <!-- Size -->
             <div class="mb-4">
                 <label for="size" class="block text-gray-700 text-sm font-bold mb-2">Size</label>
@@ -73,8 +71,8 @@
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Save Changes
                 </button>
-                <a href="" class="text-blue-500 hover:text-blue-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    Cancel
+                <a href="javascript:window.history.back()" class="bg-black text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out">
+                    Back
                 </a>
             </div>
         </form>

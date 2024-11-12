@@ -25,13 +25,13 @@
             <!-- User Info Section -->
             <div @click="open = !open" class="cursor-pointer flex items-center space-x-2">
                 <div class="text-right">
-                    <h2 class="text-sm font-semibold text-gray-700">Thomas Anree</h2>
-                    <p class="text-xs text-gray-500">UX Designer</p>
+                    <h2 class="text-sm font-semibold text-gray-700">{{ Auth::user()->name }}</h2>
+                    
                 </div>
-                <img
+                <!-- <img
                     src="https://via.placeholder.com/40"
                     alt="User Avatar"
-                    class="w-10 h-10 rounded-full object-cover" />
+                    class="w-10 h-10 rounded-full object-cover" /> -->
             </div>
 
             <!-- Dropdown Menu -->

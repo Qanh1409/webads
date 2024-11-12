@@ -4,58 +4,72 @@
 
 @section('content')
 @auth
-
+<br>
 <!-- Button AddCar và Back -->
 <!-- Button "Add New Car" -->
-<a href="{{ route('admin.car.add', $category->id)}}" style="text-decoration: none;">
-    <button style="background-color: blue; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-right: 10px;">
+<!-- Button "Add New Car" -->
+<a href="{{ route('admin.car.add', $category->id) }}" class="inline-block ml-5">
+    <button class="bg-black text-white px-6 py-2 rounded cursor-pointer transition duration-300 hover:bg-gray-700">
         Add New Car
     </button>
 </a>
 
 <!-- Button "Back" -->
-<a href="javascript:window.history.back()" style="text-decoration: none;">
-    <button style="background-color: blue; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+<a href="javascript:window.history.back()" class="inline-block ml-5">
+    <button class="bg-black text-white px-6 py-2 rounded cursor-pointer transition duration-300 hover:bg-gray-700">
         Back
     </button>
 </a>
 
-<!-- 
-<div class="mb-6">
-    <a href="{{ route('admin.car.add', $category->id) }}" class="btn-link">Add New Car</a>
-    <a href="YOUR_BACK_URL" class="btn-primary">Back</a>
-</div> -->
+<br><br>
 
 
-<table class="table-auto w-full bg-white rounded-lg shadow">
-    <thead class="bg-blue-800 text-white">
+<table class="table-auto w-full bg-white rounded-lg shadow ml-4">
+    <thead class="bg-black text-white">
         <tr>
-            <th class="table-header">Car Name</th>
-            <th class="table-header">Category</th>
-            <th class="table-header">Price</th>
-            <th class="table-header">Actions</th>
+            <th class="px-4 py-2 text-left">Car Name</th>
+            <th class="px-4 py-2 text-left">Category</th>
+            <th class="px-4 py-2 text-left">Price</th>
+            <th class="px-4 py-2 text-left">Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($cars as $car)
         <tr class="border-b">
-            <td class="table-cell">{{ $car->name }}</td>
-            <td class="table-cell">{{ $car->category->name ?? 'N/A' }}</td>
-            <td class="table-cell">{{ number_format($car->price, 2) }} VNĐ</td>
-            <td class="table-cell flex space-x-2">
-                <a href="{{ route('admin.car.edit', $car->id) }}" class="btn-link">Edit</a>
+            <td class="px-4 py-2">{{ $car->name }}</td>
+            <td class="px-4 py-2">{{ $car->category->name ?? 'N/A' }}</td>
+            <td class="px-4 py-2">{{ number_format($car->price, 2) }} VNĐ</td>
+            <td class="px-4 py-2 flex space-x-2">
+                <!-- Edit Button -->
+                <a href="{{ route('admin.car.edit', $car->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                    Edit
+                </a>
+                <!-- Delete Button -->
                 <form action="{{ route('admin.car.delete', $car->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this car?');">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn-danger">Delete</button>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                        Delete
+                    </button>
                 </form>
-                <a href="{{ route('admin.car.detail', $car->id) }}" class="btn-link">Detail</a>
-
+                <!-- Detail Button -->
+                <a href="{{ route('admin.car.detail', $car->id) }}" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                    Detail
+                </a>
             </td>
         </tr>
         @endforeach
     </tbody>
-</table>
+</table> <br>
+<!-- Back Button -->
+<div class="flex justify-end mb-6 pr-6">
+    <a href="javascript:window.history.back()" class="bg-black text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out">
+        Back
+    </a>
+</div>
+
+
+
 @else
 <div class="text-center">
     <h1 class="text-3xl font-bold mb-6">Unauthorized Access</h1>
