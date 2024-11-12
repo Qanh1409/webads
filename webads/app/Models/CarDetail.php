@@ -104,7 +104,30 @@ class CarDetail extends Model
                 'camera360' => 0,
                 'seatbelt_warning' => 1
             ]);
-        
+
+            $carDetail->interior()->create([
+                'seat_material' => 'Leather',
+                'driverSeat_Electric' => true,
+                'driverSeat_Memory' => false,
+                'passengerSeat_Electric' => true,
+                'DCV_player' => true,
+                'touchscreen' => '8-inch',
+                'speaker' => 'Bose',
+                'brakeHand_electric' => true,
+                'autoHold' => true,
+                'Buton_engine' => true,
+                'cruise_control' => true,
+                'auto_climate' => 'Dual-zone',
+                'rear_airvents' => true,
+                'window_electric' => true,
+                'autoDimming_mirror' => true,
+                'HUD' => true,
+                'window2nd_sunshadesCenter' => false,
+                'window2nd_sunshades' => true,
+                'armrest' => true,
+                'armrest_USB' => true,
+                'rearSeatsFold60_40' => true,
+            ]);
         });
 
         // Xóa các bản ghi liên quan khi CarDetail bị xóa
@@ -114,7 +137,7 @@ class CarDetail extends Model
             $carDetail->exterior()->delete();
             $carDetail->fuelConsumption()->delete();
             $carDetail->safety()->delete();
-            
+            $carDetail->interior()->delete();
         });
     }
 
@@ -136,8 +159,9 @@ class CarDetail extends Model
         return $this->hasOne(EngineTransmission::class, 'detail_id', 'id');
     }
 
-    public function safety(){
-        return $this->hasOne(Safety::class,'detail_id','id');
+    public function safety()
+    {
+        return $this->hasOne(Safety::class, 'detail_id', 'id');
     }
     public function exterior()
     {
@@ -152,5 +176,10 @@ class CarDetail extends Model
     public function iActivsense()
     {
         return $this->hasOne(IActivsense::class, 'detail_id', 'id');
+    }
+
+    public function interior()
+    {
+        return $this->hasOne(Interior::class, 'detail_id');
     }
 }

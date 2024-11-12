@@ -26,7 +26,7 @@
             <div @click="open = !open" class="cursor-pointer flex items-center space-x-2">
                 <div class="text-right">
                     <h2 class="text-sm font-semibold text-gray-700">{{ Auth::user()->name }}</h2>
-                    
+
                 </div>
                 <!-- <img
                     src="https://via.placeholder.com/40"

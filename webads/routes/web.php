@@ -40,6 +40,15 @@ Route::middleware(['admin'])->group(
         Route::delete('admin/car/delete{id}', [AdminController::class, 'deleteCar'])->name('admin.car.delete');
 
         Route::get('admin/car/detail{id}', [AdminController::class, 'carDetail'])->name('admin.car.detail');
+        Route::get('admin/car/engine{id}', [AdminController::class, 'engineTranmission'])->name('admin.car.engineTranmisstion');
+        Route::get('admin/car/chassis{id}', [AdminController::class, 'chassis'])->name('admin.car.chassis');
+        Route::get('admin/car/exterior{id}', [AdminController::class, 'exterior'])->name('admin.car.exterior');
+        Route::get('admin/car/interior{id}', [AdminController::class, 'interior'])->name('admin.car.interior');
+        Route::get('admin/car/safety/{id}', [AdminController::class, 'safety'])->name('admin.car.safety');
+
+
+
+
         Route::get('admin/car/detail/edit{id}', [AdminController::class, 'editCarDetail'])->name('admin.carDetail.edit');
         Route::put('/admin/car/update{id}', [AdminController::class, 'updateCarDetail'])->name('admin.carDetail.update');
     }
