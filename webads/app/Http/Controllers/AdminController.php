@@ -7,12 +7,17 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Category;
 use App\Models\Car;
 use App\Models\CarDetail;
+use App\Models\Chassis;
+use App\Models\EngineTransmission;
+use App\Models\Exterior;
+use App\Models\Interior;
+use App\Models\Safety;
 
 class AdminController extends Controller
 {
     public function index()
     {
-        
+
         return view('admins.index');
     }
 
@@ -235,7 +240,7 @@ class AdminController extends Controller
 
         return redirect()->route('admin.car.index', ['id' => $car->category_id])->with('success', 'Car created successfully.');
     }
-
+    // Controller của carDetail
     public function carDetail($id)
     {
         $car = Car::find($id);
@@ -248,12 +253,16 @@ class AdminController extends Controller
         return view('admins.carDetail', compact('carDetail', 'car'));
     }
 
+    // Controller của engineTranmission
+
 
     public function editCarDetail($id)
     {
         $carDetail = CarDetail::find($id);
         return view('admins.carDetail_edit', compact('carDetail'));
     }
+
+
     public function updateCarDetail(Request $request, $id)
     {
         $request->validate([
@@ -281,13 +290,88 @@ class AdminController extends Controller
         $carDetail->cargo_volume = $request->cargo_volume;
         $carDetail->fuel_tank_capacity = $request->fuel_tank_capacity;
         $carDetail->deposit_required = $request->deposit_required;
-      
+
         // Save the updated car detail
         $carDetail->save();
 
         // Redirect back to a relevant page with a success message
 
         return redirect()->route('admin.car.index', ['id' => $carDetail->car->category_id])->with('success', 'Car created successfully.');
+    }
+
+    public function engineTranmission($id)
+    {
+
+        // Tìm kiếm thông tin động cơ của chiếc xe với ID tương ứng
+        $carDetail = CarDetail::find($id); // Tìm chiếc xe theo ID
+        $car = $carDetail->car;
+
+        $engineDetail = EngineTransmission::with('carDetail')->where('detail_id', $carDetail->id)->first(); // Lấy chi tiết động cơ của chiếc xe
+
+        // Kiểm tra nếu không tìm thấy chi tiết động cơ
+        if (!$engineDetail) {
+            return redirect()->back()->withErrors('EngineTransmission not found.');
+        }
+
+        // Trả về view với các dữ liệu cần thiết
+        return view('admins.engineTranmission', compact('engineDetail', 'carDetail', 'car'));
+    }
+
+    public function chassis($id)
+    {
+        $carDetail = CarDetail::find($id);
+        $car = $carDetail->car;
+
+        $chassisDetail = Chassis::with('carDetail')->where('detail_id', $carDetail->id)->first();
+
+        if (!$chassisDetail) {
+            return redirect()->back()->withErrors('ChassisDetail not found.');
+        }
+        return view('admins.chassis', compact('chassisDetail', 'carDetail', 'car'));
+    }
+
+    public function exterior($id)
+    {
+        $carDetail = CarDetail::find($id);
+        $car = $carDetail->car;
+
+        $exteriorDetail  = Exterior::with('carDetail')->where('detail_id', $carDetail->id)->first();
+
+        if (! $exteriorDetail) {
+            return redirect()->back()->withErrors('ChassisDetail not found.');
+        }
+        return view('admins.exterior', compact('exteriorDetail', 'carDetail', 'car'));
+    }
+
+
+    public function interior($id)
+    {
+        $carDetail = CarDetail::find($id);
+        $car = $carDetail->car;
+
+        $interior  = Interior::with('carDetail')->where('detail_id', $carDetail->id)->first();
+
+        if (!$interior) {
+            return redirect()->back()->withErrors('ChassisDetail not found.');
+        }
+        return view('admins.interior', compact('interior', 'carDetail', 'car'));
+    }
+
+    public function safety($id)
+    {
+        $carDetail = CarDetail::find($id);
+        $car = $carDetail->car;
+
+        // Find safety details for this car's detail
+        $safetyDetail = Safety::with('carDetail')->where('detail_id', $carDetail->id)->first();
+
+        // Redirect if safety detail is not found
+        if (!$safetyDetail) {
+            return redirect()->back()->withErrors('SafetyDetail not found.');
+        }
+
+        // Return the view with data
+        return view('admins.safety', compact('safetyDetail', 'carDetail', 'car'));
     }
 
 

@@ -4,12 +4,12 @@
 
 @section('content')
 @auth
-<br><br>
-<div class="max-w-5xl mx-auto p-4 bg-white rounded-lg shadow-lg">
-    <h3 class="text-3xl font-semibold text-gray-800 mb-6 text-center">
-        Thông số kỹ thuật của {{ $carDetail->car->name }}
-    </h3>
 
+@include('layouts.header_adminDetails')
+<br><br><br><br><br>
+
+<!-- KHỐI HIỂN THỊ THÔNG TIN CHI TIẾT -->
+<div class="max-w-5xl mx-auto p-4 bg-white rounded-lg shadow-lg">
     <div class="bg-white p-6 rounded-lg shadow-xl">
         <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">
             Car Specifications
