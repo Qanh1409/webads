@@ -91,19 +91,43 @@
 
 <!-- Thêm link đến Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
-<div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; padding: 30px; background-image: url('https://your-image-url.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+<div style="
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+    padding: 30px; 
+    background-size: cover; 
+    background-position: center; 
+    background-attachment: fixed;">
+
     @foreach ($categories as $category)
-    <div style="flex: 1 1 30%; padding: 20px; background-color: rgba(255, 255, 255, 0.8); border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); height: 380px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 15px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 8px rgba(0, 0, 0, 0.1)'">
+    <div style="
+        flex: 1 1 400px; 
+        max-width: 350px; 
+        padding: 15px; 
+        background-color: rgba(255, 255, 255, 0.85); 
+        border-radius: 10px; 
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: space-between; 
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: auto;"
+        onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 15px rgba(0, 0, 0, 0.15)'"
+        onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0, 0, 0, 0.1)'">
+
         <a href="{{ $category->link }}" style="text-decoration: none; color: inherit;">
-            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 20px; height: 100%; justify-content: space-between;">
-                <h2 style="font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 600; color: #333; margin-bottom: 10px;">{{ $category->name }}</h2>
-                <p style="font-size: 16px; color: #555; margin: 10px 0;">Khám phá tất cả các dòng xe</p>
-                <img src="{{ asset('images/categories/'.$category->img) }}" alt="{{ $category->name }}" style=" height: auto; object-fit: cover; border-radius: 8px; margin-top: 10px;">
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 10px;">
+                <h2 style="font-family: 'Montserrat', sans-serif; font-size: 30px; font-weight: 600; color: #333; margin-bottom: 8px;">{{ $category->name }}</h2>
+                <p style="font-size: 16px; color: #555; margin: 6px 0;">Khám phá tất cả các dòng xe</p>
+                <img src="{{ asset('images/categories/'.$category->img) }}" alt="{{ $category->name }}" style="width: 100%; max-height: 350px; object-fit: cover; border-radius: 8px; margin-top: 8px;">
             </div>
         </a>
     </div>
     @endforeach
 </div>
+
 <br><br>
 
 <!-- Khối quảng cáo về lịch sử thương hiệu -->
@@ -133,11 +157,12 @@
 
 </div>
 
+
 <!-- Khối carosel dịch vụ -->
 <div class="container my-5">
-    <h2 class="text-center mb-5" style="font-size: 36px; font-weight: 700; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333;">Dịch vụ của chúng tôi</h2>
-    <hr>
-
+    <p style="padding: 50px ; font-family: 'Playfair Display', sans-serif; font-size: 2rem; font-weight: 100; text-transform: uppercase; letter-spacing: 0.2rem; color: #000; margin: 0; text-align: center;">
+        DỊCH VỤ CỦA CHÚNG TÔI
+    </p>
     <!-- Carousel -->
     <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-inner">
@@ -224,8 +249,5 @@
         });
     }
 </script>
-
-
-
 
 @endsection

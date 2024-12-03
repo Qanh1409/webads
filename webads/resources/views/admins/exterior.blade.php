@@ -36,47 +36,100 @@
                 <!-- LED Daylight -->
                 <tr>
                     <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">LED Daylight</td>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $exteriorDetail->LED_light_day }}</td>
+                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">
+                        @if($exteriorDetail->LED_light_day)
+                        Yes
+                        @else
+                        No
+                        @endif
+                    </td>
                 </tr>
                 <!-- Auto Headlights -->
                 <tr>
                     <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Auto Headlights</td>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $exteriorDetail->auto_headlights }}</td>
+                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">
+                        @if($exteriorDetail->auto_headlights)
+                        Yes
+                        @else
+                        No
+                        @endif
+                    </td>
                 </tr>
                 <!-- Auto Leveling -->
                 <tr>
                     <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Auto Leveling</td>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $exteriorDetail->auto_leveling }}</td>
+                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">
+                        @if($exteriorDetail->auto_leveling)
+                     
+                        Yes
+                        @else
+                        No
+                        @endif
+                    </td>
                 </tr>
                 <!-- Power Mirror -->
                 <tr>
                     <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Power Mirror</td>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $exteriorDetail->power_mirror }}</td>
+                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">@if($exteriorDetail->power_mirror)
+                        Yes
+                        @else
+                        No
+                        @endif </td>
                 </tr>
                 <!-- Auto Folding Mirrors -->
                 <tr>
                     <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Auto Folding Mirrors</td>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $exteriorDetail->auto_folding }}</td>
+                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">
+                        @if($exteriorDetail->auto_folding)
+                        Yes
+                        @else
+                        No
+                        @endif
+                    </td>
                 </tr>
                 <!-- Auto Wipers -->
                 <tr>
                     <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Auto Wipers</td>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $exteriorDetail->auto_wipers }}</td>
+                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">
+                        @if($exteriorDetail->auto_wipers)
+                        Yes
+                        @else
+                        No
+                        @endif
+                    </td>
                 </tr>
                 <!-- Rear LED Light -->
                 <tr>
                     <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Rear LED Light</td>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $exteriorDetail->rear_LED_light }}</td>
+                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">
+                        @if($exteriorDetail->rear_LED_light)
+                        Yes
+                        @else
+                        No
+                        @endif
+                    </td>
                 </tr>
                 <!-- Sunroof -->
                 <tr>
                     <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Sunroof</td>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $exteriorDetail->sunroof }}</td>
+                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">
+                        @if($exteriorDetail->sunroof)
+                        Yes
+                        @else
+                        No
+                        @endif
+                    </td>
                 </tr>
                 <!-- Double Exhaust -->
                 <tr>
                     <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Double Exhaust</td>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $exteriorDetail->double_exhaust }}</td>
+                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">
+                        @if($exteriorDetail->double_exhaust)
+                        Yes
+                        @else
+                        No
+                        @endif
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -87,7 +140,7 @@
 
 <!-- Edit and Back Buttons -->
 <div class="flex justify-end mb-6 pr-6">
-    <a href=""
+    <a href="{{route('admin.car.exterior.edit',$exteriorDetail->id)}}"
         class="bg-black text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out mr-2">
         Edit
     </a>

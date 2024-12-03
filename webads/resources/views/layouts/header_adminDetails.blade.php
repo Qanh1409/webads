@@ -22,6 +22,11 @@
             Khung gầm
         </a>
 
+        <a href="{{ route('admin.car.interior', ['id' => $carDetail->id]) }}"
+            class="px-4 py-2 rounded-md text-sm transition duration-300 hover:bg-gray-800 hover:scale-105
+                  {{ request()->routeIs('admin.car.interior') ? 'bg-blue-600 text-white' : 'bg-black text-white' }}">
+            Nội thất
+        </a>
 
         <a href="{{ route('admin.car.exterior', ['id' => $carDetail->id]) }}"
             class="px-4 py-2 rounded-md text-sm transition duration-300 hover:bg-gray-800 hover:scale-105
@@ -29,17 +34,22 @@
             Ngoại thất
         </a>
 
-
-        <a href="{{ route('admin.car.interior', ['id' => $carDetail->id]) }}"
-            class="px-4 py-2 rounded-md text-sm transition duration-300 hover:bg-gray-800 hover:scale-105
-                  {{ request()->routeIs('admin.car.interior') ? 'bg-blue-600 text-white' : 'bg-black text-white' }}">
-            Nội thất
-        </a>
-
         <a href="{{ route('admin.car.safety', ['id' => $carDetail->id]) }}"
             class="px-4 py-2 rounded-md text-sm transition duration-300 hover:bg-gray-800 hover:scale-105
-          {{ request()->routeIs('admin.car.safety') ? 'bg-blue-600 text-white' : 'bg-black text-white' }}">
+                    {{ request()->routeIs('admin.car.safety') ? 'bg-blue-600 text-white' : 'bg-black text-white' }}">
             An toàn
+        </a>
+
+        <a href="{{ route('admin.car.fuelConsumtion', ['id' => $carDetail->id]) }}"
+            class="px-4 py-2 rounded-md text-sm transition duration-300 hover:bg-gray-800 hover:scale-105
+                    {{ request()->routeIs('admin.car.fuelConsumtion') ? 'bg-blue-600 text-white' : 'bg-black text-white' }}">
+            Mức nhiên liệu
+        </a>
+
+        <a href="{{ route('admin.car.iActivsense', ['id' => $carDetail->id]) }}"
+            class="px-4 py-2 rounded-md text-sm transition duration-300 hover:bg-gray-800 hover:scale-105
+                    {{ request()->routeIs('admin.car.iActivsense') ? 'bg-blue-600 text-white' : 'bg-black text-white' }}">
+            i-Activsense
         </a>
         <!-- Các nút khác -->
         <!-- Tiếp tục thêm các nút tương tự với điều kiện request()->is() hoặc request()->routeIs() phù hợp -->

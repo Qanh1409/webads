@@ -1,94 +1,43 @@
-<!-- Gọi header -->
-@include('layouts.header_users')
+@extends('layouts.app') <!-- Kế thừa layout app -->
 
-<!-- Nội dung chính của trang category -->
-<div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
-    <h1 style="text-align: center; margin-bottom: 40px; font-size: 36px; font-weight: bold; color: #333;">Danh mục các phân khúc xe</h1>
+@section('content')
 
-    <!-- SUV Section -->
-    <section style="margin-bottom: 50px;">
-        <h2 style="font-size: 28px; font-weight: bold; color: #555; margin-bottom: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px;">SUV</h2>
-        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-            <div style="flex: 1 1 300px; border: 1px solid #eee; border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s, box-shadow 0.3s; background-color: #fafafa;">
-                <h5 style="font-size: 20px; font-weight: bold; margin-bottom: 10px; color: #444;">Toyota Fortuner</h5>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="margin-bottom: 8px;">
-                        <a href="#" style="text-decoration: none; color: #007bff; font-weight: 500;">Phiên bản 2.4G</a>
-                    </li>
-                    <li style="margin-bottom: 8px;">
-                        <a href="#" style="text-decoration: none; color: #007bff; font-weight: 500;">Phiên bản 2.7V</a>
-                    </li>
-                    <li style="margin-bottom: 8px;">
-                        <a href="#" style="text-decoration: none; color: #007bff; font-weight: 500;">Phiên bản Legender</a>
-                    </li>
-                </ul>
+<!-- KHỐI HEADER -->
+@include('layouts.header_userCategory')
+
+<div class="container mx-auto py-12 px-4">
+    <!-- Danh sách các danh mục -->
+    @foreach ($categories as $category)
+    <section class="mb-16">
+        <!-- Tên danh mục -->
+        <h2 class="text-3xl font-bold text-gray-800 mb-8 border-b-4 border-gray-300 pb-4">{{ $category->name }}</h2>
+
+        <!-- Nội dung danh mục -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            @forelse ($category->cars as $car)
+            <div class="group border rounded-lg shadow-md overflow-hidden bg-white hover:shadow-xl transition">
+                <div class="relative h-48 bg-gray-100">
+                    <img src="{{ asset('images/cars/'.$car->image) }}" alt="{{ $car->name }}"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                </div>
+                <div class="p-4">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 group-hover:text-blue-600 transition">
+                        {{ $car->name }}
+                    </h3>
+                    <p class="text-gray-500 mb-4">Giá:
+                        <span class="text-red-500 font-bold">{{ number_format($car->price, 0, ',', '.') }} VND</span>
+                    </p>
+                    <a href=""
+                        class="inline-block px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded hover:bg-blue-700 transition">
+                        Xem chi tiết
+                    </a>
+                </div>
             </div>
-            <div style="flex: 1 1 300px; border: 1px solid #eee; border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s, box-shadow 0.3s; background-color: #fafafa;">
-                <h5 style="font-size: 20px; font-weight: bold; margin-bottom: 10px; color: #444;">Ford Everest</h5>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="margin-bottom: 8px;">
-                        <a href="#" style="text-decoration: none; color: #007bff; font-weight: 500;">Phiên bản Ambiente</a>
-                    </li>
-                    <li style="margin-bottom: 8px;">
-                        <a href="#" style="text-decoration: none; color: #007bff; font-weight: 500;">Phiên bản Trend</a>
-                    </li>
-                </ul>
-            </div>
+            @empty
+            <p class="text-gray-500 col-span-full text-center">Không có xe nào trong danh mục này.</p>
+            @endforelse
         </div>
     </section>
-
-    <!-- Sedan Section -->
-    <section style="margin-bottom: 50px;">
-        <h2 style="font-size: 28px; font-weight: bold; color: #555; margin-bottom: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px;">Sedan</h2>
-        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-            <div style="flex: 1 1 300px; border: 1px solid #eee; border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s, box-shadow 0.3s; background-color: #fafafa;">
-                <h5 style="font-size: 20px; font-weight: bold; margin-bottom: 10px; color: #444;">Toyota Camry</h5>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="margin-bottom: 8px;">
-                        <a href="#" style="text-decoration: none; color: #007bff; font-weight: 500;">Phiên bản 2.0G</a>
-                    </li>
-                    <li style="margin-bottom: 8px;">
-                        <a href="#" style="text-decoration: none; color: #007bff; font-weight: 500;">Phiên bản 2.5Q</a>
-                    </li>
-                </ul>
-            </div>
-            <div style="flex: 1 1 300px; border: 1px solid #eee; border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s, box-shadow 0.3s; background-color: #fafafa;">
-                <h5 style="font-size: 20px; font-weight: bold; margin-bottom: 10px; color: #444;">Honda Accord</h5>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="margin-bottom: 8px;">
-                        <a href="#" style="text-decoration: none; color: #007bff; font-weight: 500;">Phiên bản 1.5 Turbo</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Hatchback Section -->
-    <section style="margin-bottom: 50px;">
-        <h2 style="font-size: 28px; font-weight: bold; color: #555; margin-bottom: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px;">Hatchback</h2>
-        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
-            <div style="flex: 1 1 300px; border: 1px solid #eee; border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s, box-shadow 0.3s; background-color: #fafafa;">
-                <h5 style="font-size: 20px; font-weight: bold; margin-bottom: 10px; color: #444;">Kia Morning</h5>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="margin-bottom: 8px;">
-                        <a href="#" style="text-decoration: none; color: #007bff; font-weight: 500;">Phiên bản Standard</a>
-                    </li>
-                    <li style="margin-bottom: 8px;">
-                        <a href="#" style="text-decoration: none; color: #007bff; font-weight: 500;">Phiên bản Luxury</a>
-                    </li>
-                </ul>
-            </div>
-            <div style="flex: 1 1 300px; border: 1px solid #eee; border-radius: 10px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); padding: 20px; transition: transform 0.3s, box-shadow 0.3s; background-color: #fafafa;">
-                <h5 style="font-size: 20px; font-weight: bold; margin-bottom: 10px; color: #444;">Mazda 2</h5>
-                <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="margin-bottom: 8px;">
-                        <a href="#" style="text-decoration: none; color: #007bff; font-weight: 500;">Phiên bản Sport</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
+    @endforeach
 </div>
-
-<!-- Gọi footer -->
-@include('layouts.footer_users')
+@endsection

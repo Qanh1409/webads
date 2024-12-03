@@ -58,6 +58,9 @@
             <div x-show="open" class="ml-6 space-y-2">
                 <a href="{{route('admin.category')}}" class="block px-2 py-2 text-sm hover:bg-gray-700">Category List</a>
             </div>
+            <div x-show="open" class="ml-6 space-y-2">
+                <a href="{{route('admin.blog')}}" class="block px-2 py-2 text-sm hover:bg-gray-700">Blog</a>
+            </div>
         </div>
 
 

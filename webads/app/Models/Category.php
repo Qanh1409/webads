@@ -23,8 +23,8 @@ class Category extends Model
         });
     }
 
-    public function car()
+     public function cars()
     {
-        return $this->hasOne(Car::class);
+        return $this->hasMany(Car::class);
     }
 }

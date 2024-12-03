@@ -19,10 +19,7 @@
         <table class="w-full border-collapse">
             <tbody>
                 <!-- Detail ID -->
-                <tr>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Detail ID</td>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $chassisDetail->detail_id }}</td>
-                </tr>
+               
                 <!-- Front Suspension -->
                 <tr>
                     <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Front Suspension</td>
@@ -67,7 +64,7 @@
 
 <!-- Edit and Back Buttons -->
 <div class="flex justify-end mb-6 pr-6">
-    <a href=""
+    <a href="{{route('admin.car.chassis.edit',$chassisDetail->id)}}"
         class="bg-black text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out mr-2">
         Edit
     </a>

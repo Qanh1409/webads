@@ -7,80 +7,45 @@
 
 @include('layouts.header_adminDetails')
 
-<br><br><br><br><br>
-<div class="max-w-5xl mx-auto p-4 bg-white rounded-lg shadow-lg">
-    <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">
-        Interior Specifications
-    </h2>
+<div class="max-w-5xl mx-auto p-4 bg-white rounded-lg shadow-lg mt-16">
+    <h2 class="text-2xl font-bold text-gray-800 text-center mb-6">Interior Specifications</h2>
 
     <table class="w-full border-collapse">
         <tbody>
+            @foreach([
+            'Seat Material' => $interiorDetail->seat_material,
+            'Driver Seat Electric' => $interiorDetail->driver_seat_electric ? 'Yes' : 'No',
+            'Driver Seat Memory' => $interiorDetail->driver_seat_memory ? 'Yes' : 'No',
+            'Passenger Seat Electric' => $interiorDetail->passenger_seat_electric ? 'Yes' : 'No',
+            'DVD Player' => $interiorDetail->dvd_player ? 'Yes' : 'No',
+            'Touchscreen' => $interiorDetail->touchscreen,
+            'Speaker' => $interiorDetail->speaker,
+            'Electric Parking Brake' => $interiorDetail->electric_parking_brake ? 'Yes' : 'No',
+            'Auto Hold' => $interiorDetail->auto_hold ? 'Yes' : 'No',
+            'Button Engine Start' => $interiorDetail->button_engine_start ? 'Yes' : 'No',
+            'Cruise Control' => $interiorDetail->cruise_control ? 'Yes' : 'No',
+            'Automatic Climate Control' => $interiorDetail->automatic_climate_control,
+            'Rear Air Vents' => $interiorDetail->rear_air_vents ? 'Yes' : 'No',
+            'Electric Windows' => $interiorDetail->electric_windows ? 'Yes' : 'No',
+            'Auto Dimming Mirror' => $interiorDetail->auto_dimming_mirror ? 'Yes' : 'No',
+            'HUD' => $interiorDetail->hud ? 'Yes' : 'No',
+            'Sunshades Center' => $interiorDetail->sunshades_center ? 'Yes' : 'No',
+            'Sunshades Window 2nd Row' => $interiorDetail->sunshades_window_2nd_row ? 'Yes' : 'No',
+            'Rear Armrest' => $interiorDetail->rear_armrest ? 'Yes' : 'No',
+            'Rear Armrest USB' => $interiorDetail->rear_armrest_usb ? 'Yes' : 'No',
+            'Rear Seats Fold 60/40' => $interiorDetail->rear_seats_fold_60_40 ? 'Yes' : 'No',
+            ] as $label => $value)
             <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Seat Material</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->seat_material }}</td>
+                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">{{ $label }}</td>
+                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $value }}</td>
             </tr>
-            <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Driver Seat Electric</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->driverSeat_Electric ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Driver Seat Memory</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->driverSeat_Memory ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Passenger Seat Electric</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->passengerSeat_Electric ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">DCV Player</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->DCV_player ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Touchscreen</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->touchscreen }}</td>
-            </tr>
-            <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Speaker</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->speaker }}</td>
-            </tr>
-            <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Brake Hand Electric</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->brakeHand_electric ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Auto Hold</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->autoHold ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Button Engine Start</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->Buton_engine ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Cruise Control</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->cruise_control ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Auto Climate</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->auto_climate }}</td>
-            </tr>
-            <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Rear Air Vents</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->rear_airvents ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Electric Window</td>
-                <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $interior->window_electric ? 'Yes' : 'No' }}</td>
-            </tr>
-            <!-- Add more fields as needed -->
+            @endforeach
         </tbody>
     </table>
 </div>
 
-<br><br>
-
-<!-- Edit and Back Buttons -->
-<div class="flex justify-end mb-6 pr-6">
-    <a href=""
+<div class="flex justify-end mt-6 pr-6">
+    <a href="{{ route('admin.car.interior.edit', $interiorDetail->id) }}"
         class="bg-black text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out mr-2">
         Edit
     </a>
@@ -91,7 +56,7 @@
 </div>
 
 @else
-<div class="text-center">
+<div class="text-center mt-16">
     <h1 class="text-3xl font-bold mb-6">Unauthorized Access</h1>
     <p>You are not authorized to access this page.</p>
 </div>

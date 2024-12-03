@@ -12,7 +12,7 @@
             <!-- CÁC KHỐI CHÍNH HEADER -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item dropdown" style="position: relative;">
+                    <li class="nav-item dropdown" style="position: relative;">
                         <a class="nav-link fs-5" href="/category" id="danhSachDongXe" role="button" aria-expanded="false" style="cursor: pointer;">
                             Dòng xe
                         </a>
@@ -131,7 +131,142 @@
                     </li>
                     <!-- Existing menu items go here -->
                     <li class="nav-item"><a class="nav-link fs-5" href="{{ url('/tin-tuc') }}">Tin tức</a></li>
-                    <li class="nav-item"><a class="nav-link fs-5" href="{{ url('/introduce') }}">Giới thiệu</a></li>
+                    <!-- CẤU HÌNH NÚT GIỚI THIỆU -->
+
+                    <li class="nav-item" id="dropdown-container">
+                        <a class="nav-link fs-5" href="{{ url('/introduce') }}" id="intro-button">Giới thiệu</a>
+
+                        <!-- Menu thả xuống -->
+                        <div id="dropdown-content" style="
+                            display: none;
+                            position: absolute;
+                            top: 80%;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            background-color: #f8f8f8;
+                            padding: 25px;
+                            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                            z-index: 10;
+                            min-width: 600px;
+                            border-radius: 10px;
+                            display: flex;
+                            gap: 40px;
+                            font-family: 'Roboto', sans-serif;
+                            font-size: 16px;
+                            transition: all 0.3s ease;
+                        ">
+                            <!-- Phần bên trái -->
+                            <div style="width: 250px;">
+                                <h3 style="
+                                    font-weight: 700; 
+                                    font-size: 22px; 
+                                    color: #333; 
+                                    margin-bottom: 15px; 
+                                    font-family: 'Merriweather', serif;">
+                                    THƯƠNG HIỆU MAZDA
+                                </h3>
+                                <a href="{{ url('introduce/design') }}" style="
+                                    color: #555; 
+                                    padding: 10px 0; 
+                                    text-decoration: none; 
+                                    display: block; 
+                                    font-size: 16px; 
+                                    line-height: 1.6; 
+                                    transition: color 0.3s ease;">
+                                    THIẾT KẾ
+                                </a>
+                                <a href="{{ url('introduce/creative') }}" style="
+                                    color: #555; 
+                                    padding: 10px 0; 
+                                    text-decoration: none; 
+                                    display: block; 
+                                    font-size: 16px; 
+                                    line-height: 1.6; 
+                                    transition: color 0.3s ease;">
+                                    SÁNG TẠO
+                                </a>
+                                <a href="{{ url('introduce/iActivsense') }}" style="
+                                    color: #555; 
+                                    padding: 10px 0; 
+                                    text-decoration: none; 
+                                    display: block; 
+                                    font-size: 16px; 
+                                    line-height: 1.6; 
+                                    transition: color 0.3s ease;">
+                                    TÍNH NĂNG AN TOÀN
+                                </a>
+                            </div>
+
+                            <!-- Đường kẻ dọc -->
+                            <div style="border-left: 1px solid #ddd; height: auto; margin: 0 30px;"></div>
+
+                            <!-- Phần bên phải -->
+                            <div style="width: 250px;">
+                                <h3 style="
+                                    font-weight: 700; 
+                                    font-size: 22px; 
+                                    color: #333; 
+                                    margin-bottom: 15px; 
+                                    font-family: 'Merriweather', serif;">
+                                    MAZDA VIỆT NAM
+                                </h3>
+                                <p style="
+                                    font-size: 16px; 
+                                    color: #666; 
+                                    line-height: 1.6; 
+                                    margin-bottom: 15px;">
+                                    Năm 2011, Thaco hợp tác với tập đoàn Mazda Nhật Bản xây dựng nhà máy sản xuất và lắp ráp xe Mazda tại khu Kinh tế mở Chu Lai, Quảng Nam với công suất 10.000 xe/năm.
+                                </p>
+                                <a href="{{ url('/mazda-vietnam') }}" style="
+                                    color: #007BFF; 
+                                    text-decoration: none; 
+                                    font-size: 16px; 
+                                    font-weight: 600; 
+                                    transition: color 0.3s ease;">
+                                    VỀ MAZDA VIỆT NAM
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- JavaScript for Hover Menu -->
+                        <script>
+                            const introButton = document.getElementById("intro-button");
+                            const dropdownContent = document.getElementById("dropdown-content");
+                            let isHoveringMenu = false; // Biến cờ kiểm soát
+
+                            // Hiển thị menu khi hover vào nút "Giới thiệu"
+                            introButton.addEventListener("mouseenter", () => {
+                                dropdownContent.style.display = "flex";
+                            });
+
+                            // Giữ menu mở khi chuột còn trong menu
+                            dropdownContent.addEventListener("mouseenter", () => {
+                                isHoveringMenu = true;
+                                dropdownContent.style.display = "flex";
+                            });
+
+                            // Khi chuột rời khỏi menu, đặt lại biến cờ và đợi một chút rồi ẩn menu
+                            dropdownContent.addEventListener("mouseleave", () => {
+                                isHoveringMenu = false;
+                                setTimeout(() => {
+                                    if (!isHoveringMenu && !introButton.matches(":hover")) {
+                                        dropdownContent.style.display = "none";
+                                    }
+                                }, 300); // Thời gian chờ 300ms
+                            });
+
+                            // Ẩn menu khi chuột rời khỏi nút "Giới thiệu"
+                            introButton.addEventListener("mouseleave", () => {
+                                setTimeout(() => {
+                                    if (!isHoveringMenu && !dropdownContent.matches(":hover")) {
+                                        dropdownContent.style.display = "none";
+                                    }
+                                }, 300); // Thời gian chờ 300ms
+                            });
+                        </script>
+
+                    </li>
+
                     <li class="nav-item"><a class="nav-link fs-5" href="{{ url('/lai-thu') }}">Lái thử</a></li>
                     <li class="nav-item"><a class="nav-link fs-5" href="{{ url('/lien-he') }}">Liên hệ</a></li>
                 </ul>

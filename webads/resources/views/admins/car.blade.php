@@ -14,12 +14,12 @@
     </button>
 </a>
 
-<!-- Button "Back" -->
+<!-- Button "Back"
 <a href="javascript:window.history.back()" class="inline-block ml-5">
     <button class="bg-black text-white px-6 py-2 rounded cursor-pointer transition duration-300 hover:bg-gray-700">
         Back
     </button>
-</a>
+</a> -->
 
 <br><br>
 
@@ -27,6 +27,7 @@
 <table class="table-auto w-full bg-white rounded-lg shadow ml-4">
     <thead class="bg-black text-white">
         <tr>
+            <th class="px-4 py-2 text-left">Img</th>
             <th class="px-4 py-2 text-left">Car Name</th>
             <th class="px-4 py-2 text-left">Category</th>
             <th class="px-4 py-2 text-left">Price</th>
@@ -36,6 +37,13 @@
     <tbody>
         @foreach ($cars as $car)
         <tr class="border-b">
+            <td class="px-4 py-2">
+                @if($car->image)
+                <img src="{{ asset('images/cars/'.$car->image) }}" alt="{{ $car->name }}" class="w-16 h-16 object-cover rounded-full">
+                @else
+                <img src="{{ asset('images/default-category.png') }}" alt="No Image" class="w-16 h-16 object-cover rounded-full">
+                @endif
+            </td>
             <td class="px-4 py-2">{{ $car->name }}</td>
             <td class="px-4 py-2">{{ $car->category->name ?? 'N/A' }}</td>
             <td class="px-4 py-2">{{ number_format($car->price, 2) }} VNĐ</td>

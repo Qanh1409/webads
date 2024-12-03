@@ -51,17 +51,17 @@
                 <!-- Row 7 -->
                 <tr>
                     <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">Sport Mode</td>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $engineDetail->sport_mode }}</td>
+                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $engineDetail->sport_mode ? 'Yes' : 'No' }}</td>
                 </tr>
                 <!-- Row 8 -->
                 <tr>
                     <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">GVC System</td>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $engineDetail->GVC_system }}</td>
+                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $engineDetail->GVC_system ? 'Yes' : 'No' }}</td>
                 </tr>
                 <!-- Row 9 -->
                 <tr>
                     <td class="py-3 px-6 border-b border-gray-300 text-gray-700 font-semibold">i-Stop</td>
-                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $engineDetail->iStop }}</td>
+                    <td class="py-3 px-6 border-b border-gray-300 text-gray-600">{{ $engineDetail->iStop ? 'Yes' : 'No' }}</td>
                 </tr>
             </tbody>
         </table>
@@ -71,7 +71,7 @@
 
 <!-- Edit and Back Buttons -->
 <div class="flex justify-end mb-6 pr-6">
-    <a href="" class="bg-black text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out mr-2">
+    <a href="{{route('admin.car.engineTranmisstion.edỉt',$engineDetail->id)}}" class="bg-black text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out mr-2">
         Edit
     </a>
     <a href="javascript:window.history.back()" class="bg-black text-white px-6 py-3 rounded-lg shadow-lg hover:bg-gray-800 transition duration-300 ease-in-out">
