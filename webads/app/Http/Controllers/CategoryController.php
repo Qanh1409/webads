@@ -28,9 +28,11 @@ class CategoryController extends Controller
     }
 
 
+
     // Tạo mục "Giới thiệu trong khối header"
     public function introduce()
     {
         return view('introduce'); // Đảm bảo view 'introduce' tồn tại trong thư mục resources/views
     }
+      
 }

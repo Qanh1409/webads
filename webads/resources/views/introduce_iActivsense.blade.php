@@ -314,7 +314,7 @@
                 <div class="carousel-item active">
                     <div class="d-flex flex-column align-items-center text-center">
                         <!-- Hình ảnh -->
-                        <img class="w-50 mb-4" src="img/introduce_iActivsense/HUD.jpg" alt="Giám sát điểm mù">
+                        <img class="w-50 mb-4" src="/img/introduce_iActivsense/HUD.jpg" alt="Giám sát điểm mù">
                         <!-- Nội dung -->
                         <div class="w-75">
                             <h3 class="text-xl font-semibold mb-3">Giám Sát Điểm Mù</h3>
@@ -334,7 +334,7 @@
                 <div class="carousel-item active">
                     <div class="d-flex flex-column align-items-center text-center">
                         <!-- Hình ảnh -->
-                        <img class="w-50 mb-4" src="img/introduce_iActivsense/airbag.jpg" alt="Hỗ trợ phanh thông minh">
+                        <img class="w-50 mb-4" src="/img/introduce_iActivsense/airbag.jpg" alt="Hỗ trợ phanh thông minh">
                         <!-- Nội dung -->
                         <div class="w-75">
                             <h3 class="text-xl font-semibold mb-3">Hỗ Trợ Phanh Thông Minh Trong Thành Phố</h3>

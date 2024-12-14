@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+
     public function index()
     {
         return view('admins.index');
@@ -122,6 +123,7 @@ class AdminController extends Controller
             'content.string' => 'Nội dung bài viết phải là một chuỗi ký tự.',
         ];
 
+
         // Thực hiện validate
         $validator = Validator::make($request->all(), $rules, $messages);
 
@@ -134,6 +136,8 @@ class AdminController extends Controller
         $blog = Blog::findOrFail($id);
         $blog->title = $request->title; // Cập nhật tiêu đề
         $blog->content = $request->content; // Cập nhật nội dung
+        echo "<img src='" . asset("images/blogs/$blog->img") . "'/>";
+
 
         // Kiểm tra nếu có tệp hình ảnh được tải lên
         if ($request->hasFile('img')) {
@@ -143,7 +147,7 @@ class AdminController extends Controller
             }
 
             // Upload và lưu đường dẫn hình ảnh mới
-            $blog->img = $this->uploadImage($request->file('img')); // Hàm upload file ảnh (định nghĩa bên dưới)
+            $blog->img = $this->uploadImage($request->file('img'));
         }
 
         // Lưu các thay đổi
@@ -932,5 +936,16 @@ class AdminController extends Controller
         return view('introduce_iActivsense');
     }
 
+
+    //Controller của Car_detail
+
+    public function show($id)
+    {
+        // Tìm xe dựa trên ID
+        $car = Car::with('category')->findOrFail($id); // Include category data
+
+        // Trả về view với dữ liệu xe
+        return view('car_detail', compact('car'));
+    }
 
 }

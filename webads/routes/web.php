@@ -24,18 +24,28 @@ Route::get('introduce/design', [HomeController::class, 'introduce_design'])->nam
 Route::get('introduce/creative', [HomeController::class, 'introduce_creative'])->name('introduce_creative');
 Route::get('introduce/iActivsense', [HomeController::class, 'introduce_iActivsense'])->name('introduce_iActivsense');
 
+// Mục tin tức (khối header)
+Route::get('/news', [HomeController::class, 'blog'])->name('blog');
+
+// Mục đăng ký lái thử (khối header)
+Route::get('testDrive', [HomeController::class, 'testDrive'])->name('testDrive');
+
+// Mục liên hệ (khối header)
+Route::get('contactUs', [HomeController::class, 'contactUs'])->name('contactUs');
+
+// Tạo route cho trang Car_detail
+Route::get('/category/carDetail', [HomeController::class, 'carDetail'])->name('car_detail');
 
 Route::middleware(['admin'])->group(
     function () {
-        Route::get('admin', [AdminController::class, 'index'])->name('admin');
 
+        Route::get('admin', [AdminController::class, 'index'])->name('admin');
         Route::get('admin/blog', [AdminController::class, 'blog'])->name('admin.blog');
         Route::get('admin/blog/add', [AdminController::class, 'addBlog'])->name('admin.blog.add');
         Route::post('admin/blog/create', [AdminController::class, 'createBlog'])->name('admin.blog.create');
         Route::get('admin/blog/edit{id}', [AdminController::class, 'editBlog'])->name('admin.blog.edit');
         Route::put('admin/blog/update{id}', [AdminController::class, 'updateBlog'])->name('admin.blog.update');
         Route::delete('admin/blog/delete{id}', [AdminController::class, 'deleteBlog'])->name('admin.blog.delete');
-
 
 
         Route::get('admin/category', [AdminController::class, 'category'])->name('admin.category');
@@ -83,12 +93,9 @@ Route::middleware(['admin'])->group(
         Route::get('admin/car/fuelConsumtion/edit{id}', [AdminController::class, 'editFuelConsumtion'])->name('admin.car.fuelConsumtion.edit');
         Route::put('admin/car/fuelConsumtion/update{id}', [AdminController::class, 'updateFuelConsumption'])->name('admin.car.fuelConsumtion.update');
 
-
-
         Route::get('admin/car/iActivsense{id}', [AdminController::class, 'iActivsense'])->name('admin.car.iActivsense');
         Route::get('admin/car/iActivsense/edit{id}', [AdminController::class, 'editIactivense'])->name('admin.car.iActivsense.edit');
         Route::put('/admin/car/iActivsense/update{id}', [AdminController::class, 'updateIactivense'])->name('admin.car.iActivsense.update');
     }
-
 
 );

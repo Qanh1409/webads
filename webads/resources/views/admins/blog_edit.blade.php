@@ -24,7 +24,7 @@
         <div class="mb-6">
             <label class="block text-gray-700 font-semibold mb-2">Hình ảnh hiện tại</label>
             @if($post->img)
-            <img src="{{ asset('storage/' . $post->img) }}" alt="Hình ảnh bài viết" class="w-40 h-40 object-cover rounded-lg mb-4">
+            <img src="{{ asset('images/blogs/'.$post->img) }}" alt="Hình ảnh bài viết" class="w-40 h-40 object-cover rounded-lg mb-4">
             @else
             <p class="text-gray-500 text-sm">Chưa có hình ảnh</p>
             @endif
@@ -34,7 +34,7 @@
         <div class="mb-6">
             <label for="img" class="block text-gray-700 font-semibold mb-2">Thay đổi hình ảnh</label>
             <input type="file" id="img" name="img"
-                class="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+                class="w-fuzll px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
                 accept="image/*">
             @error('img')
             <span class="text-red-500 text-sm mt-1">{{ $message }}</span>

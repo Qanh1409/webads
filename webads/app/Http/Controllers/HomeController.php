@@ -31,7 +31,8 @@ class HomeController extends Controller
 
     public function category()
     {
-        return view('category');
+        $categories = Category::all();
+        return view('category',compact('categories'));
     }
 
     // KHAI BÁO MỤC "GIỚI THIỆU CỦA XE"
@@ -49,4 +50,29 @@ class HomeController extends Controller
     {
         return view('introduce_iActivsense');
     }
+
+    //Khai báo mục Tin tức
+    public function blog()
+    {
+        return view('blog');
+    }
+    
+    //Khai báo mục Lái thử
+    public function testDrive()
+    {
+        return view('testDrive');
+    }
+    
+    //Khai báo mục Liên hệ
+    public function contactUs()
+    {
+        return view('contactUs');
+    }
+
+    //khai báo car_details (chi tiết các xe)
+    public function carDetail()
+    {
+        return view('car_detail');
+    }
+
 }
