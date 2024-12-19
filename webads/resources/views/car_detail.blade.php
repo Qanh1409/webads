@@ -4,67 +4,89 @@
 
 @section('content')
 
-<div id="car-details" style="max-width: 1200px; margin: auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 20px; background-color: #f3f4f6; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);">
-    <!-- Tiêu đề -->
-    <h2 style="text-align: center; margin-bottom: 40px; font-size: 28px; font-weight: bold; color: #222;">Các phiên bản dòng xe Mazda 2</h2>
+<div style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f9fafb; color: #333;">
 
-    <!-- Khối các phiên bản xe -->
-    <div style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
-        <!-- Card Phiên bản -->
-        <div style="flex: 1; max-width: 300px; background-color: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <img src="img/MAZDA2_SEDAN/M2-Sedan-Avatar.jpg" alt="Mazda 2 Sedan" style="width: 100%; max-width: 200px; border-radius: 8px; margin-bottom: 15px;">
-            <h4 style="font-size: 20px; font-weight: bold; color: #333; margin-bottom: 10px;">Mazda 2 Sedan</h4>
-            <p style="font-size: 18px; color: #007bff; font-weight: bold; margin-bottom: 20px;">530 triệu VNĐ</p>
-            <button onclick="toggleDetails('mazda2-version1')" style="padding: 12px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Xem chi tiết</button>
+    <!-- Thanh Header -->
+
+    <div style="margin: 0; font-family: 'Roboto', sans-serif;">
+
+        <!-- Thanh Header -->
+        <div style="background-color: white; color: black; display: flex; justify-content: center; align-items: center; height: 60px; border-bottom: 1px solid #ddd;">
+            <a href="#" style="color: black; text-decoration: none; padding: 0 20px; font-size: 18px; text-transform: uppercase; transition: color 0.3s ease; border-right: 1px solid #ddd;">Tên xe</a>
+            <a href="#" style="color: black; text-decoration: none; padding: 0 20px; font-size: 18px; text-transform: uppercase; transition: color 0.3s ease; border-right: 1px solid #ddd;">Thông số kỹ thuật</a>
+            <a href="#" style="color: black; text-decoration: none; padding: 0 20px; font-size: 18px; text-transform: uppercase; transition: color 0.3s ease;">Hình ảnh</a>
         </div>
-        <div style="flex: 1; max-width: 300px; background-color: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-            <img src="img/MAZDA2_HATCHBACK/M2-Hatchback-Avatar.jpg" alt="Mazda 2 Hatchback" style="width: 100%; max-width: 200px; border-radius: 8px; margin-bottom: 15px;">
-            <h4 style="font-size: 20px; font-weight: bold; color: #333; margin-bottom: 10px;">Mazda 2 Hatchback</h4>
-            <p style="font-size: 18px; color: #007bff; font-weight: bold; margin-bottom: 20px;">550 triệu VNĐ</p>
-            <button onclick="toggleDetails('mazda2-version2')" style="padding: 12px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 8px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease;">Xem chi tiết</button>
-        </div>
+
     </div>
 
-    <!-- Chi tiết phiên bản -->
-    <div id="mazda2-version1" style="display: none; margin-top: 40px; padding: 20px; background-color: #fff; border-radius: 10px; border: 1px solid #ddd; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
-        <h4 style="font-size: 22px; font-weight: bold; color: #333; margin-bottom: 20px;">Thông số kỹ thuật - Mazda 2 Sedan</h4>
-        <div style="margin-bottom: 20px;">
-            <button onclick="toggleDropdown('dropdown1')" style="width: 100%; padding: 14px; background-color: #f7f7f7; border: 1px solid #ccc; border-radius: 8px; font-size: 18px; font-weight: bold; text-align: left; cursor: pointer; transition: background-color 0.3s ease;">Kích thước</button>
-            <div id="dropdown1" style="display: none; padding: 15px; margin-top: 10px; background-color: #f9f9f9; border-radius: 8px; border: 1px solid #ddd;">
-                <p><strong>Kích thước tổng thể:</strong> 4,340 x 1,695 x 1,470 mm</p>
-                <p><strong>Chiều dài cơ sở:</strong> 2,570 mm</p>
-                <p><strong>Bán kính vòng quay:</strong> 4.7 m</p>
+    <!-- Khối chứa thông tin -->
+    <div id="car-details" style="max-width: 900px; margin: auto; padding: 40px; background-color: #ffffff; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);">
+
+        <!-- Tiêu đề chính -->
+        <h2 style="text-align: center; margin-bottom: 40px; font-size: 36px; font-weight: bold; color: #1a202c; letter-spacing: 1px;">
+            Thông số kỹ thuật dòng xe Mazda 2
+        </h2>
+
+        <!-- Kích thước tổng thể -->
+        <div style="margin: 25px 0; border: 1px solid #cbd5e0; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); overflow: hidden; background-color: #f8fafc;">
+            <div onclick="toggleContent('sizeDetails')"
+                style="background-color: #e2e8f0; padding: 20px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; border-bottom: 1px solid #cbd5e0;">
+                <span style="color: #2d3748; font-size: 18px;">Kích thước tổng thể - Khối lượng</span>
+                <span id="sizeIcon" style="font-size: 20px; font-weight: bold; color: #718096; transition: transform 0.3s ease;">+</span>
+            </div>
+            <div id="sizeDetails" style="display: none; padding: 20px; background-color: #ffffff; color: #4a5568; line-height: 1.9; font-size: 16px;">
+                <ul style="margin: 0; padding-left: 25px; list-style-type: circle;">
+                    <li style="margin-bottom: 10px; font-weight: 500;">Chiều dài: <span style="color: #2b6cb0;">4.500 mm</span></li>
+                    <li style="margin-bottom: 10px; font-weight: 500;">Chiều rộng: <span style="color: #2b6cb0;">1.850 mm</span></li>
+                    <li style="margin-bottom: 10px; font-weight: 500;">Chiều dài cơ sở: <span style="color: #2b6cb0;">2.700 mm</span></li>
+                    <li style="margin-bottom: 10px; font-weight: 500;">Bán kính vòng quay: <span style="color: #2b6cb0;">5.5 m</span></li>
+                </ul>
             </div>
         </div>
-    </div>
-    <div id="mazda2-version2" style="display: none; margin-top: 40px; padding: 20px; background-color: #fff; border-radius: 10px; border: 1px solid #ddd; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);">
-        <h4 style="font-size: 22px; font-weight: bold; color: #333; margin-bottom: 20px;">Thông số kỹ thuật - Mazda 2 Hatchback</h4>
-        <div style="margin-bottom: 20px;">
-            <button onclick="toggleDropdown('dropdown2')" style="width: 100%; padding: 14px; background-color: #f7f7f7; border: 1px solid #ccc; border-radius: 8px; font-size: 18px; font-weight: bold; text-align: left; cursor: pointer; transition: background-color 0.3s ease;">Động cơ</button>
-            <div id="dropdown2" style="display: none; padding: 15px; margin-top: 10px; background-color: #f9f9f9; border-radius: 8px; border: 1px solid #ddd;">
-                <p><strong>Công suất:</strong> 125 mã lực</p>
-                <p><strong>Dung tích động cơ:</strong> 1.6L</p>
+
+        <!-- Động cơ -->
+        <div style="margin: 25px 0; border: 1px solid #cbd5e0; border-radius: 12px; box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); overflow: hidden; background-color: #f8fafc;">
+            <div onclick="toggleContent('engineDetails')"
+                style="background-color: #e2e8f0; padding: 20px; font-weight: bold; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; border-bottom: 1px solid #cbd5e0;">
+                <span style="color: #2d3748; font-size: 18px;">Động cơ - Hộp số</span>
+                <span id="engineIcon" style="font-size: 20px; font-weight: bold; color: #718096; transition: transform 0.3s ease;">+</span>
+            </div>
+            <div id="engineDetails" style="display: none; padding: 20px; background-color: #ffffff; color: #4a5568; line-height: 1.9; font-size: 16px;">
+                <ul style="margin: 0; padding-left: 25px; list-style-type: circle;">
+                    <li style="margin-bottom: 10px; font-weight: 500;">Mã lực: <span style="color: #2b6cb0;">155 HP</span></li>
+                    <li style="margin-bottom: 10px; font-weight: 500;">Mô men xoắn: <span style="color: #2b6cb0;">200 Nm</span></li>
+                    <li style="margin-bottom: 10px; font-weight: 500;">Loại động cơ: <span style="color: #2b6cb0;">Xăng I4 2.0L</span></li>
+                    <li style="margin-bottom: 10px; font-weight: 500;">Hộp số: <span style="color: #2b6cb0;">Tự động 6 cấp</span></li>
+                </ul>
             </div>
         </div>
+
     </div>
+
+    <!-- Script JavaScript -->
+    <script>
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+            var icon = document.querySelector(`#${id} ~ div span`) || document.getElementById(id + "Icon");
+
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                icon.textContent = "+";
+                icon.style.transform = "rotate(0deg)";
+            } else {
+                content.style.display = "block";
+                icon.textContent = "−";
+                icon.style.transform = "rotate(180deg)";
+            }
+        }
+    </script>
+
 </div>
 
-<script>
-    function toggleDetails(id) {
-        const allDetails = document.querySelectorAll('#car-details > div[id^="mazda2-version"]');
-        allDetails.forEach(detail => {
-            if (detail.id === id) {
-                detail.style.display = detail.style.display === "block" ? "none" : "block";
-            } else {
-                detail.style.display = "none";
-            }
-        });
-    }
 
-    function toggleDropdown(id) {
-        const element = document.getElementById(id);
-        element.style.display = (element.style.display === "block") ? "none" : "block";
-    }
-</script>
+
+
+
+
 
 @endsection

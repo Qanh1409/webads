@@ -9,46 +9,31 @@
 <div class="news-container">
     <!-- Phần 1: Tin tức chính với ảnh lớn -->
     <div class="main-news">
-        <img src="https://via.placeholder.com/600x300" alt="Main News" class="main-news-image">
+        <img src="{{ asset('images/blogs/'.$latestBlog->img) }}" alt="Main News" class="main-news-image">
         <div class="main-news-content">
-            <h2 class="main-news-title">Tiêu đề Tin Tức Chính</h2>
-            <p class="main-news-description">Mô tả ngắn gọn về tin tức chính, cung cấp thông tin nổi bật và hấp dẫn người đọc.</p>
+            <h2 class="main-news-title">{{$latestBlog->title}}</h2>
+            <p class="main-news-description">{{$latestBlog->content}}</p>
         </div>
     </div>
 
     <!-- Phần 2: Các tin tức phụ dạng lưới -->
     <div class="grid-news">
+        @foreach ($blogs as $blog)
         <div class="grid-item">
-            <img src="https://via.placeholder.com/200x150" alt="News 1" class="grid-news-image">
-            <h3 class="grid-news-title">Tin Tức 1</h3>
-            <p class="grid-news-description">Mô tả ngắn gọn về tin tức 1.</p>
+            <img src="{{ asset('images/blogs/'.$blog->img) }}" alt="News 1" class="grid-news-image">
+            <h3 class="grid-news-title">{{$blog->title}}</h3>
+            <p class="grid-news-description">{{$blog->content}}</p>
         </div>
-        <div class="grid-item">
-            <img src="https://via.placeholder.com/200x150" alt="News 2" class="grid-news-image">
-            <h3 class="grid-news-title">Tin Tức 2</h3>
-            <p class="grid-news-description">Mô tả ngắn gọn về tin tức 2.</p>
-        </div>
-        <div class="grid-item">
-            <img src="https://via.placeholder.com/200x150" alt="News 3" class="grid-news-image">
-            <h3 class="grid-news-title">Tin Tức 3</h3>
-            <p class="grid-news-description">Mô tả ngắn gọn về tin tức 3.</p>
-        </div>
+        @endforeach
     </div>
 
     <!-- Phần 3: Tin tức dạng danh sách dọc -->
     <div class="list-news">
+        @foreach ($blogs as $blog)
         <div class="list-item">
-            <h4 class="list-news-title">Tin Tức Danh Sách 1</h4>
-            <p class="list-news-description">Chi tiết mô tả tin tức danh sách 1.</p>
+            <h4 class="list-news-title">{{$blog->title}}</h4>
         </div>
-        <div class="list-item">
-            <h4 class="list-news-title">Tin Tức Danh Sách 2</h4>
-            <p class="list-news-description">Chi tiết mô tả tin tức danh sách 2.</p>
-        </div>
-        <div class="list-item">
-            <h4 class="list-news-title">Tin Tức Danh Sách 3</h4>
-            <p class="list-news-description">Chi tiết mô tả tin tức danh sách 3.</p>
-        </div>
+        @endforeach
     </div>
 </div>
 

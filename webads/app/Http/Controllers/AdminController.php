@@ -16,10 +16,20 @@ use App\Models\Interior;
 use App\Models\Safety;
 use App\Models\IActivsense;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
+    protected $blogController;
+    public function __construct(BlogController $blogController)
+    {
+        $this->blogController = $blogController;
+    }
 
+    public function createBlog(Request $request)
+    {
+        return $this->blogController->createBlog($request);
+    }
     public function index()
     {
         return view('admins.index');
@@ -41,60 +51,7 @@ class AdminController extends Controller
     {
         return view("admins.blog_create");
     }
-    public function createBlog(Request $request)
-    {
-        // Validation rules
 
-        $rules = [
-            'user_id' => 'required|integer|exists:users,id',
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-        ];
-
-        // Custom validation messages
-        $messages = [
-            'user_id.required' => 'User ID is required',
-            'user_id.integer' => 'User ID must be an integer',
-            'user_id.exists' => 'User ID must exist in the users table',
-            'title.required' => 'Title is required',
-            'title.string' => 'Title must be a string',
-            'title.max' => 'Title may not be greater than 255 characters',
-            'content.required' => 'Content is required',
-            'content.string' => 'Content must be a string',
-        ];
-
-        // Validate the request
-
-
-        // Create new blog instance
-        $blog = new Blog;
-        $user = Auth::user();
-        $blog->user_id = $user->id;
-        $blog->title = $request->title;
-        $blog->content = $request->content;
-
-        // Handle the image upload
-        if ($request->hasFile('img')) {
-            $file = $request->file('img');
-            $extension = $file->getClientOriginalExtension();
-            $filename = 'blog_image_' . time() . '.' . $extension;
-            $image_path = public_path('images/blogs');
-            $file->move($image_path, $filename);
-            $blog->img = $filename;
-        }
-
-        // Save the blog to the database
-        $blog->save();
-
-        $validator = Validator::make($request->all(), $rules, $messages);
-
-
-        // Redirect with success message
-        return redirect()->route('admin.blog')->with('success', 'Blog created successfully.');
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-    }
 
     public function editBlog($id)
     {
@@ -136,22 +93,26 @@ class AdminController extends Controller
         $blog = Blog::findOrFail($id);
         $blog->title = $request->title; // Cập nhật tiêu đề
         $blog->content = $request->content; // Cập nhật nội dung
-        echo "<img src='" . asset("images/blogs/$blog->img") . "'/>";
-
-
-        // Kiểm tra nếu có tệp hình ảnh được tải lên
+        // Handle the image upload
         if ($request->hasFile('img')) {
-            // Xóa hình ảnh cũ nếu có
-            if ($blog->img) {
-                $this->removeImage($blog->img); // Hàm xóa file ảnh (định nghĩa bên dưới)
+            $anhcu = 'images/blogs/' . $blog->img;
+            if (File::exists($anhcu)) {
+                File::delete($anhcu);
             }
-
-            // Upload và lưu đường dẫn hình ảnh mới
-            $blog->img = $this->uploadImage($request->file('img'));
+            $file = $request->file('img');
+            $extension = $file->getClientOriginalExtension();
+            $filename = 'blog_image_' . time() . '.' . $extension;
+            $image_path = public_path('images/blogs');
+            $file->move($image_path, $filename);
+            $blog->img = $filename;
         }
 
+
+
+
+
         // Lưu các thay đổi
-        $blog->save();
+        $blog->update();
 
         // Trả về thông báo thành công
         return redirect()->route('admin.blog')->with('success', 'Bài viết đã được cập nhật thành công.');
@@ -266,14 +227,18 @@ class AdminController extends Controller
 
         $category = Category::findOrFail($id);
         $category->name = $request->category_name;
-
         if ($request->hasFile('img_url')) {
-            // Remove the old image
-            if ($category->img) {
-                $this->removeImage($category->img);
+            $anhcu = 'images/categories/' . $category->img;
+            if (File::exists($anhcu)) {
+                File::delete($anhcu);
             }
-            // Upload the new image
-            $category->img = $this->uploadImage($request->file('img_url'));
+
+            $file = $request->file('img_url');
+            $extention = $file->getClientOriginalExtension();
+            $filename = 'image' . time() . '_' . $request->name . '.' . $extention;
+            $image_path = public_path('images/categories');
+            $file->move($image_path, $filename);
+            $category->img = $filename;
         }
 
         $category->save();
@@ -364,9 +329,19 @@ class AdminController extends Controller
         $car->price = $request->price;
         $car->description = $request->description;
 
+
+
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $car->image = $imagePath;
+            $anhcu = 'images/cars' . $car->image;
+            if (File::exists($anhcu)) {
+                File::delete($anhcu);
+            }
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = 'image' . time() . '_' . $request->name . '.' . $extention;
+            $image_path = public_path('images/cars');
+            $file->move($image_path, $filename);
+            $car->image = $filename;
         }
 
         $car->save();
@@ -947,5 +922,4 @@ class AdminController extends Controller
         // Trả về view với dữ liệu xe
         return view('car_detail', compact('car'));
     }
-
 }

@@ -54,13 +54,19 @@ class HomeController extends Controller
     //Khai báo mục Tin tức
     public function blog()
     {
-        return view('blog');
+        $latestBlog = Blog::latest()->first(); // Lấy bài viết mới nhất
+        $blogs = Blog::all();
+        $categories = Category::all(); // Lấy tất cả danh mục
+        return view('blog', compact('latestBlog', 'categories','blogs'));
     }
+
     
     //Khai báo mục Lái thử
     public function testDrive()
     {
-        return view('testDrive');
+        $categories = Category::all(); // Lấy tất cả danh mục
+
+        return view('testDrive',compact('categories'));
     }
     
     //Khai báo mục Liên hệ
@@ -70,9 +76,6 @@ class HomeController extends Controller
     }
 
     //khai báo car_details (chi tiết các xe)
-    public function carDetail()
-    {
-        return view('car_detail');
-    }
+    
 
 }

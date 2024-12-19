@@ -6,8 +6,6 @@
 @include('layouts.header_userCategory')
 <br>
 
-
-
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
     @forelse ($categories as $category)
     @foreach ($category->cars as $car)
@@ -17,7 +15,7 @@
             style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 20px;">
         <h4 style="font-size: 22px; font-weight: 700; color: #333; margin-bottom: 12px;">{{ $car->name }}</h4>
         <p style="font-size: 20px; color: #007bff; font-weight: bold; margin-bottom: 20px;">{{ number_format($car->price, 0, ',', '.') }} VND</p>
-        <a href="/cars/{{ $car->id }}"
+        <a href="{{route('car_detail',$car->id)}}"
             style="display: inline-block; padding: 12px 25px; background-color: #007bff; color: #fff; font-size: 18px; font-weight: 600; text-decoration: none; border-radius: 10px; transition: background-color 0.3s ease, transform 0.3s ease;">
             Xem chi tiết
         </a>

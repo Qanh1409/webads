@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CarDetailController;
 use App\Http\Controllers\CategoryController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -16,7 +17,7 @@ Route::get('users/logout', [UserController::class, 'logout'])->name('user.logout
 
 //Danh sách list các xe (khối header)
 Route::get('category', [CategoryController::class, 'category'])->name('category.list');
-Route::get('/category/{id}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('/home/category{id}', [CategoryController::class, 'showCategory'])->name('category.show');
 
 
 //Mục 'GIỚI THIỆU' (khối header)
@@ -34,7 +35,7 @@ Route::get('testDrive', [HomeController::class, 'testDrive'])->name('testDrive')
 Route::get('contactUs', [HomeController::class, 'contactUs'])->name('contactUs');
 
 // Tạo route cho trang Car_detail
-Route::get('/category/carDetail', [HomeController::class, 'carDetail'])->name('car_detail');
+Route::get('/category/carDetail{id}', [CarDetailController::class, 'show'])->name('car_detail');
 
 Route::middleware(['admin'])->group(
     function () {

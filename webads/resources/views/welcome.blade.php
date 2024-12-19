@@ -117,7 +117,7 @@
         onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 6px 15px rgba(0, 0, 0, 0.15)'"
         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 10px rgba(0, 0, 0, 0.1)'">
 
-        <a href="{{ $category->link }}" style="text-decoration: none; color: inherit;">
+        <a href="{{route('car_detail',$category->id)}}" style="text-decoration: none; color: inherit;">
             <div style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 10px;">
                 <h2 style="font-family: 'Montserrat', sans-serif; font-size: 30px; font-weight: 600; color: #333; margin-bottom: 8px;">{{ $category->name }}</h2>
                 <p style="font-size: 16px; color: #555; margin: 6px 0;">Khám phá tất cả các dòng xe</p>
