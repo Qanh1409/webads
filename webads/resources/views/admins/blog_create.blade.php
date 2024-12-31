@@ -39,9 +39,14 @@
         </div>
         <!-- Nút hành động -->
         <div class="flex justify-end">
-            <a href="" class="bg-gray-500 text-white px-4 py-2 rounded-lg mr-2 hover:bg-gray-600">Hủy</a>
-            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Lưu bài viết</button>
+            <a href="" class="bg-black text-white px-4 py-2 rounded-lg mr-2 shadow-md transition-transform transform hover:bg-gray-800 hover:scale-105">
+                Hủy
+            </a>
+            <button type="submit" class="bg-black text-white px-4 py-2 rounded-lg shadow-md transition-transform transform hover:bg-gray-800 hover:scale-105">
+                Lưu bài viết
+            </button>
         </div>
+
     </form>
 </div>
 @endsection

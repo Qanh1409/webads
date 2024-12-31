@@ -2,61 +2,70 @@
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+
+Route::get('/', [HomeController::class, 'index']);
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CarDetailController;
 use App\Http\Controllers\CategoryController;
-use App\Models\User;
-use App\Http\Controllers\QrCodeController;
+use App\Http\Controllers\DepositController;
+use App\Http\Controllers\QRCodeController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\UserController;
 
-Route::get('/generate-qr', [QrCodeController::class, 'generateQrCode']);
+
+Route::post('/testData',[UserController::class,'testData'])->name('test');
+Route::post('/phpinfo',function(){
+    phpinfo();
+})->name('test');
+
+Route::get('/',[HomeController::class,'index'])->name('home.index');
+Route::get('/qr-code',[QRCodeController::class, 'generate'])->name('qrcode');
+Route::get('/payment-success', [QRCodeController::class, 'confirmSuccess'])->name('payment.success');
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
-Route::get('users/register', [UserController::class, 'register'])->name('user.register');
-Route::post('users/store', [UserController::class, 'store'])->name('user.store');
+ Route::get('users/register', [UserController::class, 'register'])->name('user.register');
+ Route::post('users/store', [UserController::class, 'store'])->name('user.store');
 Route::get('users/login', [UserController::class, 'login'])->name('user.login');
-Route::post('users/signin', [UserController::class, 'signin'])->name('user.signin');
-Route::get('users/logout', [UserController::class, 'logout'])->name('user.logout');
-Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
-    $user = User::findOrFail($id);
-
-    if (sha1($user->email) === $hash) {
-        $user->email_verified_at = now();
-        $user->save();
-
-        return redirect()->route('user.login')->with('success', 'Email của bạn đã được xác nhận.');
-    }
-
-    return redirect()->route('user.login')->with('error', 'Liên kết xác nhận không hợp lệ.');
-})->name('verification.verify');
-Route::post('users/store', [UserController::class, 'store'])->name('user.store');
+ Route::post('users/signin', [UserController::class, 'signin'])->name('user.signin');
+ Route::get('users/logout', [UserController::class, 'logout'])->name('user.logout');
 
 //Danh sách list các xe (khối header)
+// show tất cả các xe
 Route::get('category', [CategoryController::class, 'category'])->name('category.list');
+// show ra một dòng xe (SUV/hatchback/sedan)
 Route::get('/home/category{id}', [CategoryController::class, 'showCategory'])->name('category.show');
-Route::get('/phpinfo', function () {
-    phpinfo();
-});
 
 //Mục 'GIỚI THIỆU' (khối header)
 Route::get('introduce/design', [HomeController::class, 'introduce_design'])->name('introduce_design');
 Route::get('introduce/creative', [HomeController::class, 'introduce_creative'])->name('introduce_creative');
 Route::get('introduce/iActivsense', [HomeController::class, 'introduce_iActivsense'])->name('introduce_iActivsense');
 
+// Mục thông tin đặt cọc
+Route::get('/deposit{id}', [HomeController::class, 'deposit'])->name('home.deposit')->middleware('user');
 
-// Mục tin tức (khối header)
-Route::get('/news', [HomeController::class, 'blog'])->name('blog');
+//Mục thông tin dự toán trả góp
+Route::get('/installment', [HomeController::class, 'installment'])->name('home.installment');
 
-// Mục đăng ký lái thử (khối header)
-Route::get('testDrive', [HomeController::class, 'testDrive'])->name('testDrive');
+//Form thông tin thanh toán
+Route::get('/purchase', [DepositController::class, 'purchase'])->name('deposit.confirm');
 
 // Mục liên hệ (khối header)
 Route::get('contactUs', [HomeController::class, 'contactUs'])->name('contactUs');
 
+// Mục tin tức (khối header)
+Route::get('/news', [HomeController::class, 'blog'])->name('blog');
+
+// Route cho mục blogDetails (chi tiết bài viết)
+Route::get('/news/blogDetail', [BlogController::class, 'blogDetail'])->name('blogDetail');
+
+// Mục đăng ký lái thử (khối header)
+Route::get('testDrive', [HomeController::class, 'testDrive'])->name('testDrive');
+
+Route::post('user/deposit{id}', [DepositController::class, 'deposit'])->name('user.deposit');
+
 // Tạo route cho trang Car_detail
 Route::get('/category/carDetail{id}', [CarDetailController::class, 'show'])->name('car_detail');
+
 
 Route::middleware(['admin'])->group(
     function () {
@@ -69,6 +78,8 @@ Route::middleware(['admin'])->group(
         Route::put('admin/blog/update{id}', [AdminController::class, 'updateBlog'])->name('admin.blog.update');
         Route::delete('admin/blog/delete{id}', [AdminController::class, 'deleteBlog'])->name('admin.blog.delete');
 
+        //route cho trang đặt cọc
+        Route::get('admin/deposit', [AdminController::class, 'deposit'])->name('admin.deposit');
 
         Route::get('admin/category', [AdminController::class, 'category'])->name('admin.category');
         Route::get('admin/category/add', [AdminController::class, 'addCategory'])->name('admin.category.add');

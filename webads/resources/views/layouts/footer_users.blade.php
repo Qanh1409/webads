@@ -1,64 +1,48 @@
 <!-- Footer -->
-<footer style="background-color: #343a40; color: #f8f9fa; padding: 40px 0; font-family: 'Roboto', sans-serif;">
-    <div class="container" style="max-width: 1200px;">
+<footer style="background-color: #212529; color: #f8f9fa; padding: 40px 0; font-family: 'Roboto', sans-serif; position: relative; bottom: 0; width: 100%; z-index: 10;">
+    <div class="container" style="max-width: 1200px; margin: auto;">
 
         <!-- Top Section: Footer Links -->
         <div class="row justify-content-between">
-
-            <!-- Column: Các dòng xe -->
             <div class="col-md-2 mb-4">
-                <h6 style="text-transform: uppercase; font-weight: 700; font-size: 1.25rem; margin-bottom: 15px; color: #f9c74f; font-family: 'Playfair Display', serif;">
-                    Các dòng xe
-                </h6>
-                <ul class="list-unstyled">
-                    <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Sedan</a></li>
-                    <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">SUV</a></li>
-                    <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Hatchback</a></li>
+                <h6 style="text-transform: uppercase; font-weight: 700; font-size: 1.25rem; margin-bottom: 15px; color: #f9c74f;">Các dòng xe</h6>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem; transition: color 0.3s;">Sedan</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem; transition: color 0.3s;">SUV</a></li>
+                    <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem; transition: color 0.3s;">Hatchback</a></li>
                 </ul>
             </div>
 
-            <!-- Column: Mua xe -->
             <div class="col-md-2 mb-4">
-                <h6 style="text-transform: uppercase; font-weight: 700; font-size: 1.25rem; margin-bottom: 15px; color: #f9c74f; font-family: 'Playfair Display', serif;">
-                    Mua xe
-                </h6>
-                <ul class="list-unstyled">
+                <h6 style="text-transform: uppercase; font-weight: 700; font-size: 1.25rem; margin-bottom: 15px; color: #f9c74f;">Mua xe</h6>
+                <ul style="list-style: none; padding: 0;">
                     <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Ưu đãi mới nhất</a></li>
-                    <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Tìm xe mới</a></li>
-                    <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Xe đã qua sử dụng</a></li>
+                    <li><a href="/category" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Tìm xe mới</a></li>
+                    <li><a href="https://usedcars.thacoauto.vn/mua-xe/loai-xe-mazda" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Xe đã qua sử dụng</a></li>
                     <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Bảng giá xe</a></li>
                 </ul>
             </div>
 
-            <!-- Column: Tư vấn mua xe -->
             <div class="col-md-2 mb-4">
-                <h6 style="text-transform: uppercase; font-weight: 700; font-size: 1.25rem; margin-bottom: 15px; color: #f9c74f; font-family: 'Playfair Display', serif;">
-                    Tư vấn mua xe
-                </h6>
-                <ul class="list-unstyled">
+                <h6 style="text-transform: uppercase; font-weight: 700; font-size: 1.25rem; margin-bottom: 15px; color: #f9c74f;">Tư vấn mua xe</h6>
+                <ul style="list-style: none; padding: 0;">
                     <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Yêu cầu tư vấn</a></li>
                     <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Đăng ký lái thử</a></li>
                 </ul>
             </div>
 
-            <!-- Column: Dịch vụ -->
             <div class="col-md-3 mb-4">
-                <h6 style="text-transform: uppercase; font-weight: 700; font-size: 1.25rem; margin-bottom: 15px; color: #f9c74f; font-family: 'Playfair Display', serif;">
-                    Dịch vụ
-                </h6>
-                <ul class="list-unstyled">
+                <h6 style="text-transform: uppercase; font-weight: 700; font-size: 1.25rem; margin-bottom: 15px; color: #f9c74f;">Dịch vụ</h6>
+                <ul style="list-style: none; padding: 0;">
                     <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Đặt lịch bảo dưỡng</a></li>
                     <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Phụ kiện chính hãng</a></li>
                     <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Hướng dẫn dịch vụ</a></li>
                 </ul>
             </div>
 
-            <!-- Column: Khám phá Mazda -->
             <div class="col-md-3 mb-4">
-                <h6 style="text-transform: uppercase; font-weight: 700; font-size: 1.25rem; margin-bottom: 15px; color: #f9c74f; font-family: 'Playfair Display', serif;">
-                    Khám phá Mazda
-                </h6>
-                <ul class="list-unstyled">
+                <h6 style="text-transform: uppercase; font-weight: 700; font-size: 1.25rem; margin-bottom: 15px; color: #f9c74f;">Khám phá Mazda</h6>
+                <ul style="list-style: none; padding: 0;">
                     <li><a href="#" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">Tìm đại lý gần nhất</a></li>
                     <li><a href="tel:+1234567890" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">📞 Số điện thoại</a></li>
                     <li><a href="mailto:example@example.com" style="text-decoration: none; color: #f8f9fa; font-size: 0.9rem;">📧 Email</a></li>
@@ -71,26 +55,16 @@
         <hr style="border-top: 1px solid #6c757d; margin: 20px 0;">
 
         <!-- Social Media Icons -->
-        <!-- Social Media Icons -->
-        <div class="text-center" style="padding-top: 10px;">
-            <a href="#" style="margin: 0 10px; color: #f8f9fa;">
-                <i class="fab fa-facebook-f" style="font-size: 24px;"></i>
-            </a>
-            <a href="#" style="margin: 0 10px; color: #f8f9fa;">
-                <i class="fab fa-twitter" style="font-size: 24px;"></i>
-            </a>
-            <a href="#" style="margin: 0 10px; color: #f8f9fa;">
-                <i class="fab fa-instagram" style="font-size: 24px;"></i>
-            </a>
-            <a href="#" style="margin: 0 10px; color: #f8f9fa;">
-                <i class="fab fa-linkedin-in" style="font-size: 24px;"></i>
-            </a>
-            <a href="#" style="margin: 0 10px; color: #f8f9fa;">
-                <i class="fab fa-youtube" style="font-size: 24px;"></i>
-            </a>
+        <div style="text-align: center; padding-top: 10px;">
+            <a href="#" style="margin: 0 10px; color: #f8f9fa;"><i class="fab fa-facebook-f" style="font-size: 24px;"></i></a>
+            <a href="#" style="margin: 0 10px; color: #f8f9fa;"><i class="fab fa-twitter" style="font-size: 24px;"></i></a>
+            <a href="#" style="margin: 0 10px; color: #f8f9fa;"><i class="fab fa-instagram" style="font-size: 24px;"></i></a>
+            <a href="#" style="margin: 0 10px; color: #f8f9fa;"><i class="fab fa-linkedin-in" style="font-size: 24px;"></i></a>
+            <a href="#" style="margin: 0 10px; color: #f8f9fa;"><i class="fab fa-youtube" style="font-size: 24px;"></i></a>
         </div>
     </div>
 </footer>
+
 
 <!-- CÁC KHỐI ĐƯỜNG DẪN TỚI GIAO DIỆN -->
 <!-- JavaScript của Bootstrap -->

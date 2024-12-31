@@ -1,45 +1,65 @@
 @extends('layouts.admin') <!-- Kế thừa layout admin -->
 
 @section('content')
-<div class="container mx-auto py-8">
+<div style="max-width: 1200px; margin: 0 auto; padding: 32px;">
     <!-- Tiêu đề và nút Thêm bài viết -->
-    <div class="flex items-center justify-between mb-8">
-        <h1 class="text-3xl font-bold text-gray-900">Danh sách bài viết</h1>
-        <a href="{{route('admin.blog.add')}}" class="bg-green-600 text-white px-6 py-2 rounded-lg text-sm shadow-md hover:bg-green-700 transition">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+        <h1 style="font-size: 28px; font-weight: bold; color: #1a202c;">Danh sách bài viết</h1>
+        <a href="{{ route('admin.blog.add') }}"
+            style="background-color: #000; color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); transition: transform 0.2s ease, background-color 0.3s ease;"
+            onmouseover="this.style.backgroundColor='#333'"
+            onmouseout="this.style.backgroundColor='#000'"
+            onmousedown="this.style.transform='scale(0.95)'"
+            onmouseup="this.style.transform='scale(1)'">
             + Thêm bài viết
         </a>
     </div>
 
     <!-- Kiểm tra nếu có bài viết -->
     @if($blogs->count())
-    <div class="overflow-hidden rounded-lg shadow-lg">
-        <table class="min-w-full bg-white border-collapse border border-gray-300">
+    <div style="overflow: hidden; border-radius: 12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);">
+        <table style="width: 100%; border-collapse: collapse; background-color: #fff;">
             <thead>
-                <tr class="bg-gray-100 text-left text-gray-700 text-sm uppercase tracking-wide">
-                    <th class="py-4 px-6 border-b border-gray-300">Tiêu đề</th>
-                    <th class="py-4 px-6 border-b border-gray-300">Hình ảnh</th>
-                    <th class="py-4 px-6 border-b border-gray-300">Tác giả</th>
-                    <th class="py-4 px-6 border-b border-gray-300">Ngày tạo</th>
-                    <th class="py-4 px-6 border-b border-gray-300 text-center">Hành động</th>
+                <tr style="background-color: #f7fafc; text-align: left; color: #4a5568; font-size: 14px; text-transform: uppercase;">
+                    <th style="padding: 16px; border-bottom: 1px solid #e2e8f0;">Tiêu đề</th>
+                    <th style="padding: 16px; border-bottom: 1px solid #e2e8f0;">Hình ảnh</th>
+                    <th style="padding: 16px; border-bottom: 1px solid #e2e8f0;">Tác giả</th>
+                    <th style="padding: 16px; border-bottom: 1px solid #e2e8f0;">Ngày tạo</th>
+                    <th style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center;">Hành động</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($blogs as $key => $blog)
-                <tr class="hover:bg-gray-50 transition">
-                    <td class="py-4 px-6 border-b border-gray-300 font-medium text-gray-800">{{ $blog->title }}</td>
-                    <td class="py-4 px-6 border-b border-gray-300">
-                        <img src="{{ asset('images/blogs/'.$blog->img) }}" alt="{{ $blog->title }}" class="w-24 h-16 object-cover rounded-md shadow-md">
+                <tr style="transition: background-color 0.3s ease;">
+                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0; font-weight: 500; color: #2d3748;">{{ $blog->title }}</td>
+                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0;">
+                        <img src="{{ asset('images/blogs/'.$blog->img) }}" alt="{{ $blog->title }}"
+                            style="width: 96px; height: 64px; object-fit: cover; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                     </td>
-                    <td class="py-4 px-6 border-b border-gray-300 text-gray-600">{{ $blog->user->name ?? 'Ẩn danh' }}</td>
-                    <td class="py-4 px-6 border-b border-gray-300 text-gray-600">{{ $blog->created_at->format('d/m/Y') }}</td>
-                    <td class="py-4 px-6 border-b border-gray-300 text-center">
-                        <div class="flex items-center justify-center gap-2">
-                            <a href="" class="bg-blue-500 text-white px-3 py-1 rounded text-sm shadow hover:bg-blue-600 transition">Xem</a>
-                            <a href="{{route('admin.blog.edit',$blog->id)}}" class="bg-yellow-500 text-white px-3 py-1 rounded text-sm shadow hover:bg-yellow-600 transition">Sửa</a>
-                            <form action="{{route('admin.blog.delete',$blog->id)}}" method="POST" class="inline-block">
+                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0; color: #718096;">{{ $blog->user->name ?? 'Ẩn danh' }}</td>
+                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0; color: #718096;">{{ $blog->created_at->format('d/m/Y') }}</td>
+                    <td style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center;">
+                        <div style="display: flex; justify-content: center; gap: 12px;">
+                            <a href="{{ route('admin.blog.edit', $blog->id) }}"
+                                style="background-color: #000; color: #fff; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 500; text-decoration: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); transition: transform 0.2s ease, background-color 0.3s ease;"
+                                onmouseover="this.style.backgroundColor='#333'"
+                                onmouseout="this.style.backgroundColor='#000'"
+                                onmousedown="this.style.transform='scale(0.95)'"
+                                onmouseup="this.style.transform='scale(1)'">
+                                Sửa
+                            </a>
+                            <form action="{{ route('admin.blog.delete', $blog->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded text-sm shadow hover:bg-red-600 transition" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?')">Xóa</button>
+                                <button type="submit"
+                                    style="background-color: #000; color: #fff; padding: 8px 16px; border-radius: 6px; font-size: 14px; font-weight: 500; text-decoration: none; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); transition: transform 0.2s ease, background-color 0.3s ease;"
+                                    onmouseover="this.style.backgroundColor='#333'"
+                                    onmouseout="this.style.backgroundColor='#000'"
+                                    onmousedown="this.style.transform='scale(0.95)'"
+                                    onmouseup="this.style.transform='scale(1)'"
+                                    onclick="return confirm('Bạn có chắc muốn xóa bài viết này?')">
+                                    Xóa
+                                </button>
                             </form>
                         </div>
                     </td>
@@ -49,10 +69,11 @@
         </table>
     </div>
     @else
-    <div class="text-center py-12">
-        <h2 class="text-lg font-semibold text-gray-700">Không có bài viết nào!</h2>
-        <p class="text-gray-500">Hãy thêm bài viết mới để hiển thị trong danh sách.</p>
+    <div style="text-align: center; padding: 48px;">
+        <h2 style="font-size: 18px; font-weight: 600; color: #718096;">Không có bài viết nào!</h2>
+        <p style="color: #a0aec0;">Hãy thêm bài viết mới để hiển thị trong danh sách.</p>
     </div>
     @endif
 </div>
+
 @endsection

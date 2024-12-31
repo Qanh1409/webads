@@ -1,7 +1,7 @@
 <div class="bg-white shadow-md fixed w-[82.3%] top-14.6 left-1/5 z-20 p-4 rounded-b-xl flex flex-col items-center">
     <!-- Tiêu đề -->
-    <h1 class="text-2xl font-semibold text-gray-800 mb-2">Thông số kỹ thuật</h1>
-
+    <h1 class="text-2xl font-semibold text-gray-800 mb-2">Thông số kỹ thuật {{ $car->name }}</h1>
+<br>
     <!-- Nút Button -->
     <div class="flex gap-5 flex-wrap justify-center">
         <a href="{{ route('admin.car.detail', ['id' => $car->id]) }}"

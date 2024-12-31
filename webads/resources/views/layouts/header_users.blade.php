@@ -1,4 +1,4 @@
-<!-- KHỐI HEADER -->
+<!-- KHỐI HEADER SAU KHI ĐĂNG NHẬP THÀNH CÔNG TÀI KHOẢN ADMIN -->
 
 <!-- CÁC ĐƯỜNG DẪN -->
 
@@ -25,7 +25,6 @@
             <!-- CÁC KHỐI CHÍNH HEADER -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <!-- Cấu hình nút Dòng xe -->
                     <li class="nav-item dropdown" style="position: relative;">
                         <a class="nav-link fs-5" href="/category" id="danhSachDongXe" role="button" aria-expanded="false" style="cursor: pointer;">
                             Dòng xe
@@ -34,85 +33,25 @@
                         <!-- Dropdown Content -->
                         <ul class="dropdown-menu" aria-labelledby="danhSachDongXe"
                             style="width: 900px; position: absolute; display: none; opacity: 0; left: 0; top: 100%; transition: opacity 0.5s ease; padding: 20px; background-color: #f8f9fa; border-radius: 8px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);">
-
-                            <!-- SUV Category -->
+                            <!-- Category -->
                             <div style="padding: 10px;">
-                                <h5 style="color: #333; font-weight: bold;">SUV</h5>
+                                <h5 style="color: #333; font-weight: bold;">Các dòng xe</h5>
                                 <hr>
-                                <li style="display: flex; gap: 20px; margin-bottom: 10px;">
-                                    <div style="flex: 1; text-align: center;">
-                                        <a href="url-to-CX8" style="text-decoration: none; color: #333;">
-                                            <img src="img/CX8/CX8-avatar.jpg" alt="CX-8" width="120" style="border-radius: 8px;">
-                                            <p style="margin-top: 5px;">CX-8</p>
+                                <li style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 10px;">
+                                    @foreach ($categories as $dongXe)
+                                    <div style="flex: 1; text-align: center; max-width: 200px;">
+                                        <a href="{{ url('dong-xe/' . $dongXe->id) }}" style="text-decoration: none; color: #333;">
+                                            <img src="{{ asset('images/categories/'.$dongXe->img) }}" alt="{{ $dongXe->name }}" width="120"
+                                                style="border-radius: 8px;">
+                                            <p style="margin-top: 5px;">{{ $dongXe->name }}</p>
                                         </a>
                                     </div>
-                                    <div style="flex: 1; text-align: center;">
-                                        <a href="url-to-CX5" style="text-decoration: none; color: #333;">
-                                            <img src="img/CX5/CX5-avatar.jpg" alt="CX-5" width="120" style="border-radius: 8px;">
-                                            <p style="margin-top: 5px;">CX-5</p>
-                                        </a>
-                                    </div>
-                                    <div style="flex: 1; text-align: center;">
-                                        <a href="url-to-CX30" style="text-decoration: none; color: #333;">
-                                            <img src="img/CX30/Cx30-Avatar.png" alt="CX-30" width="120" style="border-radius: 8px;">
-                                            <p style="margin-top: 5px;">CX-30</p>
-                                        </a>
-                                    </div>
-                                    <div style="flex: 1; text-align: center;">
-                                        <a href="url-to-CX3" style="text-decoration: none; color: #333;">
-                                            <img src="img/CX3/CX3-Avatar.jpg" alt="CX-3" width="120" style="border-radius: 8px;">
-                                            <p style="margin-top: 5px;">CX-3</p>
-                                        </a>
-                                    </div>
+                                    @endforeach
                                 </li>
                             </div>
 
-                            <!-- Sedan Category -->
-                            <div style="padding: 10px;">
-                                <h5 style="color: #333; font-weight: bold;">Sedan</h5>
-                                <hr>
-                                <li style="display: flex; gap: 20px; margin-bottom: 10px;">
-                                    <div style="flex: 1; text-align: center;">
-                                        <a href="url-to-M2sedan" style="text-decoration: none; color: #333;">
-                                            <img src="img/MAZDA_2_SEDAN/M2-Sedan-Avatar.jpg" alt="M2 Sedan" width="120" style="border-radius: 8px;">
-                                            <p style="margin-top: 5px;">Mazda 2 Sedan</p>
-                                        </a>
-                                    </div>
-                                    <div style="flex: 1; text-align: center;">
-                                        <a href="url-to-M3sedan" style="text-decoration: none; color: #333;">
-                                            <img src="img/MAZDA_3_SEDAN/Mazda-3-Sedan-3.jpg" alt="M3 Sedan" width="120" style="border-radius: 8px;">
-                                            <p style="margin-top: 5px;">Mazda 3 Sedan</p>
-                                        </a>
-                                    </div>
-                                    <div style="flex: 1; text-align: center;">
-                                        <a href="url-to-M6" style="text-decoration: none; color: #333;">
-                                            <img src="img/MAZDA_6/Mazda6-avatar.png" alt="Mazda6" width="120" style="border-radius: 8px;">
-                                            <p style="margin-top: 5px;">Mazda 6</p>
-                                        </a>
-                                    </div>
-                                </li>
-                            </div>
-
-                            <!-- Hatchback Category -->
-                            <div style="padding: 10px;">
-                                <h5 style="color: #333; font-weight: bold;">Hatchback</h5>
-                                <hr>
-                                <li style="display: flex; gap: 20px;">
-                                    <div style="flex: 1; text-align: center;">
-                                        <a href="url-to-M2sport" style="text-decoration: none; color: #333;">
-                                            <img src="img/M2_SPORT/M2Sport-Avatar.jpg" alt="M2 Sport" width="120" style="border-radius: 8px;">
-                                            <p style="margin-top: 5px;">Mazda 2 Sport</p>
-                                        </a>
-                                    </div>
-                                    <div style="flex: 1; text-align: center;">
-                                        <a href="url-to-M3sport" style="text-decoration: none; color: #333;">
-                                            <img src="img/M3_SPORT/M3Sport-Avatar.jpg" alt="M3 Sport" width="120" style="border-radius: 8px;">
-                                            <p style="margin-top: 5px;">Mazda 3 Sport</p>
-                                        </a>
-                                    </div>
-                                </li>
-                            </div>
                         </ul>
+
 
                         <!-- JavaScript cho nút Dòng xe -->
                         <script>
@@ -144,164 +83,105 @@
                         </script>
                     </li>
 
-
-                    <li class="nav-item"><a class="nav-link fs-5" href="{{ url('/tin-tuc') }}">Tin tức</a></li>
+                    <!-- Nút tin tức -->
+                    <li class="nav-item"><a class="nav-link fs-5" href="{{ url('/news') }}">Tin tức</a></li>
 
 
                     <!-- CẤU HÌNH NÚT GIỚI THIỆU -->
-
-                    <li class="nav-item" id="dropdown-container">
-                        <a class="nav-link fs-5" href="" id="intro-button">Giới thiệu</a>
-
+                    <li class="nav-item" id="dropdown-container"><a class="nav-link fs-5" href="#" id="intro-button">Giới thiệu</a>
                         <!-- Menu thả xuống -->
                         <div id="dropdown-content" style="
-                            display: none;
-                            position: absolute;
-                            top: 80%;
-                            left: 50%;
-                            transform: translateX(-50%);
-                            background-color: #f8f8f8;
-                            padding: 25px;
-                            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-                            z-index: 10;
-                            min-width: 600px;
-                            border-radius: 10px;
-                            display: flex;
-                            gap: 40px;
-                            font-family: 'Roboto', sans-serif;
-                            font-size: 16px;
-                            transition: all 0.3s ease;
-                        ">
+                            display: none; 
+                            position: absolute; 
+                            top: 80%; 
+                            left: 50%; 
+                            transform: translateX(-50%); 
+                            background-color: #f4f4f4; /* Màu nền sáng và trang nhã */
+                            padding: 20px; /* Giảm bớt padding để tạo không gian hợp lý */
+                            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
+                            z-index: 10; 
+                            min-width: 650px; /* Tăng chiều rộng của menu để có không gian cho các mục */
+                            border-radius: 12px; /* Viền bo tròn mượt mà */
+                            display: flex; 
+                            gap: 40px; /* Giữ khoảng cách giữa các phần */
+                            font-family: 'Roboto', sans-serif; /* Font sans-serif hiện đại và dễ đọc */
+                            font-size: 16px; 
+                            transition: all 0.3s ease;">
                             <!-- Phần bên trái -->
-                            <div style="width: 250px;">
-                                <h3 style="
-                                    font-weight: 700; 
-                                    font-size: 22px; 
-                                    color: #333; 
-                                    margin-bottom: 15px; 
-                                    font-family: 'Merriweather', serif;">
+                            <div style="width: 300px;">
+                                <h3 style="font-family: 'Merriweather', serif; font-weight: 700; font-size: 24px; color: #333; margin-bottom: 20px;">
                                     THƯƠNG HIỆU MAZDA
                                 </h3>
-                                <a href="{{ url('introduce/design') }}" style="
-                                    color: #555; 
-                                    padding: 10px 0; 
-                                    text-decoration: none; 
-                                    display: block; 
-                                    font-size: 16px; 
-                                    line-height: 1.6; 
-                                    transition: color 0.3s ease;">
+                                <a href="{{ url('introduce/design') }}" style="color: #555; padding: 12px 0; text-decoration: none; display: block; font-size: 16px; line-height: 1.6; transition: color 0.3s ease, background-color 0.3s ease;">
                                     THIẾT KẾ
                                 </a>
-                                <a href="{{ url('introduce/creative') }}" style="
-                                    color: #555; 
-                                    padding: 10px 0; 
-                                    text-decoration: none; 
-                                    display: block; 
-                                    font-size: 16px; 
-                                    line-height: 1.6; 
-                                    transition: color 0.3s ease;">
+                                <a href="{{ url('introduce/creative') }}" style="color: #555; padding: 12px 0; text-decoration: none; display: block; font-size: 16px; line-height: 1.6; transition: color 0.3s ease, background-color 0.3s ease;">
                                     SÁNG TẠO
                                 </a>
-                                <a href="{{ url('introduce/iActivsense') }}" style="
-                                    color: #555; 
-                                    padding: 10px 0; 
-                                    text-decoration: none; 
-                                    display: block; 
-                                    font-size: 16px; 
-                                    line-height: 1.6; 
-                                    transition: color 0.3s ease;">
+                                <a href="{{ url('introduce/iActivsense') }}" style="color: #555; padding: 12px 0; text-decoration: none; display: block; font-size: 16px; line-height: 1.6; transition: color 0.3s ease, background-color 0.3s ease;">
                                     TÍNH NĂNG AN TOÀN
                                 </a>
                             </div>
 
                             <!-- Đường kẻ dọc -->
-                            <div style="border-left: 1px solid #ddd; height: auto; margin: 0 30px;"></div>
+                            <div style="border-left: 1px solid #ddd; height: auto; margin: 0 40px;"></div>
 
                             <!-- Phần bên phải -->
-                            <div id="dropdown-content" style="
-                                display: none; /* Đảm bảo menu ban đầu là ẩn */
-                                position: absolute;
-                                top: 80%;
-                                left: 50%;
-                                transform: translateX(-50%);
-                                background-color: #f8f8f8;
-                                padding: 25px;
-                                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-                                z-index: 10;
-                                min-width: 600px;
-                                border-radius: 10px;
-                                display: flex;
-                                gap: 40px;
-                                font-family: 'Roboto', sans-serif;
-                                font-size: 16px;
-                                transition: all 0.3s ease;
-                            ">
-                                <!-- Nội dung menu dropdown ở đây -->
+                            <div style="width: 350px;">
+                                <h3 style="font-family: 'Merriweather', serif; font-weight: 700; font-size: 24px; color: #333; margin-bottom: 20px;">
+                                    MAZDA VIỆT NAM
+                                </h3>
+                                <p style="margin: 0; font-size: 15px; line-height: 1.8; color: #555;">
+                                    Năm 2011, Thaco hợp tác với tập đoàn Mazda Nhật Bản xây dựng nhà máy sản xuất và lắp ráp xe Mazda tại khu Kinh tế mở Chu Lai, Quảng Nam với công suất 10.000 xe/năm.
+                                </p>
+                                <a href="https://thacochulai.vn/nha-may-thaco-mazda" style="color: #007bff; text-decoration: none; font-size: 16px; display: inline-block; margin-top: 15px; font-weight: 600;">
+                                    VỀ MAZDA VIỆT NAM
+                                </a>
                             </div>
-
                         </div>
 
-                        <!-- JavaScript for Hover Menu -->
                         <script>
-                            const introButton = document.getElementById("intro-button");
-                            const dropdownContent = document.getElementById("dropdown-content");
-                            let isHoveringMenu = false; // Biến cờ kiểm soát
+                            document.addEventListener('DOMContentLoaded', () => {
+                                const button = document.getElementById('intro-button'); // Nút Giới thiệu
+                                const dropdownContent = document.getElementById('dropdown-content'); // Menu thả xuống
 
-                            // Hiển thị menu khi hover vào nút "Giới thiệu"
-                            introButton.addEventListener("mouseenter", () => {
-                                dropdownContent.style.display = "flex";
-                            });
+                                // Đảm bảo menu mặc định ẩn
+                                dropdownContent.style.display = 'none';
 
-                            // Giữ menu mở khi chuột còn trong menu
-                            dropdownContent.addEventListener("mouseenter", () => {
-                                isHoveringMenu = true;
-                                dropdownContent.style.display = "flex";
-                            });
+                                // Hiển thị menu khi hover vào nút
+                                button.addEventListener('mouseenter', () => {
+                                    dropdownContent.style.display = 'flex';
+                                });
 
-                            // Khi chuột rời khỏi menu, đặt lại biến cờ và đợi một chút rồi ẩn menu
-                            dropdownContent.addEventListener("mouseleave", () => {
-                                isHoveringMenu = false;
-                                setTimeout(() => {
-                                    if (!isHoveringMenu && !introButton.matches(":hover")) {
-                                        dropdownContent.style.display = "none";
-                                    }
-                                }, 300); // Thời gian chờ 300ms
-                            });
+                                // Ẩn menu khi rời khỏi nút
+                                button.addEventListener('mouseleave', () => {
+                                    setTimeout(() => {
+                                        if (!dropdownContent.matches(':hover')) {
+                                            dropdownContent.style.display = 'none';
+                                        }
+                                    }, 100);
+                                });
 
-                            // Ẩn menu khi chuột rời khỏi nút "Giới thiệu"
-                            introButton.addEventListener("mouseleave", () => {
-                                setTimeout(() => {
-                                    if (!isHoveringMenu && !dropdownContent.matches(":hover")) {
-                                        dropdownContent.style.display = "none";
-                                    }
-                                }, 300); // Thời gian chờ 300ms
+                                // Đảm bảo menu không ẩn khi hover vào chính menu
+                                dropdownContent.addEventListener('mouseenter', () => {
+                                    dropdownContent.style.display = 'flex';
+                                });
+
+                                // Ẩn menu khi rời khỏi menu
+                                dropdownContent.addEventListener('mouseleave', () => {
+                                    dropdownContent.style.display = 'none';
+                                });
                             });
                         </script>
-
                     </li>
 
-                    <li class="nav-item"><a class="nav-link fs-5" href="{{ url('/lai-thu') }}">Lái thử</a></li>
-                    <li class="nav-item"><a class="nav-link fs-5" href="{{ url('/lien-he') }}">Liên hệ</a></li>
+                    <li class="nav-item"><a class="nav-link fs-5" href="{{ url('/testDrive') }}">Lái thử</a></li>
+                    <li class="nav-item"><a class="nav-link fs-5" href="{{ url('/contactUs') }}">Liên hệ</a></li>
+                    <li class="nav-item"><a class="nav-link fs-5" href="/installment">Dự toán trả góp</a></li>
                 </ul>
 
                 <!-- Các nút chức năng bên phải -->
                 <div class="d-flex ms-3 align-items-center">
-                    <!-- Form tìm kiếm -->
-                    <form class="d-flex" action="{{ url('/tim-kiem') }}" method="GET">
-                        <input class="form-control me-2" type="search" placeholder="Tìm kiếm" aria-label="Search" name="q" style="min-width: 200px;">
-                        <!-- Icon Kính lúp cho Tìm kiếm với khoảng cách được thêm vào bên phải -->
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="40" fill="currentColor"
-                            style="color: #f8f9fa; cursor: pointer; transition: transform 0.3s ease, color 0.3s ease; margin-right: 10px;"
-                            class="bi bi-search" viewBox="0 0 16 16" role="img" aria-label="Tìm kiếm"
-                            onmouseover="this.style.color='#ffc107'; this.style.transform='scale(1.2)';"
-                            onmouseout="this.style.color='#f8f9fa'; this.style.transform='scale(1)';">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.099zm-5.442-.344a5 5 0 1 1 0-10 5 5 0 0 1 0 10z" />
-                        </svg>
-
-                        <!-- <button class="btn btn-success" type="submit" style="padding: 8px 20px; border-radius: 25px; border: none; color: white; font-weight: 500; transition: background-color 0.3s ease;">
-                                Tìm
-                            </button> -->
-                    </form>
                     <!-- Nút Đăng ký -->
                     <a href="users/register" class="btn me-2"
                         style="padding: 10px 24px; border-radius: 30px; color: white; background: linear-gradient(90deg, #4CAF50, #66BB6A); 

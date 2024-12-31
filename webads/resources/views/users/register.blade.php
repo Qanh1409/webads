@@ -17,7 +17,7 @@
                         <h4>Đăng Ký Tài Khoản</h4>
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('user.store') }}" method="POST">
+                        <form action="{{route('user.store')}}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Tên Khách Hàng</label>
@@ -47,6 +47,22 @@
                                 <small class="text-danger">{{ $errors->first('address') }}</small>
                                 @endif
                             </div>
+                            <!-- Thêm trường Quê quán -->
+                            <div class="form-group">
+                                <label for="que_quan">Quê Quán</label>
+                                <input type="text" id="que_quan" name="que_quan" class="form-control" placeholder="Nhập quê quán của bạn" required>
+                                @if ($errors->has('que_quan'))
+                                <small class="text-danger">{{ $errors->first('que_quan') }}</small>
+                                @endif
+                            </div>
+                            <!-- Thêm trường Căn cước công dân -->
+                            <div class="form-group">
+                                <label for="cccd">Căn Cước Công Dân</label>
+                                <input type="text" id="cccd" name="cccd" class="form-control" placeholder="Nhập số căn cước công dân" required>
+                                @if ($errors->has('cccd'))
+                                <small class="text-danger">{{ $errors->first('cccd') }}</small>
+                                @endif
+                            </div>
                             <div class="form-group">
                                 <label for="password">Mật Khẩu</label>
                                 <input type="password" id="password" name="password" class="form-control" placeholder="Nhập mật khẩu của bạn" required>
@@ -63,6 +79,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary">Đăng Ký</button>
                         </form>
+
                     </div>
                 </div>
             </div>

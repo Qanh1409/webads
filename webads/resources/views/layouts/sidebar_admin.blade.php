@@ -1,8 +1,8 @@
 <div class="h-screen bg-gray-800 text-white flex flex-col w-64">
     <!-- Logo Section -->
     <div class="p-4 flex items-center space-x-2">
-        <img src="https://via.placeholder.com/40" alt="Logo" class="w-8 h-8">
-        <span class="text-xl font-bold">TailAdmin</span>
+        <img src="\img\logo_Mazda.png" alt="Logo" class="w-8 h-8">
+        <span class="text-xl font-bold">{{ Auth::user()->name }}</span>
     </div>
 
     <!-- Menu Header -->
@@ -39,7 +39,7 @@
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 12c2.21 0 4-1.79 4-4S14.21 4 12 4 8 5.79 8 8s1.79 4 4 4zM4 20v-1a4 4 0 014-4h8a4 4 0 014 4v1H4z"></path>
             </svg>
-            <span class="ml-2">Profile</span>
+            <span class="ml-2">Thông tin chi tiết</span>
         </a>
 
         <!-- Task Dropdown -->
@@ -49,17 +49,17 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6M9 16h6"></path>
                     </svg>
-                    <span>Task</span>
+                    <span>Tùy chọn</span>
                 </div>
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 9l6 6 6-6"></path>
                 </svg>
             </a>
             <div x-show="open" class="ml-6 space-y-2">
-                <a href="{{route('admin.category')}}" class="block px-2 py-2 text-sm hover:bg-gray-700">Category List</a>
+                <a href="{{route('admin.category')}}" class="block px-2 py-2 text-sm hover:bg-gray-700">Danh sách dòng xe</a>
             </div>
             <div x-show="open" class="ml-6 space-y-2">
-                <a href="{{route('admin.blog')}}" class="block px-2 py-2 text-sm hover:bg-gray-700">Blog</a>
+                <a href="{{route('admin.blog')}}" class="block px-2 py-2 text-sm hover:bg-gray-700">Tin tức</a>
             </div>
         </div>
 

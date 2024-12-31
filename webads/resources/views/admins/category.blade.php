@@ -8,8 +8,8 @@
     <!-- Main Content Area -->
     <div class="flex-1 p-6 overflow-y-auto max-h-screen">
         <header class="flex justify-between items-center mb-6">
-            <h1 class="text-3xl font-bold">Category List (Phân loại các kiểu xe)</h1>
-            <p class="text-lg">Hello, {{ Auth::user()->name }}</p>
+            <h1 class="text-3xl font-bold">Danh sách các dòng xe</h1>
+            <p class="text-lg">Xin chào, {{ Auth::user()->name }}</p>
         </header>
 
         <!-- Insert Button -->
@@ -27,9 +27,9 @@
             <table class="min-w-full bg-white rounded-lg shadow">
                 <thead class="bg-black text-white">
                     <tr>
-                        <th class="py-2 px-4 text-left">Category Image</th> <!-- New column for the image -->
-                        <th class="py-2 px-4 text-left">Category Name</th>
-                        <th class="py-2 px-4 text-left">Actions</th>
+                        <th class="py-2 px-4 text-left">Ảnh dòng xe</th> <!-- New column for the image -->
+                        <th class="py-2 px-4 text-left">Tên dòng xe</th>
+                        <th class="py-2 px-4 text-left">Tính năng</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,19 +47,21 @@
                         <td class="py-2 px-4 truncate">{{ $category->name }}</td>
                         <td class="py-2 px-4 flex space-x-2">
                             <div style="display: flex; gap: 10px;">
-                                <a href="{{ route('admin.category.edit', $category->id) }}" style="background-color: blue; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">
-                                    Edit
+                                <a href="{{ route('admin.category.edit', $category->id) }}" style="background: black; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">
+                                    Chỉnh sửa
                                 </a>
                             </div>
                             <form action="{{ route('admin.category.delete', $category->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this category?');">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" style="background-color: blue; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">
-                                    Delete
+                                <button type="submit" style="background: black; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;
+">
+                                    Xóa dòng xe
                                 </button>
                             </form>
-                            <a href="{{ route('admin.car.index', $category->id) }}" style="background-color: blue; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">
-                                Detail
+                            <a href="{{ route('admin.car.index', $category->id) }}" style="background: black; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;
+">
+                                Chi tiết
                             </a>
                         </td>
                     </tr>

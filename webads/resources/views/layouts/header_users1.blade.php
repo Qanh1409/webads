@@ -1,4 +1,4 @@
-<!-- KHỐI HEADER SAU KHI ĐĂNG NHẬP THÀNH CÔNG -->
+<!-- KHỐI HEADER SAU KHI ĐĂNG NHẬP THÀNH CÔNG TÀI KHOẢN USER -->
 <header class="bg-dark">
     <nav class="navbar navbar-expand-lg navbar-dark container-fluid">
         <div class="container-fluid ms-3">
@@ -20,10 +20,9 @@
                         <!-- Dropdown Content -->
                         <ul class="dropdown-menu" aria-labelledby="danhSachDongXe"
                             style="width: 900px; position: absolute; display: none; opacity: 0; left: 0; top: 100%; transition: opacity 0.5s ease; padding: 20px; background-color: #f8f9fa; border-radius: 8px; box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);">
-
-                            <!-- SUV Category -->
+                            <!-- Category -->
                             <div style="padding: 10px;">
-                                <h5 style="color: #333; font-weight: bold;">Category</h5>
+                                <h5 style="color: #333; font-weight: bold;">Các dòng xe</h5>
                                 <hr>
                                 <li style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 10px;">
                                     @foreach ($categories as $dongXe)
@@ -76,8 +75,7 @@
 
 
                     <!-- CẤU HÌNH NÚT GIỚI THIỆU -->
-                    <li class="nav-item" id="dropdown-container">
-                        <a class="nav-link fs-5" href="#" id="intro-button">Giới thiệu</a>
+                    <li class="nav-item" id="dropdown-container"><a class="nav-link fs-5" href="#" id="intro-button">Giới thiệu</a>
                         <!-- Menu thả xuống -->
                         <div id="dropdown-content" style="
                             display: none; 
@@ -95,8 +93,7 @@
                             gap: 40px; /* Giữ khoảng cách giữa các phần */
                             font-family: 'Roboto', sans-serif; /* Font sans-serif hiện đại và dễ đọc */
                             font-size: 16px; 
-                            transition: all 0.3s ease;
-">
+                            transition: all 0.3s ease;">
                             <!-- Phần bên trái -->
                             <div style="width: 300px;">
                                 <h3 style="font-family: 'Merriweather', serif; font-weight: 700; font-size: 24px; color: #333; margin-bottom: 20px;">
@@ -124,7 +121,7 @@
                                 <p style="margin: 0; font-size: 15px; line-height: 1.8; color: #555;">
                                     Năm 2011, Thaco hợp tác với tập đoàn Mazda Nhật Bản xây dựng nhà máy sản xuất và lắp ráp xe Mazda tại khu Kinh tế mở Chu Lai, Quảng Nam với công suất 10.000 xe/năm.
                                 </p>
-                                <a href="{{ url('introduce/mazda-vietnam') }}" style="color: #007bff; text-decoration: none; font-size: 16px; display: inline-block; margin-top: 15px; font-weight: 600;">
+                                <a href="https://thacochulai.vn/nha-may-thaco-mazda" style="color: #007bff; text-decoration: none; font-size: 16px; display: inline-block; margin-top: 15px; font-weight: 600;">
                                     VỀ MAZDA VIỆT NAM
                                 </a>
                             </div>
@@ -167,6 +164,7 @@
 
                     <li class="nav-item"><a class="nav-link fs-5" href="{{ url('/testDrive') }}">Lái thử</a></li>
                     <li class="nav-item"><a class="nav-link fs-5" href="{{ url('/contactUs') }}">Liên hệ</a></li>
+                    <li class="nav-item"><a class="nav-link fs-5" href="/installment">Dự toán trả góp</a></li>
                 </ul>
 
                 <!-- User Greeting and Logout Button -->
@@ -178,10 +176,7 @@
                     </span>
 
                     <!-- Logout button -->
-                    <form action="" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-outline-light">Đăng xuất</button>
-                    </form>
+                    <a href="{{route('user.logout')}}">Đăng xuất</a>
 
                 </div>
 

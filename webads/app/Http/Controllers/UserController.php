@@ -114,7 +114,7 @@ class UserController extends Controller
                         return redirect()->route('admin')->with('logined', 'Đăng nhập thành công');
                     }
             
-                    return redirect()->route('home')->with('logined', 'Đăng nhập thành công');
+                    return redirect()->route('home.index')->with('logined', 'Đăng nhập thành công');
                 }
             
                 return back()->withErrors([

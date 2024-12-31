@@ -54,13 +54,14 @@
 
         <!-- Nút hành động -->
         <div class="flex justify-end items-center space-x-4">
-            <a href="" class="bg-gray-500 text-white px-6 py-2 rounded-md shadow-sm hover:bg-gray-600">
+            <a href="" class="bg-black text-white px-6 py-2 rounded-md shadow-sm transition-transform transform hover:bg-gray-800 hover:scale-105">
                 Hủy
             </a>
-            <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-md shadow-sm hover:bg-blue-600">
+            <button type="submit" class="bg-black text-white px-6 py-2 rounded-md shadow-sm transition-transform transform hover:bg-gray-800 hover:scale-105">
                 Cập nhật bài viết
             </button>
         </div>
+
     </form>
 </div>
 @endsection

@@ -160,77 +160,81 @@
 
 <!-- Khối carosel dịch vụ -->
 <div class="container my-5">
-    <p style="padding: 50px ; font-family: 'Playfair Display', sans-serif; font-size: 2rem; font-weight: 100; text-transform: uppercase; letter-spacing: 0.2rem; color: #000; margin: 0; text-align: center;">
-        DỊCH VỤ CỦA CHÚNG TÔI
+    <p class="text-center fw-light display-6 text-uppercase letter-spacing-2 mb-5" style="font-family: 'Playfair Display', serif; color: #333;">
+        Dịch vụ của chúng tôi
     </p>
     <!-- Carousel -->
     <div id="serviceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
         <div class="carousel-inner">
 
-            <!-- Mục 1: Hướng dẫn sử dụng cho chủ xe -->
+            <!-- Slide 1 -->
             <div class="carousel-item active">
-                <div class="row align-items-center" style="display: flex; align-items: center; justify-content: center; padding: 20px;">
-                    <div class="col-md-6" style="flex: 1; padding: 0; margin-right: 20px;">
-                        <img src="https://heyoto.vn/wp-content/uploads/2024/07/mam-xe-mazda-cx-5-premium-exclusive.jpg" alt="Hướng dẫn sử dụng cho chủ xe" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; transition: transform 0.3s ease-in-out; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-6">
+                        <img src="https://heyoto.vn/wp-content/uploads/2024/07/mam-xe-mazda-cx-5-premium-exclusive.jpg" alt="Hướng dẫn sử dụng cho chủ xe" class="img-fluid rounded shadow-sm">
                     </div>
-                    <div class="col-md-6" style="flex: 1; padding: 20px; background-color: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)'; this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'; this.style.transform='scale(1)';">
-                        <h3 style="font-size: 28px; font-weight: 700; color: #333; margin-bottom: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Hướng dẫn sử dụng cho chủ xe</h3>
-                        <p style="font-size: 18px; color: #666; margin-bottom: 20px; line-height: 1.6;">Bảng thông tin tính năng và hướng dẫn chi tiết dành cho xe của bạn. Tìm hiểu cách sử dụng và bảo dưỡng xe hiệu quả.</p>
-                        <button class="btn btn-dark mt-3" style="font-size: 16px; padding: 12px 24px; background-color: #333; border-color: #333; transition: all 0.3s ease-in-out;">Tìm hiểu thêm</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mục 2: Đặt hẹn dịch vụ trực tuyến -->
-            <div class="carousel-item">
-                <div class="row align-items-center" style="display: flex; align-items: center; justify-content: center; padding: 20px;">
-                    <div class="col-md-6" style="flex: 1; padding: 0; margin-right: 20px;">
-                        <img src="https://mazdamotors.vn/media/fzace3nd/call-center.jpg?width=550&height=393" alt="Đặt hẹn dịch vụ trực tuyến" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; transition: transform 0.3s ease-in-out; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);">
-                    </div>
-                    <div class="col-md-6" style="flex: 1; padding: 20px; background-color: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)'; this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'; this.style.transform='scale(1)';">
-                        <h3 style="font-size: 28px; font-weight: 700; color: #333; margin-bottom: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Đặt hẹn dịch vụ trực tuyến</h3>
-                        <p style="font-size: 18px; color: #666; margin-bottom: 20px; line-height: 1.6;">Đặt lịch hẹn dịch vụ trực tuyến một cách thuận tiện. Đảm bảo xe bạn luôn ở trong tình trạng tốt nhất.</p>
-                        <button class="btn btn-dark mt-3" style="font-size: 16px; padding: 12px 24px; background-color: #333; border-color: #333; transition: all 0.3s ease-in-out;">Đặt lịch hẹn</button>
+                    <div class="col-lg-6">
+                        <h3 class="fw-bold mb-3" style="font-family: 'Segoe UI', sans-serif; color: #333;">Hướng dẫn sử dụng cho chủ xe</h3>
+                        <p class="text-muted" style="line-height: 1.6;">Bảng thông tin tính năng và hướng dẫn chi tiết dành cho xe của bạn. Tìm hiểu cách sử dụng và bảo dưỡng xe hiệu quả.</p>
+                        <button class="btn btn-primary mt-3 px-4 py-2">Tìm hiểu thêm</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Mục 3: Hỗ trợ khách hàng -->
+            <!-- Slide 2 -->
             <div class="carousel-item">
-                <div class="row align-items-center" style="display: flex; align-items: center; justify-content: center; padding: 20px;">
-                    <div class="col-md-6" style="flex: 1; padding: 0; margin-right: 20px;">
-                        <img src="img\serviceCar.jpg" alt="Hỗ trợ khách hàng" style="width: 100%; height: 300px; object-fit: cover; border-radius: 12px; transition: transform 0.3s ease-in-out; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-6">
+                        <img src="https://mazdamotors.vn/media/fzace3nd/call-center.jpg?width=550&height=393" alt="Đặt hẹn dịch vụ trực tuyến" class="img-fluid rounded shadow-sm">
                     </div>
-                    <div class="col-md-6" style="flex: 1; padding: 20px; background-color: #fff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 16px rgba(0, 0, 0, 0.2)'; this.style.transform='scale(1.05)';" onmouseout="this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'; this.style.transform='scale(1)';">
-                        <h3 style="font-size: 28px; font-weight: 700; color: #333; margin-bottom: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Hỗ trợ khách hàng</h3>
-                        <p style="font-size: 18px; color: #666; margin-bottom: 20px; line-height: 1.6;">Chúng tôi luôn sẵn sàng hỗ trợ khách hàng 24/7. Liên hệ ngay để được tư vấn về dịch vụ xe của bạn.</p>
-                        <button class="btn btn-dark mt-3" style="font-size: 16px; padding: 12px 24px; background-color: #333; border-color: #333; transition: all 0.3s ease-in-out;">Liên hệ ngay</button>
+                    <div class="col-lg-6">
+                        <h3 class="fw-bold mb-3" style="font-family: 'Segoe UI', sans-serif; color: #333;">Đặt hẹn dịch vụ lái thử</h3>
+                        <p class="text-muted" style="line-height: 1.6;">Đặt lịch hẹn dịch vụ trực tuyến một cách thuận tiện. Đảm bảo xe bạn luôn ở trong tình trạng tốt nhất.</p>
+                        <button class="btn mt-3 px-4 py-2" style="background-color: black; color: white; border: none;">
+                            <a href="/testDrive" style="color: white; text-decoration: none;">Đặt lịch hẹn</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-6">
+                        <img src="img/serviceCar.jpg" alt="Hỗ trợ khách hàng" class="img-fluid rounded shadow-sm">
+                    </div>
+                    <div class="col-lg-6">
+                        <h3 class="fw-bold mb-3" style="font-family: 'Segoe UI', sans-serif; color: #333;">Hỗ trợ khách hàng</h3>
+                        <p class="text-muted" style="line-height: 1.6;">Chúng tôi luôn sẵn sàng hỗ trợ khách hàng 24/7. Liên hệ ngay để được tư vấn về dịch vụ xe của bạn.</p>
+                        <button class="btn mt-3 px-4 py-2" style="background-color: black; color: white; border: none;">
+                            <a href="/contactUs" style="color: white; text-decoration: none;">Liên hệ ngay</a>
+                        </button>
                     </div>
                 </div>
             </div>
 
         </div>
 
-        <!-- Điều khiển Carousel -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev"
-            style="background-color: transparent; border: none; position: absolute; top: 50%; left: 0; transform: translateY(-50%); z-index: 1;">
-            <span class="carousel-control-prev-icon" aria-hidden="true"
-                style="width: 40px; height: 40px; background-color: #555; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: background-color 0.3s ease;">
-                <i class="bi bi-chevron-left" style="color: #fff; font-size: 24px;"></i>
-            </span>
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev position-absolute top-50 start-0 translate-middle-y" type="button" data-bs-target="#serviceCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
         </button>
-
-        <button class="carousel-control-next" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next"
-            style="background-color: transparent; border: none; position: absolute; top: 50%; right: 0; transform: translateY(-50%); z-index: 1;">
-            <span class="carousel-control-next-icon" aria-hidden="true"
-                style="width: 40px; height: 40px; background-color: #555; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px rgba(0,0,0,0.2); transition: background-color 0.3s ease;">
-                <i class="bi bi-chevron-right" style="color: #fff; font-size: 24px;"></i>
-            </span>
+        <button class="carousel-control-next position-absolute top-50 end-0 translate-middle-y" type="button" data-bs-target="#serviceCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-dark rounded-circle p-3" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
+
+        <!-- Dots Navigation -->
+        <div class="text-center mt-3">
+            <button type="button" data-bs-target="#serviceCarousel" data-bs-slide-to="0" class="active btn btn-sm btn-light mx-1"></button>
+            <button type="button" data-bs-target="#serviceCarousel" data-bs-slide-to="1" class="btn btn-sm btn-light mx-1"></button>
+            <button type="button" data-bs-target="#serviceCarousel" data-bs-slide-to="2" class="btn btn-sm btn-light mx-1"></button>
+        </div>
     </div>
 </div>
+
+
 
 
 

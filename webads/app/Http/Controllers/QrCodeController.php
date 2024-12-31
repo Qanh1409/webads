@@ -1,25 +1,43 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use Illuminate\Support\Facades\Storage;
-
-class QrCodeController extends Controller
+use Intervention\Image\Facades\Image;
+class QRCodeController extends Controller
 {
-    public function generateQrCode()
+    //
+    public function generate()
     {
-        // Tạo mã QR với nội dung
-        $qrContent = 'https://example.com';
+        // Tạo URL cho mã QR
+        $paymentUrl = route('payment.success'); // URL để hiển thị thông báo
 
-        // Tạo mã QR và lưu thành file ảnh
-        $fileName = 'qrcode-' . time() . '.jpg'; // Tên file duy nhất
-        $filePath = 'qrcodes/' . $fileName;     // Thư mục lưu file
+        // Đặt tên file cho mã QR
+        $fileName = 'payment_qr_' . time() . '.png'; // Tùy chỉnh tên file
 
-        // Sinh mã QR và lưu thành file JPG
-        Storage::put($filePath, QrCode::format('png')->size(300)->generate($qrContent));
+        // Đường dẫn lưu file ảnh
+        $filePath = public_path('images/qr_codes/' . $fileName);
 
-        // Trả về view để hiển thị mã QR
-        return view('qrcode_image', ['imagePath' => $filePath]);
+        // Kiểm tra thư mục 'images/qr_codes', nếu chưa tồn tại thì tạo
+        if (!file_exists(public_path('images/qr_codes'))) {
+            mkdir(public_path('images/qr_codes'), 0755, true);
+        }
+
+        // Tạo mã QR và lưu vào file
+        QrCode::format('png')->size(300)->generate($paymentUrl, $filePath);
+
+        // Trả về view với đường dẫn file ảnh
+        $qrCodePath = asset('images/qr_codes/' . $fileName); // Đường dẫn URL đến tệp ảnh
+
+        return view('qrcode', compact('qrCodePath')); // Truyền đường dẫn vào view
     }
+
+
+    public function confirmSuccess(){
+        return view('pay');
+    }
+
+
+
 }
