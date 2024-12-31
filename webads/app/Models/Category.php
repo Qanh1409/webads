@@ -23,8 +23,9 @@ class Category extends Model
         });
     }
 
-     public function cars()
+  
+    public function car()
     {
-        return $this->hasMany(Car::class);
+        return $this->hasOne(Car::class); // Or the appropriate relationship
     }
 }

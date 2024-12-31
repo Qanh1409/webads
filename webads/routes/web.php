@@ -6,6 +6,11 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CarDetailController;
 use App\Http\Controllers\CategoryController;
+use App\Models\User;
+use App\Http\Controllers\QrCodeController;
+
+Route::get('/generate-qr', [QrCodeController::class, 'generateQrCode']);
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -14,16 +19,32 @@ Route::post('users/store', [UserController::class, 'store'])->name('user.store')
 Route::get('users/login', [UserController::class, 'login'])->name('user.login');
 Route::post('users/signin', [UserController::class, 'signin'])->name('user.signin');
 Route::get('users/logout', [UserController::class, 'logout'])->name('user.logout');
+Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
+    $user = User::findOrFail($id);
+
+    if (sha1($user->email) === $hash) {
+        $user->email_verified_at = now();
+        $user->save();
+
+        return redirect()->route('user.login')->with('success', 'Email của bạn đã được xác nhận.');
+    }
+
+    return redirect()->route('user.login')->with('error', 'Liên kết xác nhận không hợp lệ.');
+})->name('verification.verify');
+Route::post('users/store', [UserController::class, 'store'])->name('user.store');
 
 //Danh sách list các xe (khối header)
 Route::get('category', [CategoryController::class, 'category'])->name('category.list');
 Route::get('/home/category{id}', [CategoryController::class, 'showCategory'])->name('category.show');
-
+Route::get('/phpinfo', function () {
+    phpinfo();
+});
 
 //Mục 'GIỚI THIỆU' (khối header)
 Route::get('introduce/design', [HomeController::class, 'introduce_design'])->name('introduce_design');
 Route::get('introduce/creative', [HomeController::class, 'introduce_creative'])->name('introduce_creative');
 Route::get('introduce/iActivsense', [HomeController::class, 'introduce_iActivsense'])->name('introduce_iActivsense');
+
 
 // Mục tin tức (khối header)
 Route::get('/news', [HomeController::class, 'blog'])->name('blog');

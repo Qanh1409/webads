@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Log;
 use App\Models\Blog;
 use App\Models\Category;
-
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 class HomeController extends Controller
 {
     //
@@ -27,7 +28,7 @@ class HomeController extends Controller
         }
     }
 
-
+   
 
     public function category()
     {
