@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\VerifyEmail;
+
 class UserController extends Controller
 {
     /**
@@ -34,6 +35,7 @@ class UserController extends Controller
             'phone_number' => 'required|string|regex:/^0[0-9]{9}$/|max:20|unique:users',
             'address' => 'nullable|string|max:255',
             'password' => 'required|string|min:8|confirmed',
+
         ];
 
         $messages = [
@@ -49,13 +51,15 @@ class UserController extends Controller
             'password.confirmed' => 'Xác nhận mật khẩu không khớp',
         ];
 
-        $request->validate($rules,$messages);
+        $request->validate($rules, $messages);
 
         // Tạo người dùng mới
-       $user =  User::create([
+        $user =  User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'que_quan' => $request->que_quan,
+            'cccd' => $request->cccd,
             'phone_number' => $request->phone_number,
             'address' => $request->address,
         ]);
@@ -66,7 +70,26 @@ class UserController extends Controller
         // Chuyển hướng sau khi đăng ký thành công
         return redirect()->route('user.login')->with('success', 'Đăng ký thành công!');
     }
+    public function verify(Request $request, $id, $hash)
+    {
+        $user = User::findOrFail($id);
+        if (!hash_equals($hash, sha1($user->email))) {
+            abort(403, 'Invalid verification link.');
+        }
 
+        // Kiểm tra xem người dùng đã xác minh chưa
+        if ($user->hasVerifiedEmail()) {
+            return redirect('/')->with('message', 'Email already verified.');
+        }
+
+        // Đánh dấu người dùng là đã xác minh
+        $user->email_verified_at = now();
+        $user->save();
+
+        // Gửi sự kiện xác minh email
+
+        return redirect()->route('user.login')->with('message', 'Your email has been verified.');
+    }
     /**
      * Hiển thị trang đăng nhập.
      *
@@ -84,51 +107,50 @@ class UserController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      */
 
-            public function signin(Request $request)
-            {
-                // Validate dữ liệu đầu vào
-                $credentials = $request->validate([
-                    'email' => ['required', 'email'],
-                    'password' => ['required'],
-                ]);
-            
-                // Kiểm tra thông tin đăng nhập
-                if (Auth::attempt($credentials)) {
-                    $request->session()->regenerate();
-            
-                    $user = Auth::user();
-            
-                    // Kiểm tra trạng thái xác nhận email
-                    if (is_null($user->email_verified_at)) {
-                        Auth::logout(); // Đăng xuất người dùng ngay lập tức
-                        return back()->withErrors([
-                            'email' => 'Tài khoản của bạn chưa được xác nhận email. Vui lòng kiểm tra email để xác nhận.',
-                        ])->onlyInput('email');
-                    }
-            
-                    // Lưu ID người dùng vào phiên
-                    $request->session()->put('user_id', $user->id);
-            
-                    // Điều hướng dựa trên vai trò của người dùng
-                    if ($user->role == 'admin') {
-                        return redirect()->route('admin')->with('logined', 'Đăng nhập thành công');
-                    }
-            
-                    return redirect()->route('home.index')->with('logined', 'Đăng nhập thành công');
-                }
-            
+    public function signin(Request $request)
+    {
+        // Validate dữ liệu đầu vào
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        // Kiểm tra thông tin đăng nhập
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            $user = Auth::user();
+
+            // Kiểm tra trạng thái xác nhận email
+            if (is_null($user->email_verified_at)) {
+                Auth::logout(); // Đăng xuất người dùng ngay lập tức
                 return back()->withErrors([
-                    'email' => 'Thông tin đăng nhập không chính xác.',
+                    'email' => 'Tài khoản của bạn chưa được xác nhận email. Vui lòng kiểm tra email để xác nhận.',
                 ])->onlyInput('email');
             }
-            
 
-    public function logout(Request $request){
+            // Lưu ID người dùng vào phiên
+            $request->session()->put('user_id', $user->id);
+
+            // Điều hướng dựa trên vai trò của người dùng
+            if ($user->role == 'admin') {
+                return redirect()->route('admin')->with('logined', 'Đăng nhập thành công');
+            }
+
+            return redirect()->route('home.index')->with('logined', 'Đăng nhập thành công');
+        }
+
+        return back()->withErrors([
+            'email' => 'Thông tin đăng nhập không chính xác.',
+        ])->onlyInput('email');
+    }
+
+
+    public function logout(Request $request)
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/');
     }
-
-
 }

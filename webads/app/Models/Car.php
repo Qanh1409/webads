@@ -2,49 +2,33 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Car extends Model
 {
-    use HasFactory;
+    protected $fillable = ['name', 'price', 'description', 'category_id', 'image'];
 
-    // Đặt tên bảng nếu không phải là số nhiều của tên model
-    protected $table = 'cars'; // Bảng này sẽ chứa dữ liệu xe
-
-    // Thuộc tính có thể gán
-    protected $fillable = [
-        'image',
-        'name',
-        'price',
-        'category_id',
-        'description',
-    ];
+    // Mối quan hệ với bảng `categories` (Many-to-One)
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 
     protected static function booted()
     {
         static::created(function ($car) {
-            $car->carDetail()->create(
-                [
-                    'car_id' => $car->id,
-                ]
-            );
-        });
-        
-        static::deleting(function ($car) {
-            $car->carDetail()->delete();
+            // Tạo bản ghi CarDetail khi tạo Car mới
+            $car->carDetail()->create([
+                'engine_type' => 'Default Engine Type',
+                'transmission' => 'Automatic',
+                'fuel_type' => 'Petrol',
+                'car_id' => $car->id, // Gán car_id cho CarDetail
+            ]);
         });
     }
 
-
-    // Nếu bạn có mối quan hệ với Category
-    public function category()
+    // Mối quan hệ với bảng `car_details` (One-to-One hoặc One-to-Many)
+    public function carDetail()
     {
-        return $this->belongsTo(Category::class);
-    }
-
-    public function  carDetail()
-    {
-        return $this->hasOne(CarDetail::class);
+        return $this->hasOne(CarDetail::class, 'car_id');  // Hoặc sử dụng `hasMany` nếu một chiếc xe có nhiều chi tiết
     }
 }

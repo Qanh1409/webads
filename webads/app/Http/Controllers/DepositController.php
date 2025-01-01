@@ -13,8 +13,18 @@ use Illuminate\Support\Facades\Validator;
 class DepositController extends Controller
 {
     
-    public function deposit(Request $request,$id)
+    public function deposit(Request $request, $id)
     {
+        // Kiểm tra phương thức thanh toán
+        $paymentMethod = $request->input('payment_method');
+    
+        // Kiểm tra trạng thái quét mã QR chỉ khi khách hàng chọn phương thức "Chuyển khoản ngân hàng"
+       
+        $car = Car::find($id);
+    
+        if(Auth::check()) {
+            $user = Auth::user();
+        }
         // Định nghĩa các quy tắc xác thực
         $rules = [
             'car_id' => 'required|exists:cars,id',  // car_id phải tồn tại trong bảng cars
@@ -22,7 +32,7 @@ class DepositController extends Controller
             'amount' => 'required|numeric|min:0',  // Số tiền phải là số và >= 0
             'color' => 'required|string|max:255',  // Màu xe phải là chuỗi và không quá 255 ký tự
         ];
-
+    
         // Định nghĩa các thông báo lỗi
         $messages = [
             'car_id.required' => 'Car is required',
@@ -36,35 +46,28 @@ class DepositController extends Controller
             'color.string' => 'Color must be a string',
             'color.max' => 'Color may not be greater than 255 characters',
         ];
-              // Tiến hành xác thực
-        // $validator = Validator::make($request->all(), $rules, $messages);
-
-        // // Nếu xác thực thất bại, trả về thông báo lỗi
-        // if ($validator->fails()) {
-        //     return redirect()->back()->withErrors($validator)->withInput();
-        // }
-
-        // Tạo bản ghi mới trong bảng deposits
-        $car = Car::find($id);
-        if(Auth::check()){
-            $user = Auth::user();
-        }
-        $deposit = new Deposit;
+    
+        // Tiến hành xác thực
+        $request->validate($rules, $messages);
+    
+        // Tiến hành lưu thông tin deposit
+        $deposit = new Deposit();
         $deposit->car_id = $car->id;
         $deposit->user_id = $user->id;
         $deposit->amount = $request->dat_coc;
         $deposit->color = $request->mau_xe;
-        // Lưu bản ghi deposit
+        $deposit->qr_scanned = true;  // Đánh dấu là đã quét mã QR
         $deposit->save();
-        
-        // Trả về thông báo thành công sau khi lưu thành công
+    
+        // Trả về thông báo thành công
         return redirect()->route('deposit.confirm')->with('success', 'Deposit successfully added!');
     }
+    
 
     //Khai báo mục Xác nhận thanh toán
     public function purchase()
     {
         $categories = Category::all();
-        return view('pay', compact('categories'));
+        return view('deposit', compact('categories'));
     }
 }

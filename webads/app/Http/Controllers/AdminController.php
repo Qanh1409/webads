@@ -168,6 +168,7 @@ class AdminController extends Controller
 
     public function createCategory(Request $request)
     {
+
         $rules = [
             'category_name' => 'required|string|max:255',
             'img_url' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -182,12 +183,7 @@ class AdminController extends Controller
             'img_url.max' => 'Image size may not be greater than 2MB',
         ];
 
-        $validator = Validator::make($request->all(), $rules, $messages);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
+        $request->validate($rules,$messages);
         $category = new Category;
         $category->name = $request->category_name;
 
@@ -201,6 +197,7 @@ class AdminController extends Controller
         }
 
         $category->save();
+        
         return redirect()->route('admin.category')->with('success', 'Category created successfully.');
     }
 
@@ -364,6 +361,7 @@ class AdminController extends Controller
 
         // Kiểm tra và xóa ảnh nếu có
         if ($car->img) {
+
             $this->removeImage($car->img);
         }
 
@@ -670,7 +668,7 @@ class AdminController extends Controller
         $interiorDetail->rear_armrest = $request->has('rear_armrest');
         $interiorDetail->rear_armrest_usb = $request->has('rear_armrest_usb');
         $interiorDetail->rear_seats_fold_60_40 = $request->has('rear_seats_fold_60_40');
-
+                      
         // Save the updated interior detail
         $interiorDetail->save();
 

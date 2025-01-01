@@ -19,7 +19,7 @@ class Category extends Model
         parent::boot();
 
         static::deleting(function ($category) {
-            $category->car()->delete();
+            $category->cars()->delete();
         });
     }
 

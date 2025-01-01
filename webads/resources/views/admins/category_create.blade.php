@@ -31,7 +31,7 @@
                 <!-- Submit Button -->
                 <div class="flex justify-end">
                     <button type="submit" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-400 focus:outline-none">
-                        Cập nhật 
+                     Tạo Danh mục xe
                     </button>
                 </div>
             </form>

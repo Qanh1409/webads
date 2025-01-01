@@ -100,10 +100,7 @@
                 <div style="text-align: center; margin-bottom: 30px; border-bottom: 3px solid #007BFF; padding-bottom: 20px;">
                     <h2 style="margin: 0; font-size: 32px; font-weight: bold; color: #007BFF; text-transform: uppercase;">Thanh Toán QR Code</h2>
                 </div>
-
                 <!-- Form thanh toán QR Code -->
-                <form style="display: flex; flex-direction: column; gap: 40px;" method="POST" action="">
-                    @csrf
                     <!-- Thông tin thanh toán -->
 
 
@@ -111,10 +108,9 @@
                     <div>
                         <h3 style="margin-bottom: 20px; font-size: 22px; font-weight: 600; color: #333;">Mã QR thanh toán</h3>
                         <div style="text-align: center;">
-                            <img src="{{ asset('images/qr_codes/payment_qr_1735049710.png') }}" alt="QR Code thanh toán" style="max-width: 300px; margin: 0 auto; border-radius: 8px;">
+                            <img src="{{ $qrCodePath }}"  style="max-width: 300px; margin: 0 auto; border-radius: 8px;">
                         </div>
                     </div>
-                </form>
             </div>
 
             <!-- Khối thông tin thẻ ngân hàng (Hình thức 2) -->

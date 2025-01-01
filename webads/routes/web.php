@@ -13,11 +13,11 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UserController;
 
 
-Route::post('/testData',[UserController::class,'testData'])->name('test');
 Route::post('/phpinfo',function(){
     phpinfo();
 })->name('test');
 
+Route::get('/email/verify/{id}/{hash}',[UserController::class,'verify'])->name('verification.verify');
 Route::get('/',[HomeController::class,'index'])->name('home.index');
 Route::get('/qr-code',[QRCodeController::class, 'generate'])->name('qrcode');
 Route::get('/payment-success', [QRCodeController::class, 'confirmSuccess'])->name('payment.success');
@@ -92,7 +92,7 @@ Route::middleware(['admin'])->group(
         Route::get('admin/car/index{id}', [AdminController::class, 'car'])->name('admin.car.index');
         Route::get('admin/car/addCar{id}', [AdminController::class, 'addCar'])->name('admin.car.add');
         Route::post('admin/car/create{id}', [AdminController::class, 'createCar'])->name('admin.car.create');
-        Route::get('admin/car/edit{id}', [AdminController::class, 'editCar'])->name('admin.car.edit');
+        Route::get('admin/car/edit/{id}', [AdminController::class, 'editCar'])->name('admin.car.edit');
         Route::put('/admin/car/update/{id}', [AdminController::class, 'updateCar'])->name('admin.car.update');
         Route::delete('admin/car/delete{id}', [AdminController::class, 'deleteCar'])->name('admin.car.delete');
 

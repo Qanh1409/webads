@@ -8,6 +8,7 @@ use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Car;
 use Illuminate\Support\Facades\Auth;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class HomeController extends Controller
 {
@@ -87,13 +88,32 @@ class HomeController extends Controller
     //Khai báo mục Đặt cọc
     public function deposit($id)
     {
+        $paymentUrl = route('payment.success'); // URL để hiển thị thông báo
+
+        // Đặt tên file cho mã QR
+        $fileName = 'payment_qr_' . time() . '.png'; // Tùy chỉnh tên file
+
+        // Đường dẫn lưu file ảnh
+        $filePath = public_path('images/qr_codes/' . $fileName);
+
+        // Kiểm tra thư mục 'images/qr_codes', nếu chưa tồn tại thì tạo
+        if (!file_exists(public_path('images/qr_codes'))) {
+            mkdir(public_path('images/qr_codes'), 0755, true);
+        }
+
+        // Tạo mã QR và lưu vào file
+        QrCode::format('png')->size(300)->generate($paymentUrl, $filePath);
+
+        // Trả về view với đường dẫn file ảnh
+        $qrCodePath = asset('images/qr_codes/' . $fileName); // Đường dẫn URL đến tệp ảnh
         if(Auth::check()){
             $data = Auth::user();
         }
+
         $categories = Category::all();
         $car = Car::find($id);
         $cars = Car::all();
-        return view('deposit', compact('categories','car','data','cars'));
+        return view('deposit', compact('categories','car','data','cars','qrCodePath'));
     }
 
     //Khai báo mục Dự toán trả góp

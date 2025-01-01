@@ -20,9 +20,10 @@ class CarDetailController extends Controller
 
     public function show($id)
     {
+        
         $car = Car::find($id);
         $categories = Category::all(); // Lấy tất cả danh mục
-        $carDetail = CarDetail::where('car_id', $id)->first(); // Lấy thông tin car_detail với car_id = $id
+        $carDetail = CarDetail::where('car_id', $car->id)->first(); // Lấy thông tin car_detail với car_id = $id
         $carDetailID = $carDetail->id;
         if (!$carDetail) {
             // Xử lý trường hợp không tìm thấy chi tiết xe
